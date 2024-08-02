@@ -13,7 +13,7 @@ function App() {
       
      
       <Routes>
-      <Route path="/" element={<Homepage />} />
+      <Route path="/bankapp" element={<Homepage />} />
         <Route path="/about" element={<About />} />
         {/* Add other routes here */}
       </Routes>
