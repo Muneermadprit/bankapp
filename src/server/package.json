@@ -1,0 +1,32 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+ 
+  "scripts": {
+  "start": "node index.js",
+  "dev": "nodemon index.js",
+  "test": "mocha"
+},
+ "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/storage": "^7.11.1",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-multipart-file-parser": "^0.1.2",
+    "firebase": "^10.12.2",
+    "firebase-admin": "^12.1.1",
+    "ipfs-http-gateway": "0.9.3",
+    "multer": "^1.4.5-lts.1",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.2"
+  }
+}
