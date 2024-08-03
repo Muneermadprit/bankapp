@@ -61,8 +61,8 @@ function Hero() {
               <div className="flex flex-col justify-center gap-4 pt-12 sm:pt-0 text-center sm:text-left order-2 sm:order-1">
               <img src={image3} className='w-60'/>
                
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-primary">75% </h1>
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-primary">Home Loan!!!</h1>
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-red-900">75% </h1>
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-red-900">Home Loan!!!</h1>
                 <p className="text-sm font-bold">
                   Muneer The pro developer with one year hands-on experience in the field of
                 </p>
