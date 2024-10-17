@@ -1,17 +1,15 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path'); 
 const bodyParser = require('body-parser');
 const multer = require('multer');
-const { getStorage, ref, uploadBytes, getDownloadURL, listAll } = require('firebase/storage');
+const { getStorage, ref, uploadBytes, getDownloadURL } = require('firebase/storage');
 const admin = require('firebase-admin');
-
-
+const { getFirestore, doc, getDoc, updateDoc, collection, query, where, getDocs } = require('firebase/firestore'); // Add missing imports
+const path = require('path'); 
 const userRoutes = require('./routes/studentsroutes');
-const {  addEmilist,  getEmis,  updateEmi, deleteEmi} = require('./controllers');
+const { addContacts, getContacts, addCareers, getAcadamics, addSubscribers, getSubscribers, addquery, getquery,updateAdmin,getAdmin,addBrouchure,getBrouchure} = require('./controllers');
 
 const app = express();
-
 
 const serviceAccount = {
   type: process.env.FIREBASE_TYPE,
@@ -32,25 +30,97 @@ admin.initializeApp({
 });
 
 const storage = getStorage();
+const db = getFirestore(); // Initialize Firestore
+app.use(express.static(path.join(__dirname, 'public')));
+console.log(path.join(__dirname, 'public', 'index.html'));
 
 app.use(cors());
 app.use(bodyParser.json());
 
+// Set up multer to store files in memory
+const upload = multer({ storage: multer.memoryStorage() });
+
+// Resume file upload code
+app.post('/careers/upload-file', upload.single("file"), async (req, res) => {
+  const { email } = req.body;
+
+  if (!email || !req.file) {
+    return res.status(400).send('Email and file are required');
+  }
+
+  try {
+    // Get file extension
+    const fileExtension = req.file.originalname.split('.').pop(); 
+    
+    // Create new file name using the email
+    const newFileName = `${email}.${fileExtension}`; 
+    
+    // Reference to the new file in the 'resume' folder
+    const storageRef = ref(storage, `resume/${newFileName}`); 
+    
+    // Upload the file to Firebase Storage
+    await uploadBytes(storageRef, req.file.buffer);
+
+    // Get the download URL of the uploaded file
+    const url = await getDownloadURL(storageRef);
+
+    // Query the collection to find the document with the matching email field
+    const careersRef = collection(db, 'careers');
+    const q = query(careersRef, where('email', '==', email));
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      // Assuming there's only one document matching the email
+      const docRef = querySnapshot.docs[0].ref;
+
+      // Update the resume field with the URL
+      await updateDoc(docRef, {
+        resume: url,
+      });
+
+      res.send({ message: 'File uploaded and resume updated successfully', url });
+    } else {
+      res.status(404).send('Document not found.');
+    }
+  } catch (error) {
+    console.error('Error uploading file:', error);
+    res.status(500).send('Error uploading file');
+  }
+});
+
+// Routes for operations on Holistic Services
+// Routes for managing Careers
+app.post('/Careers', addCareers);
+app.get('/Acadamics/:id', getAcadamics);
 
 
+// Routes for managing Brouchure downloaded
+app.post('/data', addBrouchure);
+app.get('/data', getBrouchure);
+
+// Routes for managing Contacts
+app.post('/Contacts', addContacts);
+app.get('/Contacts', getContacts);
+
+// Routes for managing subscribers
+app.post('/Subscribers', addSubscribers);
+app.get('/Subscribers', getSubscribers);
+
+// Routes for managing queries
+app.post('/Queries', addquery);
+app.get('/Queries',  getquery);
+
+app.put('/admin',  updateAdmin);
+app.get('/admin',  getAdmin);
 
 
-// Routes for managing students
-app.post('/additem', addEmilist);
-app.get('/getitem', getEmis);
-app.put('/updateitem', updateEmi);
-app.delete('/deleteitem', deleteEmi);
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 
-
-
-// Start server
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8082;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
