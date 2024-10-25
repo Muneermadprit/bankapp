@@ -7,9 +7,10 @@ const admin = require('firebase-admin');
 const { getFirestore, doc, getDoc, updateDoc, collection, query, where, getDocs } = require('firebase/firestore'); // Add missing imports
 const path = require('path'); 
 const userRoutes = require('./routes/studentsroutes');
-const { getAcadamicsannual, getParentcredentials, addCareers, getAcadamics, addSubscribers, getToppers,getToppersById, addquery, getquery,updateAdmin,getAdmin,addBrouchure,getBrouchure} = require('./controllers');
+const { addContacts, getContacts, addCareers, getAcadamics, addSubscribers, getSubscribers, addquery, getquery,updateAdmin,getAdmin,addBrouchure,getBrouchure,handleQueryWithGPT} = require('./controllers');
 
 const app = express();
+
 
 const serviceAccount = {
   type: process.env.FIREBASE_TYPE,
@@ -99,13 +100,12 @@ app.post('/data', addBrouchure);
 app.get('/data', getBrouchure);
 
 // Routes for managing Contacts
-app.get('/acadamic2/:id', getAcadamicsannual);
-app.post('/parents', getParentcredentials);
+app.post('/Contacts', addContacts);
+app.get('/Contacts', getContacts);
 
 // Routes for managing subscribers
 app.post('/Subscribers', addSubscribers);
-app.get('/toppers', getToppers);
-app.get('/toppers/:id', getToppersById);
+app.get('/Subscribers', getSubscribers);
 
 // Routes for managing queries
 app.post('/Queries', addquery);
@@ -113,6 +113,11 @@ app.get('/Queries',  getquery);
 
 app.put('/admin',  updateAdmin);
 app.get('/admin',  getAdmin);
+
+
+
+app.post('/api/query/', handleQueryWithGPT);
+
 
 
 app.get('*', (req, res) => {
