@@ -6,7 +6,11 @@ const Students = require('./models/studentscredentials');
 const Acadamics = require('./models/acadamics');
 const Parentscredentials = require('./models/parentscredentials');
 const Query = require('./models/querys');
+const axios = require('axios');
+const fs = require('fs');
 
+// Read the contents of the text file
+const infoText = fs.readFileSync('cochincomputing_info.txt', 'utf8');
 
 
 // Add Career
@@ -24,7 +28,7 @@ const addCareers = async (req, res) => {
 const getAcadamics = async (req, res) => {
     try {
         // Extract document ID from the request parameters
-        const docId = req.params.id;
+        const docId = req.params.id;h
         console.log('Document ID:', docId);
 
         if (!docId) {
@@ -56,46 +60,6 @@ const getAcadamics = async (req, res) => {
     }
 };
 
-//annual term results
-
-const getAcadamicsannual = async (req, res) => {
-    try {
-        // Extract document ID from the request parameters
-        const docId = req.params.id;
-        console.log('Document ID:', docId);
-
-        if (!docId) {
-            return res.status(400).send('Document ID is required');
-        }
-
-        // Reference to the midterm2024 subcollection under the specified docId
-        const midtermCollectionRef = collection(db, 'acadamic', docId, 'anualterm2024');
-        const midtermSnapshot = await getDocs(midtermCollectionRef);
-
-        if (midtermSnapshot.empty) {
-            return res.status(404).send('No records found in anualterm2024');
-        }
-
-        // Extract data from each document in the subcollection
-        const midtermData = midtermSnapshot.docs.map(doc => ({
-            id: doc.id, // Document ID
-            socialscience: doc.data().socialscience,
-            mathematics: doc.data().mathematics,
-            english: doc.data().english,
-            IT: doc.data().IT
-        }));
-
-        // Send the academic data in the response
-        return res.status(200).send(midtermData);
-    } catch (error) {
-        console.error('Error fetching academic record:', error); // Log the error for debugging
-        return res.status(500).send(error.message);
-    }
-};
-
-
-
-
 
 
 
@@ -110,41 +74,36 @@ const addContacts = async (req, res) => {
     }
 };
 
-// Function to get parent credentials and check them
-const getParentcredentials = async (req, res) => {
+// Get Contacts
+const getContacts = async (req, res) => {
     try {
-        const { id, password } = req.body; // Extract id and password from request body
-
-        if (!id || !password) {
-            return res.status(400).send('ID and password are required');
-        }
-
-        const contactsCollection = collection(db, 'parentscredentials');
+        const contactsCollection = collection(db, 'contacts');
         const contactSnapshot = await getDocs(contactsCollection);
+        const contactArray = [];
 
         if (contactSnapshot.empty) {
-            return res.status(404).send('No contacts found');
-        }
-
-        let isValid = false;
-
-        // Loop through the collection and check for matching credentials
-        contactSnapshot.forEach(doc => {
-            const contact = doc.data();
-            if (contact.email === id && contact.password === password) {
-                isValid = true;
-            }
-        });
-
-        if (isValid) {
-            return res.status(200).send('OK'); // Credentials match
+            res.status(404).send('No contacts found');
         } else {
-            return res.status(401).send('Not OK'); // Credentials don't match
+            contactSnapshot.forEach(doc => {
+                const contact = doc.data();
+                const contacts = new Contacts(
+                    contact.fullname,
+                    contact.email,
+                    contact.street,
+                    contact.city,
+                    contact.postalcode,
+                    contact.phonenumber,
+                    contact.message
+                );
+                contactArray.push(contacts);
+            });
+            res.status(200).send(contactArray);
         }
     } catch (error) {
-        return res.status(400).send(error.message);
+        res.status(400).send(error.message);
     }
 };
+
 // Add Subscriber
 const addSubscribers = async (req, res) => {
     try {
@@ -157,54 +116,26 @@ const addSubscribers = async (req, res) => {
 };
 
 // Get Subscribers
-const getToppers = async (req, res) => {
+const getSubscribers = async (req, res) => {
     try {
-        const subscribersCollection = collection(db, 'topperslist'); // Reference to the 'topperslist' collection
-        const subscribersSnapshot = await getDocs(subscribersCollection); // Get all documents from the collection
+        const subscribersCollection = collection(db, 'subscribers');
+        const subscribersSnapshot = await getDocs(subscribersCollection);
         const subscribersArray = [];
 
         if (subscribersSnapshot.empty) {
-            return res.status(404).send('No subscribers found');
+            res.status(404).send('No subscribers found');
         } else {
-            // Loop through each document in the snapshot and push only the document ID
             subscribersSnapshot.forEach(doc => {
-                subscribersArray.push(doc.id); // Push the document ID into the array
+                const subscriber = doc.data();
+                const subscriberData = new Acadamics(
+                    subscriber.email
+                );
+                subscribersArray.push(subscriberData);
             });
-            return res.status(200).send(subscribersArray); // Return the array of document IDs
+            res.status(200).send(subscribersArray);
         }
     } catch (error) {
-        return res.status(400).send(error.message); // Return error message on failure
-    }
-};
-
-
-//geteach toppers
-const getToppersById = async (req, res) => {
-    try {
-        // Extract document ID from the request parameters
-        const docId = req.params.id;
-        console.log('Document ID:', docId);
-
-        if (!docId) {
-            return res.status(400).send('Document ID is required');
-        }
-
-        // Reference to the specific document in the 'topperslist' collection
-        const docRef = doc(db, 'topperslist', docId);
-        const docSnapshot = await getDoc(docRef);
-
-        if (!docSnapshot.exists()) {
-            return res.status(404).send('No topper found with the given ID');
-        }
-
-        // Send the document data in the response
-        return res.status(200).send({
-            id: docSnapshot.id, // Document ID
-            ...docSnapshot.data() // Document data
-        });
-    } catch (error) {
-        console.error('Error fetching topper:', error); // Log the error for debugging
-        return res.status(500).send(error.message);
+        res.status(400).send(error.message);
     }
 };
 
@@ -357,20 +288,85 @@ const getAdmin = async (req, res) => {
 };
 
 
+// Controller function to handle queries with GPT integration
+const handleQueryWithGPT = async (req, res) => {
+    try {
+        const message  = req.body.message; // Correct destructuring
+        const companyName  = req.body.companyname; // Correct destructuring
+        
+        console.log(companyName);
+
+       
+     
+
+        // Knowledge base definition
+        const knowledgeBase = [
+            {
+                name: "cochincomputing",
+                industry: "IT Solutions",
+                info:infoText 
+            },
+            // Add more entries as needed
+        ];
+
+        // Search for knowledge entry
+        const knowledgeEntry = knowledgeBase.find(entry => entry.name.toLowerCase() === companyName.toLowerCase());
+        console.log(knowledgeEntry);
+
+        // Create prompt
+        const prompt = knowledgeEntry 
+            ? `About ${knowledgeEntry.name} in the ${knowledgeEntry.industry} industry: ${knowledgeEntry.info}. User asks: ${message} in short sentence ` 
+            : `User asks: ${message}. Provide a detailed response.`;
+            console.log(prompt)
+        // Load API key
+        const apiKey = process.env.OPENAI_API_KEY;
+        if (!apiKey) {
+            return res.status(500).send('OpenAI API key is missing');
+        }
+
+        // Generate response from GPT
+        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
+            model: 'gpt-4',
+            messages: [{ role: 'user', content: prompt }],
+            max_tokens: 100, // Reduced token count
+        }, {
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        // Check for response structure
+        if (response.data.choices && response.data.choices.length > 0) {
+            return res.status(200).send(response.data.choices[0].message.content.trim());
+        } else {
+            throw new Error('Unexpected response structure from GPT API');
+        }
+    } catch (error) {
+        console.error(`Error handling query: ${error.message}`);
+        res.status(500).send(`Error handling query: ${error.message}`);
+    }
+};
+
+
+
+
+
+
 
 module.exports = {
     addCareers,
     getAcadamics,
-    getAcadamicsannual,
-    getParentcredentials,
+    addContacts,
+    getContacts,
     addSubscribers,
-    getToppers,
-    getToppersById,
+    getSubscribers,
     addquery,
     getquery,
     updateAdmin,
     getAdmin,
     addBrouchure,
-    getBrouchure
+    getBrouchure,
+    handleQueryWithGPT, 
 };
 
