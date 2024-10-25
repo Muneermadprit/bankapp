@@ -28,7 +28,7 @@ const addCareers = async (req, res) => {
 const getAcadamics = async (req, res) => {
     try {
         // Extract document ID from the request parameters
-        const docId = req.params.id;h
+        const docId = req.params.id;
         console.log('Document ID:', docId);
 
         if (!docId) {
