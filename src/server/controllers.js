@@ -319,7 +319,7 @@ const handleQueryWithGPT = async (req, res) => {
             : `User asks: ${message}. Provide a detailed response.`;
             console.log(prompt)
         // Load API key
-        const apiKey = process.env.newcode;
+        const apiKey = process.env.OPENAI_API_KEY;
         if (!apiKey) {
             return res.status(500).send('OpenAI API key is missing');
         }
