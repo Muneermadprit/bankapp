@@ -1,10 +1,13 @@
 // Import the necessary model
 const AttendanceRegister = require('./models/AttendanceRegister');
+const cache = require('./cache');
+
 
 // Function to get attendance records by student ID
-const getAttendanceByStudentId = async (req, res,id) => {
+const getAttendanceByStudentId = async (req, res,id,user) => {
      // Destructure studentId from the request body
-
+     const userdata = cache.get(user)
+      
     try {
         
 
@@ -18,8 +21,7 @@ const getAttendanceByStudentId = async (req, res,id) => {
             return res.status(404).json({ error: 'Attendance record not found for the given student ID' });
         }
 
-        // Return the attendance record
-           const whatsappResponse = {
+        const whatsappResponse = {
             id: "669165b9c87d98ff758518a9", // Example ID, replace with dynamic value if needed
             created_at: new Date().toISOString(),
             topic: "message.sender.user",
@@ -29,7 +31,7 @@ const getAttendanceByStudentId = async (req, res,id) => {
                 message: {
                     type: "message",
                     id: "669165b91541072a3dc591a3", // Example message ID, replace if needed
-                    phone_number: user, // Replace with the recipient's phone number
+                    phone_number: userdata.id, // Replace with the recipient's phone number
                     contact_id: "6645b6de35357c0bfb4af346",
                     sender: "USER",
                     message_content: {
@@ -62,7 +64,7 @@ const getAttendanceByStudentId = async (req, res,id) => {
         
 
         // Send the WhatsApp template response
-        res.json(whatsappResponse);  // Send the fetched attendance data as JSON response
+        res.json(whatsappResponse); // Send the fetched attendance data as JSON response
     } catch (error) {
         console.error('Error fetching attendance data:', error);
         res.status(500).json({ error: 'Error fetching attendance data' }); // Send error response
