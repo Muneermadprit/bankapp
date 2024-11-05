@@ -8,11 +8,14 @@ const cipher = crypto.createCipheriv(algorithm, key, iv);
 
 const {getStudentByParentPhone} = require('./parentscontrollers');
 const {getAttendanceByStudentId} = require('./AttendanceCheck');
+const {generateRequest} = require('./sendresponse');
+const {sendMessage} = require('./sendingtowhatsapp');
+const {  createTextMessage} = require('./Textmessage');
+
 
 const {Sendotp,otpVerification} = require('./sendotp');
 const acadamics = (user, userstatus, res, req,messageContent) => {
    
-
 
 
     // Retrieve messageContent from req.body if defined
@@ -44,68 +47,96 @@ const acadamics = (user, userstatus, res, req,messageContent) => {
     // Handle the main menu or specific options based on path
     switch (userstatus.path) {
         case 0:
-            return res.status(200).send({
-                "messaging_product": "whatsapp",
-                "recipient_type": "individual",
-                "to": user,
-                "type": "interactive",
-                "interactive": {
-                    "type": "list",
-                    "header": { "type": "text", "text": "Hi! You are in the academic portal. Please select from the options." },
-                    "body": { "text": "Choose one of the following options to proceed:" },
-                    "footer": { "text": "Academics Portal Menu" },
-                    "action": {
-                        "sections": [{
-                            "title": "Admission Options",
-                            "rows": [
-                                { "id": "Attendance", "title": "Attendance", "description": "Check your child's last week attendance." },
-                                { "id": "Pending Assignments", "title": "Pending Assignments", "description": "Check pending assignments." },
-                                { "id": "Progress", "title": "Progress Report", "description": "Check the latest marksheet." },
-                                { "id": "Report from classteacher", "title": "Class Teacher Report", "description": "Overall performance and suggestions." },
-                                { "id": "Check pending fees", "title": "Fees Status", "description": "Check pending fees status." }
-                            ]
-                        }]
-                    }
-                }
-            });
+            const headerText = 'Academic portal: Please select an option below'; 
+            let menuList = [{
+                id: 'Attendance',
+                title: 'Attendance',
+                description:'check your children Attendance Register'
 
+        
 
+            },{
+                id: 'Pending Assignments',
+                title: 'Pending Assignments',
+                description:'See your children pending assighnments '
+
+        
+
+            },
+            {
+                id: 'Progress',
+                title: 'Progress',
+                description:'See your children pending assighnments '
+
+        
+
+            },     {
+                id: 'classteacherReport',
+                title: 'classteacher Report',
+                description:'See what class teacher says about your child'
+
+        
+
+            },{
+                id: 'Check pending fees',
+                title: 'Pending Fees',
+                description:'Check if there any pending fees'
+
+        
+
+            }]
+           
+            const bodyText = '';
+            const footerText = '';
+            const buttonTitle = 'Select Options';
+            
+             const message = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+              console.log(message)
+             sendMessage(message);
         case 1:
               
            if (!('varification' in userstatus)){
             userstatus = { ...userstatus, varification: 'validation' };
             console.log(userstatus.varification)
             cache.set(user, userstatus);
-            return res.status(200).send({
+            const headerText = 'please ensure using Registerd number'
+            let menuList = [{
+                id: 'yes',
+                title: 'yes i have',
+                description:'use the mobile phone you registerd'
+
+        
+
+            },{
+                id: 'No',
+                title: 'I dont have',
+                description:'use the mobile phone you registerd'
+
+        
+
+            }]
+            const bodyText = '';
+            const footerText = '';
+            const buttonTitle = 'Select Options';
+            
+             const message = generateRequest(user, headerText, bodyText = "", footerText = "", buttonTitle = "",menuList) 
+              console.log(message)
+             sendMessage(message);
+
+             return res.status(403).send({
                 "messaging_product": "whatsapp",
                 "recipient_type": "individual",
                 "to": user,
-                "type": "interactive",
-                "interactive": {
-                    "type": "list",
-                    "header": { "type": "text", "text": "You have to use your Registerd phonenumber. For continew" },
-                    "body": { "text": "Choose one of the following options to proceed:" },
-                    "footer": { "text": "Academics Portal Menu" },
-                    "action": {
-                        "sections": [{
-                            "title": "Admission Options",
-                            "rows": [
-                                { "id": "yes", "title": "Yes i have", "description": "Check your child's last week attendance." },
-                                { "id": "No", "title": "No I dont have", "description": "Check pending assignments." },
-                                
-                            ]
-                        }]
-                    }
+                "type": "text",
+                "text": {
+                    "body": "You need to complete verification before submitting your application."
                 }
             });
-
-
-            
         
            }
            else {
-
-            switch(userstatus.varification){
+              
+            switch(userstatus.varification ){
                 case 'validation':
                     console.log('entrance')
                     userstatus = { ...userstatus, varification: 'pending' };
@@ -117,15 +148,9 @@ const acadamics = (user, userstatus, res, req,messageContent) => {
                             otpSent = true; // Set the flag to true to prevent further calls
                             Sendotp(user,messageContent).catch((error) => console.error('Error in Sendotp:', error));
                         }
-                        return res.status(200).send({
-                            "messaging_product": "whatsapp",
-                            "recipient_type": "individual",
-                            "to": user,
-                            "type": "text",
-                            "text": {
-                                "body": "please enter your OTP"
-                            }
-                        }); 
+                        let Textmessage = 'please enter your OTP'
+                      whatsapptextmessages =  createTextMessage(user,Textmessage)
+                      sendMessage(whatsapptextmessages);
                        
                     } else {
                         // Optional: handle invalid phone number format
@@ -175,7 +200,7 @@ const acadamics = (user, userstatus, res, req,messageContent) => {
             console.log()
 
           switch(userstatus.studentid ){
-            case 0 :  getAttendanceByStudentId (req, res,messageContent)
+            case 0 :  getAttendanceByStudentId (req, res,messageContent,user)
 
           }
 
