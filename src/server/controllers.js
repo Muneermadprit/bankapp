@@ -540,7 +540,7 @@ const decidewheretogo = async (req, res) => {
 
       
         // Main menu or submenu based on counter value
-        if (userCache.counter === 0) {
+        if (userCache.counter === 0 && req.body.topic=="message.sender.user") {
             cache.set(user, { counter: 1 });
             const headerText = 'Academic portal: Please select an option below';
             let menuList = [
