@@ -430,7 +430,7 @@ const decidewheretogo = async (req, res) => {
         const user = req.body.data.message.phone_number;
         const messageType = req.body.data.message.message_type;
         let messageContent 
-        let userCache = cache.get(user) || { id: user,counter:0 };
+        let userCache =(req.body.topic=="message.sender.user")?( cache.get(user) || { id: user,counter:0 }):null
         let counter = userCache.counter;
        
         
