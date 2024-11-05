@@ -438,80 +438,103 @@ const decidewheretogo = async (req, res) => {
 
         console.log(`User: ${user}, Counter: ${userCache.counter}`);
 
+              if(req.topic=="message.sender.user"){
 
 
-        if ( messageType === 'BUTTON_REPLY' && messageContent=='Back to mainmenu')  {
-             messageContent =  req.body.data.message.message_content.id;
-             if(messageContent=='Back to mainmenu')
-            userCache.counter = 0;
-            cache.set(user, userCache);
-        }
+                if ( messageType === 'BUTTON_REPLY' && messageContent=='Back to mainmenu')  {
+                    messageContent =  req.body.data.message.message_content.id;
+                    if(messageContent=='Back to mainmenu')
+                   userCache.counter = 0;
+                   cache.set(user, userCache);
+               }
 
+       
+       
+                 // Inactivity timeout: reset counter if no activity for 3 minutes
+                 setTimeout(() => {
+                   const userCache = cache.get(user);
+                   if (userCache && Date.now() - userCache.lastInteraction > 3 * 60 * 1000) {
+                       cache.set(user, { counter: 0 });
+                       console.log(`User ${user} counter reset due to inactivity.`);
+                   }
+               }, 3 * 60 * 1000);
+       
+       
+       
+               // Handle initial text interaction
+               if (messageType === 'TEXT') {
+                   if (counter === 0) {
+                       messageContent = req.body.data.message.message_content.text;
+                       
+                       console.log("Initial interaction, counter set to 1.");
+                   } else if (counter === 1) {
+                       messageContent = req.body.data.message.message_content.text;
+                       const headerText = 'Hai Iam The Ai Agent feel free to ask '
+                       console.log(`Processing user query: ${messageContent}`);
+                       try {
+                           const result = await handleQueryWithGPT(messageContent, 'cochincomputing');
+                           console.log(result)
+                           const bodyText = result.message;
+                           const footerText = '';
+                           const buttonTitle = 'Select Options';
+                          
+                           const menuList = [{
+                            id: 'Back to mainmenu',
+                            title: 'Back to mainmenu',
+                            description: 'Admission-related queries'
 
-          // Inactivity timeout: reset counter if no activity for 3 minutes
-          setTimeout(() => {
-            const userCache = cache.get(user);
-            if (userCache && Date.now() - userCache.lastInteraction > 3 * 60 * 1000) {
-                cache.set(user, { counter: 0 });
-                console.log(`User ${user} counter reset due to inactivity.`);
-            }
-        }, 3 * 60 * 1000);
+                           }]
 
+                           const message = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+                           console.log(message)
+                          sendMessage(message);
+                       } catch (error) {
+                           console.error(`Error handling query: ${error.message}`);
+                           return res.status(500).send(`Error handling query: ${error.message}`);
+                       }
+                   }
+               } else if (messageType === 'LIST_REPLY' && counter === 1) {
+                   messageContent = req.body.data.message.message_content.postbackText;
+                   cache.set(user, { id:user, counter: 2 });
+                   userCache = cache.get(user)
+                  console.log(userCache)
+                   console.log("List reply received, counter set to 2.");
+                   console.log(messageContent)
+               }
+               else if (messageType === 'LIST_REPLY' && counter === 2) {
+                   messageContent = req.body.data.message.message_content.postbackText;
+                   const userdata = cache.get(user);
+                   userdata.counter = 2;
+                  console.log(userCache)
+                   console.log("List reply received, counter set to 2.");
+                   console.log(messageContent)
+               }
+               if (messageType === 'TEXT' && counter === 2) {
+                   messageContent = req.body.data.message.message_content.text;
+                   const userdata = cache.get(user);
+                   userdata.counter = 2;
+                  console.log(userCache)
+                   console.log("List reply received, counter set to 3.");
+                   console.log(messageContent)
+               }
+               if (messageType === 'BUTTON_REPLY' && counter === 2) {
+                   messageContent = req.body.data.message.message_content.id;
+                   const userdata = cache.get(user);
+                   userdata.counter = 2;
+                  console.log(userCache)
+                   console.log("List reply received, counter set to 3.");
+                   console.log(messageContent)
+               }
+       
 
+               if(messageContent == 'backtomainmenu'){
+                userCache.counter = 0;
+                cache.set(user, userCache);
+               }
 
-        // Handle initial text interaction
-        if (messageType === 'TEXT') {
-            if (counter === 0) {
-                messageContent = req.body.data.message.message_content.text;
-                
-                console.log("Initial interaction, counter set to 1.");
-            } else if (counter === 1) {
-                messageContent = req.body.data.message.message_content.text;
-                console.log(`Processing user query: ${messageContent}`);
-                try {
-                    const result = await handleQueryWithGPT(messageContent, 'cochincomputing');
-                    console.log(result)
-                    let gptmessage = createTextMessage(user,result.message)
+              }
 
-                    sendMessage(gptmessage)
-                } catch (error) {
-                    console.error(`Error handling query: ${error.message}`);
-                    return res.status(500).send(`Error handling query: ${error.message}`);
-                }
-            }
-        } else if (messageType === 'LIST_REPLY' && counter === 1) {
-            messageContent = req.body.data.message.message_content.postbackText;
-            cache.set(user, { id:user, counter: 2 });
-            userCache = cache.get(user)
-           console.log(userCache)
-            console.log("List reply received, counter set to 2.");
-            console.log(messageContent)
-        }
-        else if (messageType === 'LIST_REPLY' && counter === 2) {
-            messageContent = req.body.data.message.message_content.postbackText;
-            const userdata = cache.get(user);
-            userdata.counter = 2;
-           console.log(userCache)
-            console.log("List reply received, counter set to 2.");
-            console.log(messageContent)
-        }
-        if (messageType === 'TEXT' && counter === 2) {
-            messageContent = req.body.data.message.message_content.text;
-            const userdata = cache.get(user);
-            userdata.counter = 2;
-           console.log(userCache)
-            console.log("List reply received, counter set to 3.");
-            console.log(messageContent)
-        }
-        if (messageType === 'BUTTON_REPLY' && counter === 2) {
-            messageContent = req.body.data.message.message_content.id;
-            const userdata = cache.get(user);
-            userdata.counter = 2;
-           console.log(userCache)
-            console.log("List reply received, counter set to 3.");
-            console.log(messageContent)
-        }
-
+     
         // Reset counter if "Back to mainmenu" is selected
         
 
@@ -749,3 +772,4 @@ module.exports = {
   
     
 };
+
