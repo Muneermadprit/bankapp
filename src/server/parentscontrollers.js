@@ -57,7 +57,14 @@ const getStudentByParentPhone = async (user, messageContent, res) => {
          const newmessage = generateRequest(user, headerText, bodyText, footerText, buttonTitle,studentData) 
        
           sendMessage(newmessage)
-        
+          const menuList = students.map(student => ({
+            id:'Back to mainmenu',
+            title: 'Back to Mainmenu',
+            description: student.name,
+            
+        }));  
+          const backtomenu = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+          sendMessage(backtomenu)
         // Step 3: Prepare the response for the student data
         
 
