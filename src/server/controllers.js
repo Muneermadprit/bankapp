@@ -437,8 +437,8 @@ const decidewheretogo = async (req, res) => {
 
 
         console.log(`User: ${user}, Counter: ${userCache.counter}`);
-
-              if(req.topic=="message.sender.user"){
+ if(req.body.topic=="message.sender.user"){
+                let userCache = cache.get(user) || { id: user,counter:0 };
 
 
                 if ( messageType === 'BUTTON_REPLY' && messageContent=='Back to mainmenu')  {
