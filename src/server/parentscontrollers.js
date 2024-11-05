@@ -2,7 +2,8 @@
 const ParentCredential = require('./models/parentscredentials');
 const StudentCredentials = require('./models/studentscredentials');
 const cache = require('./cache');
-
+const {generateRequest} = require('./sendresponse');
+const {sendMessage} = require('./sendingtowhatsapp');
 // Define the function
 const getStudentByParentPhone = async (user, messageContent, res) => {
     let phoneNumber;
@@ -41,39 +42,24 @@ const getStudentByParentPhone = async (user, messageContent, res) => {
         if (students.length === 0) {
             return res.status(404).json({ error: 'No students found for the given parent' });
         }
-           
+        const headerText = 'select from the options'
+        const studentData = students.map(student => ({
+            id: student.id,
+            title: student.name,
+            description: student.name,
+            
+        }));  
+          
+        const bodyText = '';
+        const footerText = '';
+        const buttonTitle = 'Select Options';
         
+         const newmessage = generateRequest(user, headerText, bodyText, footerText, buttonTitle,studentData) 
+       
+          sendMessage(newmessage)
         
         // Step 3: Prepare the response for the student data
-        return res.status(200).send({
-            "messaging_product": "whatsapp",
-            "recipient_type": "individual",
-            "to": user,
-            "type": "interactive",
-            "interactive": {
-                "type": "list",
-                "header": { 
-                    "type": "text", 
-                    "text": "Hi! You are in the admission portal. Please select from the options." 
-                },
-                "body": { 
-                    "text": "Choose one of the following students to proceed:" 
-                },
-                "footer": { 
-                    "text": "Admission Portal Menu" 
-                },
-                "action": {
-                    "sections": [{
-                        "title": "Student Options",
-                        "rows": students.slice(0, 2).map(student => ({
-                            id: student.id,
-                            title: student.name,
-                            description: `Details for ${student.name}`
-                        }))
-                    }]
-                }
-            }
-        });
+        
 
     } catch (error) {
         console.error('Error fetching student data:', error);
