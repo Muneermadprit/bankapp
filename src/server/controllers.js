@@ -430,16 +430,16 @@ const decidewheretogo = async (req, res) => {
         const user = req.body.data.message.phone_number;
         const messageType = req.body.data.message.message_type;
         let messageContent 
-        let userCache =(req.body.topic=="message.sender.user")?( cache.get(user) || { id: user,counter:0 }):null
+        let userCache =cache.get(user) || { id: user,counter:0 }
         let counter = userCache.counter;
-       
+        
         
 
 
         console.log(`User: ${user}, Counter: ${userCache.counter}`);
- if(req.body.topic=="message.sender.user"){
-                let userCache = cache.get(user) || { id: user,counter:0 };
 
+          
+              
 
                 if ( messageType === 'BUTTON_REPLY' && messageContent=='Back to mainmenu')  {
                     messageContent =  req.body.data.message.message_content.id;
@@ -532,7 +532,7 @@ const decidewheretogo = async (req, res) => {
                 cache.set(user, userCache);
                }
 
-              }
+              
 
      
         // Reset counter if "Back to mainmenu" is selected
@@ -540,7 +540,7 @@ const decidewheretogo = async (req, res) => {
 
       
         // Main menu or submenu based on counter value
-        if (userCache.counter === 0 && req.body.topic=="message.sender.user") {
+        if (userCache.counter === 0 ) {
             cache.set(user, { counter: 1 });
             const headerText = 'Academic portal: Please select an option below';
             let menuList = [
