@@ -9,9 +9,13 @@ const AttendanceRegister = require('./models/AttendanceRegister');
 const Query = require('./models/querys');
 const axios = require('axios');
 const fs = require('fs');
+const {generateRequest} = require('./sendresponse');
+const {sendMessage} = require('./sendingtowhatsapp');
 const {getStudentByParentPhone} = require('./parentscontrollers');
 const {Sendotp,otpVerification} = require('./sendotp');
 const { getAttendanceByStudentId} = require('./AttendanceCheck')
+
+const {  createTextMessage} = require('./Textmessage');
 const { acadamics} = require('./Acdamicflow')
 const cache = require('./cache'); // Global cache with TTL of 180 seconds
 const user = new Map();
@@ -436,7 +440,7 @@ const decidewheretogo = async (req, res) => {
 
 
 
-        if ( messageType === 'BUTTON_REPLY')  {
+        if ( messageType === 'BUTTON_REPLY' && messageContent=='Back to mainmenu')  {
              messageContent =  req.body.data.message.message_content.id;
              if(messageContent=='Back to mainmenu')
             userCache.counter = 0;
@@ -466,12 +470,10 @@ const decidewheretogo = async (req, res) => {
                 console.log(`Processing user query: ${messageContent}`);
                 try {
                     const result = await handleQueryWithGPT(messageContent, 'cochincomputing');
-                    return res.status(200).send({
-                        "to": user,
-                        "type": "text",
-                        "recipient_type": "individual",
-                        "text": { "body": result }
-                    });
+                    console.log(result)
+                    let gptmessage = createTextMessage(user,result.message)
+
+                    sendMessage(gptmessage)
                 } catch (error) {
                     console.error(`Error handling query: ${error.message}`);
                     return res.status(500).send(`Error handling query: ${error.message}`);
@@ -501,6 +503,14 @@ const decidewheretogo = async (req, res) => {
             console.log("List reply received, counter set to 3.");
             console.log(messageContent)
         }
+        if (messageType === 'BUTTON_REPLY' && counter === 2) {
+            messageContent = req.body.data.message.message_content.id;
+            const userdata = cache.get(user);
+            userdata.counter = 2;
+           console.log(userCache)
+            console.log("List reply received, counter set to 3.");
+            console.log(messageContent)
+        }
 
         // Reset counter if "Back to mainmenu" is selected
         
@@ -509,32 +519,41 @@ const decidewheretogo = async (req, res) => {
         // Main menu or submenu based on counter value
         if (userCache.counter === 0) {
             cache.set(user, { counter: 1 });
-            return res.send({
-                "messaging_product": "whatsapp",
-                "recipient_type": "individual",
-                "to": user,
-                "type": "interactive",
-                "interactive": {
-                    "type": "list",
-                    "header": { "type": "text", "text": "Hi! I'm the Cochin Computing AI assistant. Feel free to ask anything or select from the options." },
-                    "body": { "text": "<MESSAGE_BODY_TEXT>" },
-                    "footer": { "text": "<MESSAGE_FOOTER_TEXT>" },
-                    "action": {
-                        "sections": [{
-                            "title": "<SECTION_TITLE_TEXT>",
-                           
-                           
-                         "rows": [
-                                { "id": "ADMISSION", "title": "ADMISSION", "description": "Admission-related queries" },
-                                { "id": "ACTIVITIES", "title": "ACTIVITIES", "description": "Activities conducted" },
-                                { "id": "ACADAMICS", "title": "ACADAMICS", "description": "Academic-related queries" },
-                                { "id": "EVENTS", "title": "EVENTS", "description": "School events" },
-                                { "id": "NOTICE BOARD", "title": "NOTICE BOARD", "description": "Announcements for teachers and students" }
-                            ]
-                        }]
-                    }
+            const headerText = 'Academic portal: Please select an option below';
+            let menuList = [
+                {
+                    id: 'ADMISSION',
+                    title: 'ADMISSION',
+                    description: 'Admission-related queries'
+                },
+                {
+                    id: 'ACADAMICS',
+                    title: 'ACADAMICS',
+                    description: 'Academic-related queries for your children'
+                },
+                {
+                    id: 'ACTIVITIES',
+                    title: 'ACTIVITIES',
+                    description: 'Your children’s extracurricular activities'
+                },
+                {
+                    id: 'EVENTS',
+                    title: 'EVENTS',
+                    description: 'School events'
+                },
+                {
+                    id: 'NOTICE BOARD',
+                    title: 'NOTICE BOARD',
+                    description: 'Notices related to school activities for teachers and students'
                 }
-            });
+            ];
+            const bodyText = '';
+            const footerText = '';
+            const buttonTitle = 'Select Options';
+            
+             const message = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+              console.log(message)
+             sendMessage(message);
         } else if (userCache.counter === 2) {
             console.log("welcome to the world of history");
             let currentstatus = cache.get(user) || {}; // Ensure currentstatus is an object
@@ -730,4 +749,3 @@ module.exports = {
   
     
 };
-
