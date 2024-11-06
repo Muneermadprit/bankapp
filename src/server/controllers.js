@@ -100,7 +100,7 @@ const admission = (req, res, user, messageContent,userstatus) => {
         case 0:
             const headerText = 'Hi! You are in the admission ' 
             let menuList = [{
-                id: 'ApplicatioStatus',
+                id: 'ApplicationStatus',
                 title: 'Application Status',
                 description:'Check your admission application status'
 
@@ -773,7 +773,8 @@ const handleQueryWithGPT = async (message, companyName) => {
             : `User asks: ${message}. Provide a detailed response.`;
     
         // Load API key (use environment variables in production)
-        const apiKey = process.env.OPENAI_API_KEY;
+        const apiKey = process.env.OPENAI_API_KEY
+;
         if (!apiKey) {
             throw new Error('OpenAI API key is missing');
         }
