@@ -98,6 +98,44 @@ const admission = (req, res, user, messageContent,userstatus) => {
     // Response based on userstatus.admission value
     switch (userstatus.path) {
         case 0:
+            const headerText = 'Hi! You are in the admission ' 
+            let menuList = [{
+                id: 'ApplicatioStatus',
+                title: 'Application Status',
+                description:'Check your admission application status'
+
+        
+
+            },{
+                id: 'ApplicationSubmission',
+                title: 'Submit Application',
+                description:'Submit your application'
+
+        
+
+            },
+            {
+                id: 'backtomainmenu',
+                title: 'Back to Mainmenu',
+                description:'Back To Mainmenu'
+
+        
+
+            }]
+           
+            const bodyText = '';
+            const footerText = '';
+            const buttonTitle = 'Select Options';
+            
+             const message = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+              console.log(message)
+             sendMessage(message);
+
+
+
+
+
+
             return res.status(200).send({
                 "messaging_product": "whatsapp",
                 "recipient_type": "individual",
@@ -105,7 +143,7 @@ const admission = (req, res, user, messageContent,userstatus) => {
                 "type": "interactive",
                 "interactive": {
                     "type": "list",
-                    "header": { "type": "text", "text": "Hi! You are in the admission portal. Please select from the options." },
+                    "header": { "type": "text", "text": "Hi! You are in the admission portal" },
                     "body": { "text": "Choose one of the following options to proceed:" },
                     "footer": { "text": "Admission Portal Menu" },
                     "action": {
@@ -126,6 +164,35 @@ const admission = (req, res, user, messageContent,userstatus) => {
             userstatus = { ...userstatus, varification: 'validation' };
             console.log(userstatus.varification)
             cache.set(user, userstatus);
+
+            const headerText = 'please ensure using Registerd number'
+            let menuList = [{
+                id: 'yes',
+                title: 'yes i have',
+                description:'use the mobile phone you registerd'
+
+        
+
+            },{
+                id: 'No',
+                title: 'I dont have',
+                description:'use the mobile phone you registerd'
+
+        
+
+            }]
+            const bodyText = '';
+            const footerText = '';
+            const buttonTitle = 'Select Options';
+            
+             const message = generateRequest(user, headerText, bodyText , footerText, buttonTitle,menuList) 
+              console.log(message)
+             sendMessage(message);
+
+
+
+
+
             return res.status(200).send({
                 "messaging_product": "whatsapp",
                 "recipient_type": "individual",
@@ -160,11 +227,21 @@ const admission = (req, res, user, messageContent,userstatus) => {
                     cache.set(user, userstatus);
                     const phoneRegex = /^\+?[1-9]\d{1,14}$/;  
                     let otpSent = false; // E.164 format
+                    if (!userstatus.id.startsWith("+")) {
+                        userstatus.id = "+" + userstatus.id;
+                        cache.set(user, userstatus);
+                        console.log(user.id)
+                      }
                     if (phoneRegex.test(userstatus.id)) {
                         if (!otpSent) { // Check if `Sendotp` has already been called
                             otpSent = true; // Set the flag to true to prevent further calls
                             Sendotp(user,messageContent).catch((error) => console.error('Error in Sendotp:', error));
                         }
+
+                        let Textmessage = 'please enter your OTP'
+                     let  whatsapptextmessages =  createTextMessage(user,Textmessage)
+                      sendMessage(whatsapptextmessages);
+
                         return res.status(200).send({
                             "messaging_product": "whatsapp",
                             "recipient_type": "individual",
@@ -196,7 +273,22 @@ const admission = (req, res, user, messageContent,userstatus) => {
                         // Check if the retrieved data is valid and contains varification
                         if (isVerified && isVerified.varification === 'varified') {
                             console.log("we are in verified condition");
+                             const headerText = 'See Your Admission Status'
+
+                            const bodyText ='your application status is pending . After the varification of submitted data we will contact you'
+                            const footerText = '';
+                            const buttonTitle = 'Select Options';
+                           
+                            const menuList = [{
+                             id: 'Back to mainmenu',
+                             title: 'Back to mainmenu',
+                             description: 'Admission-related queries'
+                
+                            }]
                             
+                            const message = generateRequest(user, headerText, bodyText , footerText, buttonTitle,menuList) 
+                            console.log(message)
+                           sendMessage(message);
                             // Send a response indicating the next step
                             return res.status(200).send({
                                 "messaging_product": "whatsapp",
@@ -224,8 +316,22 @@ const admission = (req, res, user, messageContent,userstatus) => {
                         break;
                     
             case'varified':
-
+            const bodyText ='your application status is pending . After the varification of submitted data we will contact you'
+            const footerText = '';
+            const buttonTitle = 'Select Options';
            
+            const menuList = [{
+             id: 'Back to mainmenu',
+             title: 'Back to mainmenu',
+             description: 'Admission-related queries'
+
+            }]
+            
+            const message = generateRequest(user, headerText, bodyText , footerText, buttonTitle,menuList) 
+            console.log(message)
+    console.log(   sendMessage(message))      
+
+              
             return res.status(200).send({
                 "messaging_product": "whatsapp",
                 "recipient_type": "individual",
@@ -246,7 +352,7 @@ const admission = (req, res, user, messageContent,userstatus) => {
 
            }
            
-
+//
         case 2:
             
            if (!('varification' in userstatus)){
@@ -510,6 +616,7 @@ const decidewheretogo = async (req, res) => {
                    console.log(messageContent)
                }
                if (messageType === 'TEXT' && counter === 2) {
+                console.log('we are in text counter 2')
                    messageContent = req.body.data.message.message_content.text;
                    const userdata = cache.get(user);
                    userdata.counter = 2;
@@ -772,4 +879,3 @@ module.exports = {
   
     
 };
-
