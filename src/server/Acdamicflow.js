@@ -10,6 +10,8 @@ const {getStudentByParentPhone} = require('./parentscontrollers');
 const {getAttendanceByStudentId} = require('./AttendanceCheck');
 const {generateRequest} = require('./sendresponse');
 const {sendMessage} = require('./sendingtowhatsapp');
+const {pendingassignments} = require('./PendingAssighnments');
+const {Acadamics} = require('./Acadamicsdatawithid')
 const {  createTextMessage} = require('./Textmessage');
 
 
@@ -224,103 +226,260 @@ const acadamics = (user, userstatus, res, req,messageContent) => {
            
 
         case 2:
+            //Pending Assaignment Section
+     
+            if (!('varification' in userstatus)){
+                userstatus = { ...userstatus, varification: 'validation' };
+                console.log(userstatus.varification)
+                cache.set(user, userstatus);
+                const headerText = 'please ensure using Registerd number'
+                let menuList = [{
+                    id: 'yes',
+                    title: 'yes i have',
+                    description:'use the mobile phone you registerd'
+    
             
-           if (!('varification' in userstatus)){
-            userstatus = { ...userstatus, varification: 'validation' };
-            console.log(userstatus.varification)
-            cache.set(user, userstatus);
-            return res.status(200).send({
-                "messaging_product": "whatsapp",
-                "recipient_type": "individual",
-                "to": user,
-                "type": "text",
-                "text": {
-                    "body": "Please enter your Registerd phonenumber."
-                }
-            });
+    
+                },{
+                    id: 'No',
+                    title: 'I dont have',
+                    description:'use the mobile phone you registerd'
+    
             
-        
-           }
-           else {
-
-            switch(userstatus.varification){
-                case 'validation':
-                    console.log('entrance')
-                    userstatus = { ...userstatus, varification: 'pending' };
-                    cache.set(user, userstatus);
-                    const phoneRegex = /^\+?[1-9]\d{1,14}$/;  
-                    let otpSent = false; // E.164 format
-                    if (phoneRegex.test(messageContent)) {
-                        if (!otpSent) { // Check if `Sendotp` has already been called
-                            otpSent = true; 
-                            const user = cache.get(user)// Set the flag to true to prevent further calls
-                            Sendotp(user,messageContent).catch((error) => console.error('Error in Sendotp:', error));
-                        }
-                        return res.status(200).send({
-                            "messaging_product": "whatsapp",
-                            "recipient_type": "individual",
-                            "to": user,
-                            "type": "text",
-                            "text": {
-                                "body": "please enter your OTP"
-                            }
-                        }); 
-                       
-                    } else {
-                        // Optional: handle invalid phone number format
-                        res.status(400).send({
-                            "error": "Invalid phone number format. Please enter a valid phone number in the correct format."
-                        });
+    
+                }]
+                const bodyText = '';
+                const footerText = '';
+                const buttonTitle = 'Select Options';
                 
-                
+                 const message = generateRequest(user, headerText, bodyText = "", footerText = "", buttonTitle = "",menuList) 
+                  console.log(message)
+                 sendMessage(message);
+    
+                 return res.status(403).send({
+                    "messaging_product": "whatsapp",
+                    "recipient_type": "individual",
+                    "to": user,
+                    "type": "text",
+                    "text": {
+                        "body": "You need to complete verification before submitting your application."
                     }
-
-                       
-                    case 'pending':
-                        console.log('we are in pending side');
-                        
-                        // Call the OTP verification function
-                        otpVerification(user, messageContent, res);
-                        
-                        // Retrieve the verification status from the cache
-                        let isVerified = cache.get(user);
-                        
-                        // Check if the retrieved data is valid and contains varification
-                        if (isVerified && isVerified.varification === 'varified') {
-                            console.log("we are in verified condition");
-                            
-                            // Send a response indicating the next step
-                            
+                });
+            
+               }
+               else {
+                  
+                switch(userstatus.varification ){
+                    case 'validation':
+                        console.log('entrance')
+                        userstatus = { ...userstatus, varification: 'pending' };
+                        cache.set(user, userstatus);
+                        const phoneRegex = /^\+?[1-9]\d{1,14}$/;  
+                        let otpSent = false; // E.164 format
+                        if (phoneRegex.test(userstatus.id)) {
+                            if (!otpSent) { // Check if `Sendotp` has already been called
+                                otpSent = true; // Set the flag to true to prevent further calls
+                                Sendotp(user,messageContent).catch((error) => console.error('Error in Sendotp:', error));
+                            }
+                            let Textmessage = 'please enter your OTP'
+                          whatsapptextmessages =  createTextMessage(user,Textmessage)
+                          sendMessage(whatsapptextmessages);
+                           
                         } else {
-                            console.log("User is not verified yet or verification status is invalid.");
-                            
-                            // Optionally send a response or handle the non-verified case here
-                            return res.status(403).send({
-                                "messaging_product": "whatsapp",
-                                "recipient_type": "individual",
-                                "to": user,
-                                "type": "text",
-                                "text": {
-                                    "body": "You need to complete verification before submitting your application."
-                                }
+                            // Optional: handle invalid phone number format
+                            res.status(400).send({
+                                "error": "Invalid phone number format. Please enter a valid phone number in the correct format."
                             });
-                        }
-                        break;
                     
-           
+                    
+                        }
+    
+                        case 'pending':
+                            console.log('we are in pending side');
+                            
+                            // Call the OTP verification function
+                            otpVerification(user, messageContent, res);
+                            
+                            // Retrieve the verification status from the cache
+                            let isVerified = cache.get(user);
+                            
+                            // Check if the retrieved data is valid and contains varification
+                            if (isVerified && isVerified.varification === 'varified') {
+                                console.log("we are in verified condition");
+                               //Here is the value to be pasted   
+                               if(!('stuentid' in userstatus)){
+                                getStudentByParentPhone(user,messageContent,res)
+                            }
+                   
 
-           
+
+
+
+    
+    
+                                // Send a response indicating the next step
+                               
+                            } else {
+                                console.log("User is not verified yet or verification status is invalid.");
+                                
+                                // Optionally send a response or handle the non-verified case here
+                                return res.status(403).send({
+                                    "messaging_product": "whatsapp",
+                                    "recipient_type": "individual",
+                                    "to": user,
+                                    "type": "text",
+                                    "text": {
+                                        "body": "You need to complete verification before submitting your application."
+                                    }
+                                });
+                            }
+                            break;
+                        
+                case'varified':
+                console.log()
+    
+              switch(userstatus.studentid ){
+                case 0 :  pendingassignments (req, res,messageContent,user)
+    
+              }
+    
+                
+    
+    
+    
+                }
+              
+    
+    
+               }            
+        
+               case 3:
+            //Progress Section code will work here --------------------------------------------------
+     
+            if (!('varification' in userstatus)){
+                userstatus = { ...userstatus, varification: 'validation' };
+                console.log(userstatus.varification)
+                cache.set(user, userstatus);
+                const headerText = 'please ensure using Registerd number'
+                let menuList = [{
+                    id: 'yes',
+                    title: 'yes i have',
+                    description:'use the mobile phone you registerd'
+    
             
-
+    
+                },{
+                    id: 'No',
+                    title: 'I dont have',
+                    description:'use the mobile phone you registerd'
+    
             
+    
+                }]
+                const bodyText = '';
+                const footerText = '';
+                const buttonTitle = 'Select Options';
+                
+                 const message = generateRequest(user, headerText, bodyText = "", footerText = "", buttonTitle = "",menuList) 
+                  console.log(message)
+                 sendMessage(message);
+    
+                 return res.status(403).send({
+                    "messaging_product": "whatsapp",
+                    "recipient_type": "individual",
+                    "to": user,
+                    "type": "text",
+                    "text": {
+                        "body": "You need to complete verification before submitting your application."
+                    }
+                });
+            
+               }
+               else {
+                  
+                switch(userstatus.varification ){
+                    case 'validation':
+                        console.log('entrance')
+                        userstatus = { ...userstatus, varification: 'pending' };
+                        cache.set(user, userstatus);
+                        const phoneRegex = /^\+?[1-9]\d{1,14}$/;  
+                        let otpSent = false; // E.164 format
+                        if (phoneRegex.test(userstatus.id)) {
+                            if (!otpSent) { // Check if `Sendotp` has already been called
+                                otpSent = true; // Set the flag to true to prevent further calls
+                                Sendotp(user,messageContent).catch((error) => console.error('Error in Sendotp:', error));
+                            }
+                            let Textmessage = 'please enter your OTP'
+                          whatsapptextmessages =  createTextMessage(user,Textmessage)
+                          sendMessage(whatsapptextmessages);
+                           
+                        } else {
+                            // Optional: handle invalid phone number format
+                            res.status(400).send({
+                                "error": "Invalid phone number format. Please enter a valid phone number in the correct format."
+                            });
+                    
+                    
+                        }
+    
+                        case 'pending':
+                            console.log('we are in pending side');
+                            
+                            // Call the OTP verification function
+                            otpVerification(user, messageContent, res);
+                            
+                            // Retrieve the verification status from the cache
+                            let isVerified = cache.get(user);
+                            
+                            // Check if the retrieved data is valid and contains varification
+                            if (isVerified && isVerified.varification === 'varified') {
+                                console.log("we are in verified condition");
+                               //Here is the value to be pasted   
+                               if(!('stuentid' in userstatus)){
+                                getStudentByParentPhone(user,messageContent,res)
+                            }
+                   
 
 
 
-            }
-          
 
-
-           }
+    
+    
+                                // Send a response indicating the next step
+                               
+                            } else {
+                                console.log("User is not verified yet or verification status is invalid.");
+                                
+                                // Optionally send a response or handle the non-verified case here
+                                return res.status(403).send({
+                                    "messaging_product": "whatsapp",
+                                    "recipient_type": "individual",
+                                    "to": user,
+                                    "type": "text",
+                                    "text": {
+                                        "body": "You need to complete verification before submitting your application."
+                                    }
+                                });
+                            }
+                            break;
+                        
+                case'varified':
+                console.log()
+    
+              switch(userstatus.studentid ){
+                case 0 :  Acadamics (req, res,messageContent,user)
+    
+              }
+    
+                
+    
+    
+    
+                }
+              
+    
+    
+               }            
         default:
             console.log("Unrecognized option.");
             console.log(userstatus.varification)
