@@ -770,7 +770,7 @@ const handleQueryWithGPT = async (message, companyName) => {
         // Create prompt
         const prompt = knowledgeEntry 
             ? `About ${knowledgeEntry.name} in the ${knowledgeEntry.industry} industry: ${knowledgeEntry.info}. User asks: ${message}.` 
-            : `User asks: ${message}. Provide a short response.Please provide a clear and complete response for the question or input. Ensure that each sentence is fully formed and does not cut off midway. Begin by summarizing the answer, then provide a step-by-step explanation or a detailed answer as needed. If the response contains instructions or bullet points, please format them clearly. End with a closing sentence to ensure completeness`;
+            : `User asks: ${message}. Provide a detailed response.Please provide a clear and complete response for the question or input. Ensure that each sentence is fully formed and does not cut off midway. Begin by summarizing the answer, then provide a step-by-step explanation or a detailed answer as needed. If the response contains instructions or bullet points, please format them clearly. End with a closing sentence to ensure completeness`;
     
         // Load API key (use environment variables in production)
         const apiKey = process.env.OPENAI_API_KEY
