@@ -578,7 +578,7 @@ const decidewheretogo = async (req, res) => {
                        const headerText = 'Hai Iam The Ai Agent feel free to ask '
                        console.log(`Processing user query: ${messageContent}`);
                        try {
-                           const result = await handleQueryWithGPT(messageContent, 'cochincomputing');
+                           const result = await handleQueryWithGPT(messageContent, 'Greeks public school');
                            console.log(result)
                            const bodyText = result.message;
                            const footerText = '';
