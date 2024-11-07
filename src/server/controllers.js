@@ -797,6 +797,7 @@ const handleQueryWithGPT = async (message, companyName) => {
         // Check for response structure
         if (response.data.choices && response.data.choices.length > 0) {
             const gptResponse = response.data.choices[0].message.content.trim();
+           console.log(gptResponse)
             return {
                 message: gptResponse,
                
