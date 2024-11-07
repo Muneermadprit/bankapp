@@ -1,26 +1,3174 @@
-CC Genie is an AI expert with the latest knowledge and information about Cochin Computing Private Limited. It answers customer inquiries, provides technical support, and offers information about the services and products provided by Cochin Computing. All responses should be based on the latest available data from the Cochin Computing website. It must avoid providing medical and legal advice. CC Genie communicates in a formal, technical, and friendly manner..
-                Industries
-Home
-Industries
-We are provides industry leading in:
-Our Industries
-Delivering Innovative and Customized Technology Solutions Across Diverse Sectors
-At Cochin Computing, we take pride in our ability to craft tailored IT solutions that address the unique challenges and opportunities faced by various industries. Our expertise spans a wide range of sectors, including Banking & Finance, Retail, Hospitality, Healthcare & Pharma, Manufacturing, and Education. By combining technology with a deep understanding of each industry's specific needs, we deliver innovative and effective solutions that drive growth and enhance efficiency.
+CC Genie is an AI expert with the latest knowledge and information about Greeks Public School , and friendly manner..
+ About Greets Public School
+Greets Public School in Kochi is a well-regarded CBSE-affiliated institution offering a balanced curriculum focused on academics, co-curricular activities, and values-based education. The school emphasizes holistic development, providing facilities for sports, arts, and technology integration to support students’ learning and growth. They aim to create a nurturing environment that promotes lifelong learning and character building.
 
-Banking & Finance
-In the fast-paced world of Banking & Finance, security, regulatory compliance, and efficiency are paramount. Cochin Computing offers customized IT services that help financial institutions streamline operations, manage risks, and deliver exceptional customer experiences. Our solutions include secure data storage and analytics, advanced cybersecurity, process automation, and omnichannel banking applications. Our products for the banking industry are CCBanking, EasyTrans, EasyCollect, which are designed for the cooperative banks of the country.
 
-Retail
-The retail landscape is constantly evolving, driven by changing consumer preferences and the rapid growth of e-commerce. Cochin Computing helps retailers stay competitive with custom-built solutions, including e-commerce platforms, inventory management systems, point-of-sale applications, and customer engagement tools. Our data-driven insights and innovative technology enable retailers to optimize their operations and deliver personalized shopping experiences. Our products for the retail industry are CCStore and CCFuels.
+About US
+History
+Bethel Foundation, the mother organization of this educational institution was registered in the year 1975, as a non-profit motive entity. After a few years, the educational project was initiated as a small play school under the name “Ding Dong Kindergarten”.
+The main pillars of the organization during the initial period were Ms.Edith Virginia Greet, an American social worker and Shri.Thomas Vadakekut, a renowned business man and an eminent journalist.
+In 1985, the Board of Directors decided to upgrade the kindergarten to a full-fledged English Medium School, affiliated to the Central Board of Secondary Education, and also took a decision to change the name of the school as Greets Academy and later as Greets Public School. The development of the school to the present level is the contribution of Shri.Thomas Vadakekut, the Chairman of the organization, with his vision, specific planning, team work and sincere hard work. Innovations in infrastructure, new technologies, disciplined campus and also quality of faculties are imperative for making an educational institution vibrant and successful. This was the vision of Shri.Thomas Vadakekut and with this dream, he shaped out this temple of learning to the present glorious level, for grooming the disciplined citizens of tomorrow.
+Now the organization has developed into a large institution, spread in more than 2 Acres of land in the heart of Kochi city. Bethel Foundation owns the school and manages its affairs through a dedicated and committed  Board of Directors.
 
-Hospitality
-The hospitality industry thrives on exceptional customer service and unified operations. We provide technology solutions that empower hotels, restaurants, and other hospitality businesses to enhance guest experiences and rationalise operations. Discover Restaura, our comprehensive restaurant management system designed to optimize every aspect of your dining establishment.
 
-Healthcare & Pharma
-Cochin Computing understands the unique challenges and complexities of the Healthcare & Pharma sector, where patient care, data security, and regulatory compliance are critical. We offer customized IT solutions, such as laboratory, pharmacy and hospital management systems, to help healthcare providers and pharmaceutical companies improve patient outcomes and optimize their operations. Our products for the industry are Medlims and CCPharma. Elevate your healthcare operations with Medlims and CCPharma, our pioneering solutions tailored for the industry. Simplify laboratory workflows with Medlims, and optimize pharmaceutical management with CCPharma, ensuring efficiency, compliance, and patient satisfaction.
+General Body Members
+Mr. Sabu Thomas Vadakekut
+Mr. P Silaskutty
+Adv. Thomas Sabu Vadakekut
+Mr. Thomsen Sabu Vadakekut
+Mrs. Aleyamma Thomas
+Mrs. Kunjujamma Silas
+Mrs. Anitha Sabu Vadakekut
+Dr. Elisabeth Varghese
+Dr. Mirash Thomas
+Dr. Anoushka Thomsen
+Special Invitees
+Mr. Ingvar Broden
+Dr. Mohan Varghese
+Mr. Varughese Mathew
 
-Manufacturing
-In the manufacturing industry, efficiency, automation, and real-time data are essential for staying competitive. Cochin Computing develops tailored technology solutions that help manufacturers optimize their production processes, reduce costs, and enhance product quality. Our services include manufacturing execution systems, supply chain management and predictive maintenance. Revolutionize your manufacturing and materials operations with CCMatMis and Spemis, our powerful industry-specific solutions. Optimize procurement and materials management with CCMatMis, and streamline seafood production and export processes with Spemis, driving efficiency and growth in your business.
 
-Education
-Technology is transforming the education sector, creating new opportunities for teaching and learning. Cochin Computing offers innovative solutions for educational institutions, including learning management systems, student information systems, and analytics tools. Our technology helps educators deliver personalized, engaging, and effective learning experiences that foster student success. Transform your educational landscape with Scholaris and Libinfos, our innovative solutions designed for the industry. Enhance learning experiences with Scholaris, and simplify library management with Libinfos, fostering a vibrant and efficient educational environment.
+
+
+Board Of Directors
+Mr. Sabu Thomas Vadakekut - Chairman
+Mr. P Silaskutty - Superintendent & Treasurer
+Adv. Thomas Sabu Vadakekut - Director & Deputy Chairman
+Mr. Thomsen Sabu Vadakekut - Director, General Administrator & Secretary
+Mrs. Aleyamma Thomas - Director
+Mrs. Kunjujamma Silas - Director
+Mrs. Anitha Sabu Vadakekut - Director
+Dr. Elisabeth Varghese - Director
+
+
+
+
+School Managing Committee 2020-2022
+Mr. Sabu Thomas Vadakekut - Chairman
+Mrs. Jaya Sabin - Member - Secretary
+Adv. Mohammed Shah - Member - Parent
+Adv. Fathima Siddique - Member - Parent
+Mrs. Shiny Shajan - Member - Teacher
+Mrs. Asha K. V - Member - Teacher
+Mr. R Surendran - Member - Principal, Kendriya Vidyalaya
+Mrs. G Krishnaveni - Member - Principal, Kendriya Vidyalaya
+Mrs. Bismy Augustine - Member - Teacher, Other School
+Mrs. Ruby G - Member - Teacher, Other School
+Mr. P Silaskutty - Society Member
+Mrs. Anitha Sabu Vadakekut - Society Member
+Adv. Thomas Sabu Vadakekut - Society Member
+Mrs. Mirash Thomas Vadakekut - Nominated Member
+Mr. Thomsen Sabu Vadakekut - Society Member
+Dr. Anoushka Thomsen Vadakekut - Nominated Member
+Dr. Elisabeth Varghese - Society Member
+
+
+School Administration
+Mrs. Belinda Vivera - Principal - Administration , M.A, B.Ed
+Administration / Finance
+Adv. Thomas Sabu Vadakekut - Director & Deputy Chairman, BBA, LLB (Hons) LLM (UK)
+Mrs. Stephy Agnes P J - Assistant Administrative Officer, BCom, PGDCA
+Mr. Thomsen Sabu Vadakekut - Director / General Administrator & Secretary, BBA, MIB (UK)
+Mrs. Lilly Mary Fernandez - Accounts Officer, BA
+Mrs. Praveena A P - Administrative Officer, MCA, NET
+
+
+Faculty
+Academic & Administration
+Mrs. Belinda Vivera - PGT / Principal - Administration, M.A, B.Ed
+Department of English
+Mrs. Shereen Joseph Sebastian - PGT/HOD, M.A., B.Ed, CTET, IELTS
+Mrs. Nikila Caroline Lesley - PGT, M.A., B.Ed, SET
+Mrs. Devika Pillai - TGT, B.A., B.Ed, LLM, CTET
+Mrs. Padmini Sudheer Kumar - PRT, B.A, B.Ed
+Mrs. Sharon Anita D'Rose - PRT, B.A., B.Ed
+Mrs. Aswathy Jugesh - PRT, M.A, B.Ed
+
+
+Department of Malayalam
+Mrs. Shiny Shajan - TGT/HOD, M.A., B.Ed, SET
+Ms. Arya Devi K - PRT, M.A, B.Ed, TTC, KTET
+Mrs. Milsa T S - PRT, M.A, B.Ed, KTET
+Mrs. Lakshmi Priya K G - PRT, B.A, B.Ed
+
+
+Department of Hindi
+Mrs. Shereen R - TGT/HOD, M.A, B.Ed, PGDT
+Mrs. Preethi V G - PRT, M.A, M.Phil, PGDT
+Mrs. Claramma Antony - PRT, M.A, B.Ed
+Mrs. Anju A - PRT, M.A, B.Ed, PGDT, KTET
+
+
+Department of French
+Ms. Mabel Ann Jacob - TGT, M.A, DELF
+
+
+Department of Mathematics
+Mrs. Bindu P B - PGT/HOD, M.Sc., M.Ed
+Mrs. Seetha K R - PGT, M.Sc, M.Ed
+Mrs. Anupriya V A - PGT, M.Sc., B.Ed, CTET
+Mrs. Mary Anju C A - TGT, M.Sc, B.Ed
+Mrs. Smitha C S - TGT, M.Sc, B.Ed, CTET, KTET
+Ms. Jaimol Joseph - PRT, M.Sc., B.Ed, KTET, CTET, Diploma in Office Automation
+Mrs. Liji Tinoy - PRT, B.Sc., B.Ed, KTET, CTET, PGDCA
+
+
+Department of Physics
+Mrs. Rosemol Thomas - PGT/HOD, M.Sc, B.Ed, SET, KTET, CTET
+Mrs. Manjula C - TGT, M.Sc, B.Ed
+
+
+Department of Chemistry
+Mrs. Deepthy B I - PGT/HOD, M.Sc, B.Ed
+Mrs. Jenzy D.J - PGT, M.Sc, B.Ed, CTET, KTET
+Mrs. Swati Sehrawat - Lab Teacher, M.Sc, B.Ed
+
+
+Department of Biology
+Mrs. Asha K V - PGT/HOD, M.Sc, B.Ed, SET
+Mrs. Valsa George - TGT, M.Sc, B.Ed
+
+
+Department of Social Science
+Mrs. Navia Surendran - PGT/HOD, M.A., B.Ed, PGDCA
+Mrs. Merlin C D - PGT, M.A., B.Ed, PGDCA, SET
+Mrs. Afsath M - PGT, M.A., B.Ed
+Mrs. Gurleen Kaur - PGT, M.A
+Mrs. Hyrunisa P R - TGT, M.A. Sociology, M.A. History, B.Ed, SET, IELTS
+Mrs. Greshma Rose - TGT, M.A., B.Ed, SET, KTET
+Adv. Roopesh Dev R - PGT – Part Time, BBA, LLB, LLM
+
+
+Department of Commerce
+Mrs. Daya P Rajan - PGT/HOD, M.Com, B.Ed, SET, PDSE
+Mrs. Aarju Choudhary - PGT, M.Com, B.Ed, CTET
+Mrs. Asha Percy - PGT/Sr. Teacher, M.Com, PGDCA, B.Ed
+
+
+Department of Computer Science
+Mrs. C Aswini - PGT/HOD, M.Sc, M.Phil
+Mrs. Tinu Jose - PGT, MCA
+Ms. Nikhiya Santhosh - TGT, MCA
+Mrs. Fathima Thasneem - Lab Assistant/Teacher, M.Sc
+
+
+Department of Physical Education
+Mr. Dinu Sebastian - PET, B.P.Ed
+Mr. Jithin Kumar A - PET, B.P.Ed
+Mrs. Mitali Bapari - PET, M.A, B.P.Ed, M.P.Ed
+Mr. Johny Jose - Band Master
+Mrs. Divya Shreenath - Dance Teacher, B.Com, B.A. Bharathanatyam
+
+
+Ding Dong Kindergarten
+Mrs. Sujata Suneet Varma - Headmistress, M.Com, PGDPTT, B.Ed
+Dr. Anoushka Thomsen - Health & Wellness Coordinator, MBBS
+Ms. Richa Mary John - KGT, M.Sc, NTTC
+Mrs. Seraphin Neetu Roshan - KGT, BISM, MBA, PG Diploma in PPE & TT
+Mrs. Nidhi Ramachandran - KGT, BBA, Montessori
+Mrs. Limiya Rasheed - KGT, B.Tech, NTTC
+Mrs. Princy Stephen - KGT, BBM, M.A, NTTC
+Mrs. Mary Niffina - KGT, B.Com, Diploma in International Montessori Education
+Mrs. Neena Nizam - KGT, NTTC
+
+
+Library
+Mrs. Shima Thomas - Librarian, B.A, MLIS
+
+
+Finance & Office Administration
+Adv. Thomas Sabu Vadakekut - Director & Deputy Chairman
+Mr. Thomsen Sabu Vadakekut - Director/General Administrator & Secretary
+Mrs. Praveena A P - Administrative Officer
+Mrs. Stephy Agnes P J - Assistant Administrative Officer
+Mrs. Lilly Mary Fernandez - Accounts Officer
+
+
+Transport
+Mr. Rajeev K R - Driver/Transport Supervisor
+Mr. Dhaneesh T V - Driver
+Mr. Jeshy M G - Driver
+Mr. Praveen Kumar T K - Driver
+
+
+General Maintenance Department
+Mr. Mantu Dalai - Maintenance Assistant
+
+
+Housekeeping Department
+Mrs. Beevijan Ashraf - Housekeeping/Supervisor
+
+
+Academics 
+Academic Calendar
+MAY 2024
+1
+	Wed
+	May Day – Holiday Payment of School Fee – 1st Installment
+	2
+	Thu
+	 
+	3
+	Fri
+	 
+	4
+	Sat
+	 
+	5
+	Sun
+	 
+	6
+	Mon
+	 
+	7
+	Tue
+	 
+	B
+	Wed
+	 
+	9
+	Thu
+	 
+	10
+	Fri
+	 
+	11
+	Sat
+	Second Saturday
+	12
+	Sun
+	 
+	13
+	Mon
+	 
+	14
+	Tue
+	 
+	15
+	Wed
+	Bridge Course for X & XII Commences
+	16
+	Thu
+	 
+	17
+	Fri
+	 
+	18
+	Sat
+	 
+	19
+	Sun
+	 
+	20
+	Mon
+	 
+	21
+	Tue
+	 
+	22
+	Wed
+	 
+	23
+	Thu
+	 
+	24
+	Fri
+	 
+	25
+	Sat 
+	 
+	26
+	Sun
+	 
+	27
+	Mon
+	 
+	28
+	Tue
+	 
+	29
+	Wed
+	Orientation programme for Teachers
+	30
+	Thu
+	Orientation programme for Teachers
+	31
+	Fri
+	Orientation programme for Teachers
+	Remarks: In case of additional days declared as holidays by the government other than the ones given in the school calendar or any loss of working days by way of hartal etc, the school authorities may decide to hold classes on Saturdays as required.
+
+
+JUNE 2024
+1
+	Sat
+	 
+	2
+	Sun
+	 
+	3
+	Mon
+	School Reopens I – XII
+	4
+	 Tue
+	 
+	5
+	Wed
+	World Environment Day
+	6
+	Thu
+	 
+	7
+	Fri
+	 
+	8
+	Sat
+	Second Saturday
+	9
+	Sun
+	 
+	10
+	Mon
+	 
+	11
+	 Tue
+	 
+	12
+	Wed
+	 
+	13
+	Thu
+	Parent Teacher Meet I & II
+	14
+	Fri
+	Parent Teacher Meet III & IV
+	15
+	Sat
+	Parent Teacher Meet V & VI
+	16
+	Sun
+	 
+	17
+	 Mon
+	Holiday – Bakrid
+	18
+	Tue
+	Parent Teacher Meet VII & VIII
+	19
+	Wed
+	Parent Teacher Meet IX
+	20
+	Thu
+	Parent Teacher Meet XI & XII
+	21
+	Fri
+	International Yoga Day
+	22
+	Sat
+	 
+	23
+	Sun
+	 
+	24
+	Mon
+	 
+	25
+	Tue
+	 
+	26
+	Wed
+	 
+	27
+	Thu
+	Investiture Ceremony
+	28
+	Fri
+	 
+	29
+	Sat
+	 
+	30
+	Sun
+	 
+	Remarks: In case of additional days declared as holidays by the government other than the ones given in the school calendar or any loss of working days by way of hartal etc, the school authorities may decide to hold classes on Saturdays as required.
+
+
+JULY 2024
+1
+	Mon
+	Payment of School Fee – 2nd Installment
+	2
+	Tue
+	 
+	3
+	Wed
+	 
+	4
+	Thu
+	 
+	5
+	Fri
+	 
+	6
+	Sat
+	 
+	7
+	Sun
+	 
+	8
+	Mon
+	 
+	9
+	Tue
+	 
+	10
+	Wed
+	 
+	11
+	Thu
+	 
+	12
+	Fri
+	Talent Fest
+	13
+	Sat
+	Second Saturday
+	14
+	Sun
+	 
+	15
+	Mon
+	 
+	16
+	Tue
+	 
+	17
+	Wed
+	Holiday – Muharram
+	18
+	Thu
+	 
+	19
+	Fri
+	 
+	20
+	Sat
+	 
+	21
+	Sun
+	 
+	22
+	Mon
+	 
+	23
+	Tue
+	 
+	24
+	Wed
+	UT-1: Std IX to XII / PT-1 : Std I to VIII
+	25
+	Thu
+	 
+	26
+	Fri
+	 
+	27
+	Sat
+	 
+	28
+	Sun
+	 
+	29
+	Mon
+	 
+	30
+	Tue
+	 
+	31
+	Wed
+	 
+	Remarks: In case of additional days declared as holidays by the government other than the ones given in the school calendar or any loss of working days by way of hartal etc, the school authorities may decide to hold classes on Saturdays as required.
+
+
+AUGUST 2024
+1
+	Thu
+	 
+	2
+	Fri
+	 
+	3
+	Sat
+	Holiday – Karkidaka Vavu
+	4
+	Sun
+	 
+	5
+	Mon
+	 
+	6
+	Tue
+	 
+	7
+	Wed
+	 
+	8
+	Thu
+	 
+	9
+	Fri
+	 
+	10
+	Sat
+	Second Saturday
+	11
+	Sun
+	 
+	12
+	Mon
+	 
+	13
+	Tue
+	 
+	14
+	Wed
+	 
+	15
+	Thu
+	Holiday – Independence Day
+	16
+	Fri
+	UT-2: Std IX to XII / PT-2: Std I to VIII
+	17
+	Sat
+	 
+	18
+	Sun
+	 
+	19
+	Mon
+	 
+	20
+	Tue
+	 
+	21
+	Wed
+	 
+	22
+	Thu
+	 
+	23
+	Fri
+	 
+	24
+	Sat
+	 
+	25
+	Sun
+	 
+	26
+	Mon
+	Holiday – Sreekrishna Jayanthi
+	27
+	Tue
+	 
+	28
+	Wed
+	 
+	29
+	Thu
+	 
+	30
+	Fri
+	 
+	31
+	Sat
+	 
+	Remarks: In case of additional days declared as holidays by the government other than the ones given in the school calendar or any loss of working days by way of hartal etc, the school authorities may decide to hold classes on Saturdays as required.
+
+
+SEPTEMBER 2024
+1
+	Sun
+	Payment of School Fee – 3rd Installment
+	2
+	Mon
+	 
+	3
+	Tue
+	 
+	4
+	Wed
+	 
+	5
+	Thu
+	Teachers’ Day
+	6
+	Fri
+	Study Tour – Std IX & X
+	7
+	Sat
+	Study Tour – Std I & II
+	8
+	Sun
+	 
+	9
+	Mon
+	 
+	10
+	Tue
+	 
+	11
+	Wed
+	 
+	12
+	Thu
+	 
+	13
+	Fri
+	School closes for Onam holidays
+	14
+	Sat
+	Holiday – Onam
+	15
+	Sun
+	Holiday – Thituvonarn
+	16
+	Mon
+	Holiday – Onam
+	17
+	Tue
+	Holiday – Sree Narayana Guru Jayanthi
+	18
+	Wed
+	 
+	19
+	Thu
+	 
+	20
+	Fri
+	 
+	21
+	Sat
+	Holiday – Sree Narayana Guru Samadhi
+	22
+	Sun
+	 
+	23
+	Mon
+	School Reopens after Onam holidays
+	24
+	Tue
+	 
+	25
+	Wed
+	 
+	26
+	Thu
+	 
+	27
+	Fri
+	Study Tour – Std XI
+	28
+	Sat
+	Study Tour – Std V & VI
+	29
+	Sun
+	 
+	30
+	Mon
+	 
+	* Bakrid – Holiday depends as per the Govt. holiday declaration
+Remarks: In case of additional days declared as holidays by the government other than the ones given in the school calendar or any loss of working days by way of hartal etc, the school authorities may decide to hold classes on Saturdays as required.
+
+
+
+
+OCTOBER 2024
+1
+	Tue
+	 
+	2
+	Wed
+	Holiday – Gandhi Jayanthi
+	3
+	Thu
+	 
+	4
+	Fri
+	Halt Yearly Exam Std I to VIII
+	5
+	Sat
+	First Terminal Exam Std IX to XII
+	6
+	Sun
+	 
+	7
+	Mon
+	 
+	8
+	Tue
+	 
+	9
+	Wed
+	 
+	10
+	Thu
+	 
+	11
+	Fri
+	Holiday – Mahanavami
+	12
+	Sat
+	Holiday – Vijaya Dashami
+	13
+	Sun
+	 
+	14
+	Mon
+	 
+	15
+	Tue
+	 
+	16
+	Wed
+	 
+	17
+	Thu
+	 
+	18
+	Fri
+	 
+	19
+	Sat
+	 
+	20
+	Sun
+	 
+	21
+	Mon
+	 
+	22
+	Tue
+	 
+	23
+	Wed
+	 
+	24
+	Thu
+	Study Tour – Std XII
+	25
+	Fri
+	Study Tour – Std VII & VIII
+	26
+	Sat
+	Study Tour – Std III & IV
+	27
+	Sun
+	 
+	28
+	Mon
+	 
+	29
+	Tue
+	 
+	30
+	Wed
+	 
+	31
+	Thu
+	Deepavali
+	Remarks: In case of additional days declared as holidays by the government other than the ones given in the school calendar or any loss of working days by way of hartal etc, the school authorities may decide to hold classes on Saturdays as required.
+
+
+NOVEMBER 2024
+1
+	Fri
+	Kerala Day Celebrations, Payment of School Fee – 4th Installment
+	2
+	Sat
+	UT – 3 : Std – IX to XII
+	3
+	Sun
+	 
+	4
+	Mon
+	 
+	5
+	Tue
+	 
+	6
+	Wed
+	 
+	7
+	Thu
+	 
+	8
+	Fri
+	 
+	9
+	Sat
+	Second Saturday
+	10
+	Sun
+	 
+	11
+	Mon
+	 
+	12
+	Tue
+	 
+	13
+	Wed
+	 
+	14
+	Thu
+	Children’s Day
+	15
+	Fri
+	International Study Tour
+	16
+	Sat
+	 
+	17
+	Sun
+	 
+	18
+	Mon
+	 
+	19
+	Tue
+	 
+	20
+	Wed
+	 
+	21
+	Thu
+	 
+	22
+	Fri
+	Sports Day
+	23
+	Sat
+	 
+	24
+	Sun
+	 
+	25
+	Mon
+	 
+	26
+	Tue
+	 
+	27
+	Wed
+	 
+	28
+	Thu
+	 
+	29
+	Fri
+	 
+	30
+	Sat
+	 
+	Remarks: In case of additional days declared as holidays by the government other than the ones given in the school calendar or any loss of working days by way of hartal etc, the school authorities may decide to hold classes on Saturdays as required.
+
+
+
+
+
+
+DECEMBER 2024
+1
+	Sun
+	 
+	2
+	Mon
+	 
+	3
+	Tue
+	 
+	4
+	Wed
+	Model Exam – Std X & XII
+	5
+	Thu
+	 
+	6
+	Fri
+	 
+	7
+	Sat
+	 
+	8
+	Sun
+	 
+	9
+	Mon
+	 
+	10
+	Tue
+	 
+	11
+	Wed
+	 
+	12
+	Thu
+	 
+	13
+	Fri
+	 
+	14
+	Sat
+	Second Saturday
+	15
+	Sun
+	 
+	16
+	Mon
+	 
+	17
+	Tue
+	 
+	18
+	Wed
+	 
+	19
+	Thu
+	 
+	20
+	Fri
+	 
+	21
+	Sat
+	Annual Day Celebrations
+	22
+	Sun
+	 
+	23
+	Mon
+	School Closes for Christmas Holidays
+	24
+	Tue
+	 
+	25
+	Wed
+	Holiday – Christmas
+	26
+	Thu
+	Holiday
+	27
+	Fri
+	Holiday
+	28
+	Sat
+	Holiday
+	29
+	Sun
+	 
+	30
+	Mon
+	 
+	31
+	Tue
+	 
+	* Bakrid – Holiday depends as per the Govt. holiday declaration
+Remarks: In case of additional days declared as holidays by the government other than the ones given in the school calendar or any loss of working days by way of hartal etc, the school authorities may decide to hold classes on Saturdays as required.
+
+
+JANUARY 2025
+1
+	Wed
+	Payment of School Fee – 5th Installment
+	2
+	Thu
+	Holiday – Mannam Jayanthi
+	3
+	Fri
+	School Reopens after Christmas Holidays
+	4
+	Sat
+	 
+	5
+	Sun
+	 
+	6
+	Mon
+	 
+	7
+	Tue
+	 
+	8
+	Wed
+	 
+	9
+	Thu
+	 
+	10
+	Fri
+	 
+	11
+	Sat
+	Second Saturday
+	12
+	Sun
+	 
+	13
+	Mon
+	 
+	14
+	Tue
+	 
+	15
+	Wed
+	Model Examination – Std IX to XII / PT – 3 : Std  I to VIII
+	16
+	Thu
+	 
+	17
+	Fri
+	 
+	18
+	Sat
+	 
+	19
+	Sun
+	 
+	20
+	Mon
+	 
+	21
+	Tue
+	 
+	22
+	Wed
+	 
+	23
+	Thu
+	 
+	24
+	Fri
+	 
+	25
+	Sat
+	 
+	26
+	Sun
+	Republic Day
+	27
+	Mon
+	 
+	28
+	Tue
+	 
+	29
+	Wed
+	 
+	30
+	Thu
+	 
+	31
+	Fri
+	 
+	Remarks: In case of additional days declared as holidays by the government other than the ones given in the school calendar or any loss of working days by way of hartal etc, the school authorities may decide to hold classes on Saturdays as required.
+
+
+FEBRUARY 2025
+1
+	Sat
+	 
+	2
+	Sun
+	 
+	3
+	Mon
+	 
+	4
+	Tue
+	 
+	5
+	Wed
+	 
+	6
+	Thu
+	 
+	7
+	Fri
+	 
+	8
+	Sat
+	Second Saturday
+	9
+	Sun
+	 
+	10
+	Mon
+	 
+	11
+	Tue
+	 
+	12
+	Wed
+	 
+	13
+	Thu
+	 
+	14
+	Fri
+	 
+	15
+	Sat
+	Annual Exam – Std IX & XI, Board Exam – Std X & XII
+	16
+	Sun
+	 
+	17
+	Mon
+	 
+	18
+	Tue
+	 
+	19
+	Wed
+	 
+	20
+	Thu
+	 
+	21
+	Fri
+	 
+	22
+	Sat
+	 
+	23
+	Sun
+	 
+	24
+	Mon
+	 
+	25
+	Tue
+	 
+	26
+	Wed
+	 
+	27
+	Thu
+	 
+	28
+	Fri
+	 
+	Remarks: In case of additional days declared as holidays by the government other than the ones given in the school calendar or any loss of working days by way of hartal etc, the school authorities may decide to hold classes on Saturdays as required.
+
+
+
+
+
+
+MARCH 2025
+1
+	Sat
+	 
+	2
+	Sun
+	 
+	3
+	Mon
+	 
+	4
+	Tue
+	 
+	5
+	Wed
+	 
+	6
+	Thu
+	 
+	7
+	Fri
+	 
+	8
+	Sat
+	Second Saturday
+	9
+	Sun
+	 
+	10
+	Mon
+	 
+	11
+	Tue
+	 
+	12
+	Wed
+	 
+	13
+	Thu
+	Annual Exam – Std I to VIII
+	14
+	Fri
+	 
+	15
+	Sat
+	 
+	16
+	Sun
+	 
+	17
+	Mon
+	 
+	18
+	Tue
+	 
+	19
+	Wed
+	 
+	20
+	Thu
+	 
+	21
+	Fri
+	 
+	22
+	Sat
+	 
+	23
+	Sun
+	 
+	24
+	Mon
+	 
+	25
+	Tue
+	 
+	26
+	Wed
+	 
+	27
+	Thu
+	School Closes for Summer Holidays
+	28
+	Fri
+	 
+	29
+	Sat
+	 
+	30
+	Sun
+	 
+	31
+	Mon
+	Eid-ul-Fitr – Holiday
+	Remarks: In case of additional days declared as holidays by the government other than the ones given in the school calendar or any loss of working days by way of hartal etc, the school authorities may decide to hold classes on Saturdays as required.
+
+
+APRIL 2025
+1
+	Tue
+	 
+	2
+	Wed
+	 
+	3
+	Thu
+	 
+	4
+	Fri
+	 
+	5
+	Sat
+	 
+	6
+	Sun
+	 
+	7
+	Mon
+	 
+	8
+	Tue
+	School Result
+	9
+	Wed
+	 
+	10
+	Thu
+	Maundy Thursday
+	11
+	Fri
+	Good Friday
+	12
+	Sat
+	 
+	13
+	Sun
+	Easter
+	14
+	Mon
+	Vishu & Ambedkar Jayanthi – Holiday
+	15
+	Tue
+	 
+	16
+	Wed
+	 
+	17
+	Thu
+	 
+	18
+	Fri
+	 
+	19
+	Sat
+	 
+	20
+	Sun
+	 
+	21
+	Mon
+	 
+	22
+	Tue
+	 
+	23
+	Wed
+	 
+	24
+	Thu
+	 
+	25
+	Fri
+	 
+	26
+	Sat
+	 
+	27
+	Sun
+	 
+	28
+	Mon
+	 
+	29
+	Tue
+	 
+	30
+	Wed
+	 
+	Remarks: In case of additional days declared as holidays by the government other than the ones given in the school calendar or any loss of working days by way of hartal etc, the school authorities may decide to hold classes on Saturdays as required.
+
+
+
+
+
+
+MAY 2025
+Date
+	Day
+	 
+	1
+	Thu
+	Holiday – May Day, Payment of School Fee – 1st Installment
+	2
+	Fri
+	 
+	3
+	Sat
+	 
+	4
+	Sun
+	 
+	5
+	Mon
+	 
+	6
+	Tue
+	 
+	7
+	Wed
+	 
+	8
+	Thu
+	 
+	9
+	Fri
+	 
+	10
+	Sat
+	 
+	11
+	Sun
+	 
+	12
+	Mon
+	 
+	13
+	Tue
+	 
+	14
+	Wed
+	 
+	15
+	Thu
+	 
+	16
+	Fri
+	 
+	17
+	Sat
+	 
+	18
+	Sun
+	 
+	19
+	Mon
+	 
+	20
+	Tue
+	 
+	21
+	Wed
+	 
+	22
+	Thu
+	 
+	23
+	Fri
+	 
+	24
+	Sat
+	 
+	25
+	Sun
+	 
+	26
+	Mon
+	 
+	27
+	Tue
+	 
+	28
+	Wed
+	 
+	29
+	Thu
+	 
+	30
+	Fri
+	 
+	31
+	Sat
+	 
+	Remarks: In case of additional days declared as holidays by the government other than the ones given in the school calendar or any loss of working days by way of hartal etc, the school authorities may decide to hold classes on Saturdays as required.
+
+
+
+
+List of Books 2024-'25
+JKG – Text Books
+Sl #
+	Subject
+	Name of the book
+	Publisher
+	1
+	English
+	Candies : A sweet beginning
+Semester I and II – LKG
+ 
+ 
+Sketches – A
+ 
+	Poorna Publication TBS, Calicut
+	2
+	Maths
+	3
+	GK
+	4
+	Art & Craft
+	Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Four Line
+	English
+	200
+	1
+	2
+	Square
+	Maths
+	100
+	1
+	SKG – Text Books
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	1
+	English
+	Candies : A sweet beginning
+Semester I and II – UKG
+ 
+Sketches – B
+	Poorna Publication TBS, Calicut
+	2.
+	G.K
+	3
+	Maths
+	4
+	Art & Craft
+	5
+	Hindi
+	Shabdachitra
+	Firefly
+	Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Four Line
+	Hindi, Gk
+	100
+	2
+	2
+	Square
+	Maths
+	100
+	1
+	3
+	Four Line
+	English
+	200
+	1
+	Std I – Text Books
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	Remarks
+	1
+	English
+	English Plus Reader 1
+	Arrow
+	 
+	 
+	 
+	 
+	Cursive Writing (Me n’ Mine)
+	New Saraswathi House (India) Pvt. Ltd.
+	 
+	2
+	Malayalam
+	Kali Vanchi – A
+	Poorna Publications
+H & C
+	 
+	Lipi Parichayam
+	 
+	3
+	Hindi
+	Next. Hindi- 1
+	Next Education India Pvt Ltd
+	 
+	Sulekha Mala (Me n’ Mine)-1
+	New Saraswathi House (India) Pvt. Ltd.
+	 
+	4
+	Mathematics
+	Perfect Composite Mathematics -1
+	Arya
+	 
+	5
+	GK
+	Let’s Find More-1
+	Kohinoor
+	 
+	6
+	Art & Craft
+	Augmented Reality -1
+	Nexrise
+	 
+	7
+	Computer
+	ePrompt-1
+	Kips
+	 
+	 
+Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Four Line
+	Rough
+	200
+	1
+	2
+	Four Line
+	English
+	100
+	1
+	3
+	Two Line
+	Hindi, Malayalam,
+Rough H/M
+	100
+	3
+	4
+	Check
+	Maths
+	100
+	1
+	5
+	Plain Activity Book
+	Maths, Art Activity
+	100
+	2
+	 
+	 
+	 
+	Total
+	8
+	Std II – Text Books
+Sl #
+	Subject
+	                   Name of the Book
+	Publisher
+	Remarks
+	1
+	English
+	English Plus Reader – 2
+	Arrow
+	 
+	 
+	 
+	 
+	Cursive Writing (Me n’ Mine)
+	New Saraswathi House (India) Pvt. Ltd.
+	 
+	2
+	Malayalam
+	Kali Vanchi – B
+	Poorna Publications
+H & C
+	 
+	Lipi Parichayam
+	 
+	3
+	Hindi
+	Next. Hindi- 2
+	Next Education India Pvt Ltd
+	 
+	Sulekha Mala (Me n’ Mine)-2
+	New Saraswathi House (India) Pvt. Ltd.
+	 
+	4
+	Mathematics
+	Perfect Composite Mathematics – 2
+	Arya
+	 
+	5
+	GK & Life Skill
+	Let’s Find More – 2
+	Kohinoor
+	 
+	6
+	Art & Craft
+	Augmented Reality – 2
+	Nexrise
+	 
+	7
+	Computer
+	ePrompt-2
+	Kips
+	 
+	 
+	 
+	 
+	 
+	 
+	Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Four Line
+	Rough
+	200
+	1
+	2
+	Four Line
+	English
+	100
+	1
+	3
+	Two Line
+	Hindi, Malayalam,
+Rough H/M
+	100
+	3
+	4
+	Check
+	Maths
+	100
+	1
+	5
+	Plain Activity Book
+	Maths, Art Activity
+	100
+	2
+	 
+	 
+	 
+	Total
+	8
+	Std III – Text Books
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	Remarks
+	1
+	English
+	English Plus Reader – 3
+	Arrow
+	 
+	 
+	 
+	 
+	Cursive Writing (Me n’ Mine)
+	New Saraswathi House (India) Pvt. Ltd.
+	 
+	2
+	Malayalam
+	Priyamozhi- 2
+	Poorna
+H & C
+	 
+	Lipi Parichayam
+	 
+	3
+	Hindi
+	Mudita Hindi  Pathmala – 3
+	Madhuban
+	 
+	Sulekha Mala (Me n’ Mine)-3
+	New Saraswathi House (India) Pvt. Ltd.
+	 
+	4
+	Mathematics
+	Perfect Composite Mathematics – 3
+	Arya
+	 
+	5
+	EVS
+	Environmental Studies- Looking Around Text Book for Class III
+	NCERT
+	 
+	6
+	GK & Life Skill
+	Let’s Find More – 3
+	Kohinoor
+	 
+	7
+	Art & Craft
+	Art Spot – 3
+	Nexrise
+	 
+	8
+	Computer
+	ePrompt- 3
+	Kips
+	 
+	 
+	 
+	 
+	 
+	 
+	Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Four Line
+	English, EVS, Rough
+	200
+	3
+	2
+	Two Line
+	Hindi, Malayalam, Rough H/M
+	100
+	3
+	3
+	Maths
+	Maths
+	200
+	1
+	4
+	Plain Activity Book
+	Maths, EVS, Art Activity
+	100
+	3
+	 
+	 
+	 
+	Total
+	10
+	Std IV – Text Books
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	Remarks
+	1
+	English
+	English Plus Reader – 4
+	NCERT
+	 
+	 
+	 
+	 
+	Cursive Writing (Me n’ Mine)
+	New Saraswathi House (India) Pvt. Ltd.
+	 
+	2
+	Malayalam
+	Priyamozhi-4
+	Poorna
+H & C
+	 
+	Lipi Parichayam
+	 
+	3
+	Hindi
+	Mudita Hindi Pathmala- 4
+	Madhuban
+	 
+	4
+	Mathematics
+	Perfect Composite Mathematics- 4
+	Arya
+	 
+	5
+	EVS
+	Environmental Studies- Looking Around Text Book for Class IV
+	NCERT
+	 
+	6
+	GK & Life Skill
+	Let’s Find More – 4
+	Kohinoor
+	 
+	7
+	Art & Craft
+	Art Spot -4
+	Nexrise
+	 
+	8
+	Computer
+	ePrompt- 4
+	Kips
+	 
+	 
+	 
+	 
+	 
+	 
+	Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Four Line
+	English, EVS, Rough
+	200
+	3
+	2
+	Two Line
+	Hindi, Malayalam, Rough H/M
+	100
+	3
+	3
+	Maths
+	Maths
+	200
+	1
+	4
+	Plain Activity Book
+	Maths, EVS, Art Activity
+	100
+	3
+	 
+	 
+	 
+	Total
+	10
+	Std V – Text Books
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	Remarks
+	1
+	English
+	English Plus Reader -5
+	Arrow
+	 
+	 
+	 
+	 
+	2
+	Malayalam
+	Kerala Padavali-5
+Adisthana Padavali-5
+	SCERT
+	 
+	3
+	Hindi
+	Mudita Hindi Pathmala – 5
+	Madhuban
+	 
+	4
+	French
+	Nouvel apprenons le français
+Méthode de français – 1
+Cahier d’exercices -1
+	New Saraswathi House
+	Revised Copy
+	5
+	Mathematics
+	Perfect Composite Mathematics- 5
+	Arya
+	 
+	6
+	EVS
+	Environmental Studies- Looking Around Text Book for Class V
+	NCERT
+	 
+	7
+	GK & Life Skill
+	Let’s Find More -5
+	Kohinoor
+	 
+	8
+	Art & Craft
+	Art Spot – 5
+	Nexrise
+	 
+	9
+	Computer
+	ePrompt- 5
+	Kips
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Single Line
+	English, Hindi, EVS
+Malayalam/ French, Rough
+	200
+	5
+	2
+	Maths
+	Maths
+	200
+	1
+	3
+	Plain Activity Book
+	Maths, EVS, Art Activity
+	100
+	3
+	 
+	 
+	 
+	Total
+	9
+	Std VI – Text Books
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	Remarks
+	1
+	English
+	Honey Suckle
+	NCERT
+	Revised Copy
+	Pact with the Sun
+	Revised Copy
+	 
+	 
+	 
+	2
+	Malayalam
+	Kerala Padavali-6
+Adisthana Padavali-6
+	SCERT
+	 
+	3
+	Hindi
+	Vasant Bhag- 1
+	NCERT
+	 
+	4
+	French
+	Nouvel apprenons le français
+Méthode de français – 2
+Cahier d’exercices -2
+	New Saraswathi House
+	Revised Copy
+	4
+	Mathematics
+	Mathematics- Text Book for Class VI
+	NCERT
+	Revised Copy
+	5
+	Science
+	Science- Text Book for Class VI
+	NCERT
+	Revised Copy
+	6
+	Social Science
+ 
+	History : Our pasts- 1
+	NCERT
+	Revised Copy
+	Civics   : Social and Political life- 1
+	Revised Copy
+	Geography : The Earth Our Habitat
+	Revised Copy
+	7
+	GK & Life Skill
+	Let’s Find More – 6
+	Kohinoor
+	 
+	8
+	Art & Craft
+	Impression Art Integration – 6
+	Holy faith
+	 
+	9
+	Computer
+	Student Handbook Class VI by CBSE
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Single Line
+	English, Hindi, S.S, Rough, Malayalam/ French, Science
+	200
+	6
+	2
+	Maths
+	Maths
+	200
+	1
+	3
+	Plain Activity Book
+	Maths, Art Activity
+	100
+	2
+	 
+	 
+	 
+	Total
+	9
+	Std VII – Text Books
+Sl #
+ 
+1
+	Subject
+ 
+English
+	Name of the Book
+	Publisher
+	Remarks
+	Honey Comb
+	NCERT
+	Revised Copy
+	An Alien Hand
+	Revised Copy
+	 
+	 
+	 
+	 
+	 
+	2
+	Malayalam
+	Kerala Padavali-7
+	SCERT
+	 
+	Adisthana Padavali-7
+	 
+	3
+	Hindi
+	Vasant Bhag- 2
+	NCERT
+	 
+	4
+	French
+	Nouvel apprenons le français
+Méthode de français – 3
+Cahier d’exercices -3
+	New Saraswathi House
+	Revised Copy
+	4
+	Mathematics
+	Mathematics- Text Book for Class VII
+	NCERT
+	Revised Copy
+	5
+	Science
+	Science- Text Book for Class VII
+	NCERT
+	Revised Copy
+	6
+	Social Science
+	History : Our Pasts- II
+	NCERT
+	Revised Copy
+	Civics : Social and Political life- II
+	Revised Copy
+	Geography : Our Environment
+	Revised Copy
+	7
+	GK & Life Skill
+	Let’s Find More – 7
+	Kohinoor
+	 
+	8
+	Art & Craft
+	Impression Art Integration – 7
+	Holy faith
+	 
+	9
+	Computer
+	Student Handbook Class VII by CBSE
+	 
+	 
+	 
+	 
+	–
+	–
+	 
+	Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Single Line
+	English, Hindi, S.S, Rough, Malayalam/ French
+	200
+	5
+	2
+	Single Line
+	Physics, Chemistry, Biology
+	100
+	3
+	3
+	Maths
+	Maths
+	200
+	1
+	4
+	Plain Activity Book
+	Maths, Art Activity
+	100
+	2
+	 
+	 
+	 
+	Total
+	11
+	Std VIII – Text Books
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	Remarks
+	1
+	English
+	Honey dew
+	NCERT
+ 
+	Revised Copy
+	It so Happened
+	Revised Copy
+	2
+	Malayalam
+	Kerala Padavali-8
+	SCERT
+	 
+	Adisthana Padavali-8
+	 
+	3
+	Hindi
+	Vasant Bhag- 3
+	NCERT
+	 
+	4
+	French
+	Nouvel apprenons le français
+Méthode de français – 4
+Cahier d’exercices -4
+	New Saraswathi House
+	Revised Copy
+	5
+	Mathematics
+	Mathematics- Text Book for Class VIII
+	NCERT
+	Revised Copy
+	6
+	Science
+	Science- Text Book for Class VIII
+	NCERT
+	Revised Copy
+	7
+	Social Science
+	History :  Our Pasts- III
+	NCERT
+	Revised Copy
+	Civics : Social and Political life- III
+	Revised Copy
+	Geography : Resources and Development
+	Revised Copy
+	8
+	GK & Life Skill
+	Let’s Find  More -8
+	Kohinoor
+	 
+	9
+	Art & Craft
+	Impression Art Integration
+	Holy Faith
+	 
+	10
+	Computer
+	Student Handbook Class VIII by CBSE
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Single Line
+	English, Hindi, S.S, Rough, Malayalam/ French
+	200
+	5
+	2
+	Single Line
+	Physics, Chemistry, Biology, Computer
+	100
+	4
+	3
+	Maths
+	Maths
+	200
+	1
+	4
+	Plain Activity Book
+	Maths, Art Activity
+	100
+	2
+	 
+	 
+	 
+	Total
+	12
+	Std IX – Text Books
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	Remarks
+	1
+	English
+	Beehive – Text Book
+	NCERT
+	Revised Copy
+	Moments – Supplementary Reader
+	Revised Copy
+	2
+	Malayalam
+	Kerala Padavali-9
+	SCERT
+	 
+	Adisthana Padavali-9
+	 
+	Thejaswiaya Vagmi
+	H & C
+	 
+	3
+	Hindi
+	Sparh Bhag- 1, Sanjayan Bhag- 1
+	NCERT
+	 
+	Vyakaran Sambodh – IX & X
+	Madhuban
+	 
+	4
+	French
+	Entre Jeunes- 1 & Cahier d’exercices- 1
+	CBSE
+	Revised Copy
+	5
+	Mathematics
+	Mathematics- Text Book for Class IX
+	NCERT
+	Revised Copy
+	6
+	Science
+	Science- Text Book for Class  IX
+	NCERT
+	Revised Copy
+	Science Practical
+	Science Lab Manual-IX
+	Arya
+	 
+	7
+	Social Science
+	Democratic Politics- 1
+	NCERT
+	Revised Copy
+	Contemporary India- 1
+	NCERT
+	Revised Copy
+	India and the Contemporary World- 1
+	Revised Copy
+	Understanding Economic Development
+	Revised Copy
+	8
+	Information Technology
+	Study material published by CBSE
+	 
+	 
+	9
+	Painting
+	Panoramic Indian Painting
+	Vishal Publishers
+	 
+	10
+	Home Science
+	Home Science By Anju Chauhan – IX
+	Saraswathi
+	 
+	 
+	 
+	 
+	 
+	 
+	Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Single Line A4
+	English, H/M/F, Physics, Chemistry, Biology, S.S, Rough, IT
+	160
+	8
+	2
+	Plain A4
+	Maths(2), Science, Art Activity
+	160
+	4
+	 
+	 
+	 
+	Total
+	12
+	Std X – Text Books
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	Remarks
+	1
+	English
+	First Flight – Text Book
+	NCERT
+	Revised Copy
+	Footprints  without Feet – Supplementary Reader
+	 Revised Copy
+	2
+	Malayalam
+	Kerala Padavali-10
+	SCERT
+	 
+	Adisthana Padavali-10
+	 
+	Chattambi Swamikal
+	Current Books
+	 
+	3
+	Hindi
+	Sparsh Bhag- 2, Sanjayan Bhag- 2
+	NCERT
+	 
+	Vyakaran Sambodh IX & X
+	Madhuban
+	 
+	4
+	French
+	Entre Jeunes- 2 & Cahier d’exercices- 2
+	CBSE
+	 Revised Copy
+	5
+	Mathematics
+	Mathematics- Textbook for Class X
+	NCERT
+	Revised Copy
+	6
+	Science
+	Science- Textbook for Class X
+	NCERT
+	Revised Copy
+	Science Practical
+	Science Lab Manual – X
+	Arya
+	 
+	7
+	Social Science
+	 Geography : Contemporary India 2
+	NCERT
+	Revised Copy
+	History : India and the Contemporary World 2
+	Revised Copy
+	Politics : Democratic Politics 2
+	Revised Copy
+	Economics : Understanding Economic Development
+	Revised Copy
+	8
+	Information Technology
+	Study material published by CBSE
+	 
+	 
+	9
+	Painting
+	Panoramic Indian Painting
+	Vishal Publishers
+	 
+	10
+	Home Science
+	Home Science by Anju Chauhan
+	Saraswathi
+	 
+	 
+Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Single Line-A4
+	English, H/M/F, Physics, Chemistry, Biology, S.S, Rough, IT
+	160
+	8
+	2
+	Plain -A4
+	Maths(2), Science, Art Activity
+	160
+	4
+	 
+	 
+	 
+	Total
+	12
+	Std XI – SCIENCE (Computer Science Combination)
+Mathematics- Text book for Class XI- Part I & II
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	Remarks
+	1
+	English
+	Hornbill
+	NCERT
+	Revised Copy
+	Snapshots
+	Revised Copy
+	2
+	Physics
+	Physics- Text book for Class XI- Part I & II
+	NCERT
+	Revised Copy
+	Physics Practical
+	Comprehensive Practical Physics for Class XI
+	Laxmi
+	 
+	3
+	Chemistry
+	Chemistry- Text Book for Class XI  Part I & II
+	NCERT
+	Revised Copy
+	Chemistry Practical
+	Comprehensive Practical Chemistry for Class XI
+	Laxmi
+	 
+	4
+	Computer Science
+	Computer Science with Python for Class XI – Preeti Arora
+	Sultan Chand
+	 
+	5
+	Mathematics
+	Mathematics – Textbook for class XI
+	NCERT
+	Revised Copy
+	6
+	Physical Education Trainer
+	Study Material published by CBSE
+	 
+	 
+	Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Single Line-A4
+	English, Physics, Chemistry, Rough
+	160
+	4
+	2
+	Plain -A4
+	Maths(2), Computer Science(2), Chemistry(1), Physics(1)
+	160
+	6
+	 
+	 
+	 
+	Total
+	10
+	Std XI – SCIENCE ( Biology Combination)
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	Remarks
+	1
+	English
+	Hornbill
+	NCERT
+	Revised Copy
+	Snapshots
+	Revised Copy
+	2
+	Physics
+	Physics- Text book for Class XI- Part I & II
+	NCERT
+	Revised Copy
+	Comprehensive Practical Physics for Class XI
+	Laxmi
+	 
+	3
+	Chemistry
+	Chemistry- Text book for Class XI- Part I & II
+	NCERT
+	Revised Copy
+	Comprehensive Practical Chemistry for Class XI
+	Laxmi
+	 
+	4
+	Biology
+	Biology – Text book for Class XI
+	NCERT
+	Revised Copy
+	Comprehensive Laboratory Manual in Biology for Class XI
+	Laxmi
+	 
+	5
+	Mathematics
+	Mathematics – Textbook for Class XI
+	NCERT
+	Revised Copy
+	Psychology
+	Psychology- Textbook for Class XI
+	NCERT
+	Revised Copy
+	Informatics Practices
+	Informatics Practices with Python XI- Preeti Arora
+	Sultan Chand
+	Revised Copy
+	6
+	Physical Education Trainer
+	Study material published by CBSE
+	 
+	 
+	Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Single Line-A4
+	English, Physics, Chemistry, Biology, Rough
+	160
+	5
+	2
+	Plain -A4
+	Maths/ Psychology/ IP(2), Chemistry(1), Physics(1)
+	160
+	4
+	 
+	 
+	 
+	Total
+	10
+	Std XI – Commerce
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	Remarks
+	 
+	1
+	English
+	Hornbill
+	NCERT
+	Revised Copy
+	 
+	Snapshots
+	Revised Copy
+	 
+	2
+	Business Studies
+	Business Studies- Text Book for Class XI
+	NCERT
+	Revised Copy
+	 
+	3
+	Accountancy
+	Accountancy- Text Book for Class XI – D K Goel
+	Avichal
+	 
+	 
+	4
+	Economics
+	Economics- Text Book for Class XI – S K Agarwala
+	Goyal Brothers Prakashan
+	 
+	 
+	Legal Studies
+	Study material published by CBSE
+	 
+	 
+	 
+	5
+	Informatics Practices
+	Informatics Practices- Text book for Class XI- Preeti Arora
+	Sultan Chand
+	 
+	 
+	Applied Mathematics
+	Applied Mathematics – Class XI
+	APC
+	 
+	Revised Copy
+	Psychology
+	Psychology- Text book for Class XI
+	NCERT
+	 
+	Revised Copy
+	6
+	Banking
+	Study Material published by CBSE
+	 
+	 
+	 
+	Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Single Line-A4
+	English, BS(2), Acc(3),
+Eco/ LS (2), Rough
+	160
+	9
+	2
+	Plain -A4
+	Maths/IP/ Psychology (2)
+	160
+	2
+	 
+	 
+	 
+	Total
+	11
+	Std XI – Humanities
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	Remarks
+	1
+	English
+	Hornbill
+	NCERT
+	 
+	Snapshots
+	 
+	2
+	History
+	History- Text Book for Class XI
+	NCERT
+	 
+	All in one History – Themes in World History
+	Arihant
+	 
+	3
+	Political Science
+	Political Science- Text Book for Class XI
+    Political theory
+    Indian Constitution at work
+	NCERT
+	 
+	All in one – Political Science
+	Arihant
+	 
+	4
+	Economics
+	Economics- Text Book for Class XI – S K Agarwala
+	Goyal Brothers Prakashan
+	 
+	Legal Studies
+	Study material published by CBSE
+	 
+	 
+	5
+	Informatics Practices
+	Informatics Practices- Text book for Class XI- Preeti Arora
+	Sultan Chand
+	 
+	Psychology
+	Psychology- Text book for Class XI
+	NCERT
+	 
+	6
+	Physical Education Trainer
+	Study Material published by CBSE
+	 
+	 
+	Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Single Line-A4
+	English, HS(1), PS(1),
+Eco/ LS (2), Rough
+	160
+	6
+	2
+	Plain -A4
+	IP/ Psychology (2)
+	160
+	2
+	 
+	 
+	 
+	Total
+	8
+	Std XII – Science (Computer Science Combination)
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	Remarks
+	1
+	English
+	Flamingo
+	NCERT
+	Revised Copy
+	Vistas
+	 
+	2
+	Mathematics
+	Mathematics- Text Book for Class XII Part I & II
+	NCERT
+	Revised Copy
+	3
+	Physics
+	Physics- Text book for Class XII- Part I & II
+	NCERT
+	Revised Copy
+	Comprehensive Practical Physics for Class XII
+	Laxmi
+	 
+	4
+	Chemistry
+	Chemistry- Text book for Class XII- Part I & II
+	NCERT
+	Revised Copy
+	Comprehensive Practical Chemistry for Class XII
+	Laxmi
+	 
+	5
+	Computer Science
+	Computer Science with Python for Class XII – Preeti Arora
+	Sultan Chand
+	 
+	6
+	Physical Education Trainer
+	Study material published by CBSE
+	 
+	 
+	Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Single Line-A4
+	English, Physics, Chemistry, Rough
+	160
+	4
+	2
+	Plain -A4
+	Maths(2), Physics(1), Chemistry (1), Computer Science(2)
+	160
+	6
+	 
+	 
+	 
+	Total
+	10
+	Std XII – Science (Biology Combination)
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	Remarks
+	1
+	English
+	Flamingo
+	 
+NCERT
+ 
+	Revised Copy
+	Vistas
+	Revised Copy
+	2
+	Physics
+	Physics- Text book for Class XII- Part I & II
+	NCERT
+	Revised Copy
+	Comprehensive Practical Physics for Class XII
+	Laxmi
+	 
+	3
+	Chemistry
+	Chemistry- Text book for Class XII- Part I & II
+	NCERT
+	Revised Copy
+	Comprehensive Practical Chemistry for Class XII
+	Laxmi
+	 
+	4
+	Biology
+	Biology- Text book for Class XII
+	NCERT
+	Revised Copy
+	Comprehensive Laboratory Manual in Biology for Class XII
+	Laxmi
+	 
+	5
+	Mathematics
+	Mathematics- Text Book for Class XII Part I & II
+	NCERT
+	Revised Copy
+	Psychology
+	Psychology- Text book for Class XII
+	NCERT
+	 
+	Informatices Practices
+	Informatices Practices with Python XII- Preeti Arora
+	Sultan Chand
+	 
+	6
+	Physical Education Trainer
+	Study material published by CBSE
+	 
+	 
+	 
+Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Single Line-A4
+	English, Physics, Biology, Chemistry, Rough
+	160
+	5
+	2
+	Plain -A4
+	Maths(2), Chemistry (1),Physics(1)
+	160
+	4
+	 
+	 
+	 
+	Total
+	9
+	Std XII – Commerce
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	Remarks
+	1
+	English
+	Flamingo
+	NCERT
+	Revised Copy
+	Vistas
+	Revised Copy
+	2
+	Business Studies
+	Business Studies- Part I & II
+	NCERT
+	 
+	3
+	Accountancy
+	D K Goel Part I (2 books) & Part II (1 book)
+	Avichal
+	 
+	4
+	Economics
+	Core Economics- S K Agarwala
+	Goyal Brothers Prakashan
+	 
+	Indian Economic Development
+	NCERT
+	Revised Copy
+	Psychology
+	Psychology- Text book for Class XII
+	NCERT
+	Revised Copy
+	5
+	Informatics Practices
+	Informatics Practices- Text book for Class XII, Preeti Arora
+	Sultan Chand
+	 
+	Applied Mathematics
+	Applied Mathematics –Class XII
+	APC
+	Revised Copy
+	Legal Studies
+	Study material published by CBSE
+	 
+	 
+	Arihant Legal Studies CBSE Class XII
+	 
+	 
+	6
+	Banking
+	Study material published by CBSE
+	 
+	 
+	Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Single Line-A4
+	English, BS(2), Acc(3),
+Eco/ Psychology(2), Rough
+	160
+	9
+	2
+	Plain -A4
+	Maths/IP/LS(2)
+	160
+	2
+	 
+	 
+	 
+	Total
+	11
+	Std XII – Humanities
+<
+Sl #
+	Subject
+	Name of the Book
+	Publisher
+	Remarks
+	1
+	English
+	Flamingo
+	NCERT
+	Revised Copy
+	Vistas
+	Revised Copy
+	2
+	History
+	History- Text book for Class XII
+	NCERT
+	 
+	All in one  History – Themes in Indian History Part 1,2,3 
+	Arihant
+	 
+	3
+	Political Science
+	Political Science- Text book for Class XII
+   Contemporary World Politics
+   India since Independence
+	NCERT
+	Revised Copy
+	All in one – Political Science
+	Arihant
+	 
+	4
+	Economics
+	Core Economics- S K Agarwala
+	Goyal Brothers Prakashan
+	 
+	Indian Economic Development
+	NCERT
+	Revised Copy
+	Psychology
+	Psychology- Text book for Class XII
+	 
+	 
+	5
+	Informatics Practices
+	Informatics Practices- Text book for Class XII, Preeti Arora
+	Sultan Chand
+	 
+	Legal Studies
+	Study material published by CBSE
+	 
+	 
+	Arihant Legal Studies CBSE Class XII
+	 
+	 
+	6
+	Physical Education Trainer
+	Study Material published by CBSE
+	 
+	 
+	Note books
+Sl #
+	Note Book
+	Purpose
+	No. of Pages
+	Requirement
+	1
+	Single Line-A4
+	English, Eco/ Psycology(2), History(1), PS(1), Rough
+	160
+	6
+	2
+	Plain -A4
+	IP/ LS(2)
+	160
+	2
+	 
+	 
+	 
+	Total
+	8
+	
+
+
+
+Curriculum
+The School is affiliated to the Central Board of Secondary Education and the medium of instruction is English.
+
+
+We provide a platform for active involvement of the students in all the domains of development. Apart from the subjects offered for primary classes we give utmost importance to co-curricular activities like dance, music, art, craft, physical education etc.
+
+
+To develop the creative talents, the students of classes III to X are assessed in co-curricular activities like Keyboard, Western Music , Light Music, Dance, Band, Chess, Table Tennis, Handball, Basketball, Throwball, Volleyball, Teakwondo, Home Science, Art, Craft and Yoga. Well trained and experienced tutors equip the students to perform their best according to their skills and interests.
+
+
+For classes IX & X, the overall performance of the students is based on their achievement in scholastic & co-scholastic areas. In co-scholastic areas we assess life skills, literary and creative skills, scientific skills, work education, drawing & painting, attitude & values, health & physical education and first aid.
+
+
+Students of classes XI & XII are continuously evaluated on the basis of their performance in class tests, cyclic tests, midterm and terminal exams in an academic year. For the students of class X and XII we conduct model exams to equip them to face the board examination confidently.
+
+
+
+
+Academic Session
+The academic year comprises of two terms for Std I to XII
+
+
+Term - I
+April to September
+
+
+Term - II
+October to March
+
+
+
+
+
+
+School Hours
+GPS (Monday to Friday)
+07:55 AM to 03:00 PM
+
+
+Morning Session
+08:00 AM to 12:00 PM
+
+
+Afternoon Session
+12:05 PM to 03:00 PM
