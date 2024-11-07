@@ -768,11 +768,10 @@ const handleQueryWithGPT = async (message, companyName) => {
         const knowledgeEntry = knowledgeBase.find(entry => entry.name.toLowerCase() === companyName.toLowerCase());
        
         // Create prompt
-        const prompt = knowledgeEntry 
-            ? `About ${knowledgeEntry.name} in the ${knowledgeEntry.industry} industry: ${knowledgeEntry.info}. User asks: ${message}.` 
-            : `User asks: ${message}. Provide a detailed response.Please provide a clear and complete response for the question or input. Ensure that each sentence is fully formed and does not cut off midway. Begin by summarizing the answer, then provide a step-by-step explanation or a detailed answer as needed. If the response contains instructions or bullet points, please format them clearly. End with a closing sentence to ensure completeness`;
-    
-        // Load API key (use environment variables in production)
+       const prompt = knowledgeEntry 
+    ? `Provide a detailed and complete response about ${knowledgeEntry.name} in the ${knowledgeEntry.industry} industry. Start with a brief summary, then provide a comprehensive explanation about its features, benefits, and any relevant details from ${knowledgeEntry.info}. End with a closing sentence that reinforces completeness. User asks: ${message}.`
+    : `User asks: ${message}. Provide a full and complete response that addresses the question thoroughly. Begin with a brief summary, then provide a step-by-step or detailed explanation. If relevant, include bullet points or numbered lists for clarity. Ensure all sentences are fully formed, and conclude with a closing statement that wraps up the answer.`;
+
         const apiKey = process.env.OPENAI_API_KEY
 ;
         if (!apiKey) {
