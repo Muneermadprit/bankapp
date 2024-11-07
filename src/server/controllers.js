@@ -757,8 +757,8 @@ const handleQueryWithGPT = async (message, companyName) => {
         // Knowledge base definition
         const knowledgeBase = [
             {
-                name: "cochincomputing",
-                industry: "IT Solutions",
+                name: "Greeks public school",
+                industry: "Education",
                 info: infoText
             },
             // Add more entries as needed
