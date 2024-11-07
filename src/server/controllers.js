@@ -770,7 +770,7 @@ const handleQueryWithGPT = async (message, companyName) => {
         // Create prompt
         const prompt = knowledgeEntry 
             ? `About ${knowledgeEntry.name} in the ${knowledgeEntry.industry} industry: ${knowledgeEntry.info}. User asks: ${message}.` 
-            : `User asks: ${message}. Provide a detailed response.`;
+            : `User asks: ${message}. Provide a short response.`;
     
         // Load API key (use environment variables in production)
         const apiKey = process.env.OPENAI_API_KEY
