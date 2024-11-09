@@ -34,7 +34,7 @@ const acadamics = (user, userstatus, res, req,messageContent) => {
         case 'Progress':
             userstatus = { ...userstatus, path: 3 };
             break;
-        case 'Report from classteacher':
+        case 'classteacherReport':
             userstatus = { ...userstatus, path: 4 };
             break;
         case 'Check pending fees':
@@ -362,7 +362,29 @@ const acadamics = (user, userstatus, res, req,messageContent) => {
                 console.log()
     
               switch(userstatus.studentid ){
-                case 0 :  pendingassignments (req, res,messageContent,user)
+                case 0 :let newmessage =` Here’s a quick update on ${messageContent}  progress with pending assignments:
+
+                Academics: Strong in [Math/Science], but could benefit from extra attention in [Language Arts/other subjects].
+                
+                Pending Assignments and Status:
+                
+                Math: Chapter review exercises for Unit 3 — In Progress
+                Science: Lab report on [Experiment Name] — Not Started
+                Language Arts: Book report on [Book Title] — In Progress
+                Social Studies: Worksheet on [Topic] — Completed, pending review
+                Behavior: Respectful, helpful, and actively participates in class.
+                
+                Goal: Complete remaining assignments and continue practicing [writing/reading] to build confidence.
+                
+                Thank you!
+                [Sumitha TV]`
+                
+
+
+                whatsapptextmessages =  createTextMessage(user,newmessage)
+                sendMessage(whatsapptextmessages);
+                 
+                
     
               }
     
@@ -674,6 +696,161 @@ Thank you!
     
                }            
     }
+
+
+
+
+    case 5:
+        //Class TEacher Report  Section code will work here --------------------------------------------------
+        if(userstatus.path == 5){
+        if (!('varification' in userstatus)){
+            userstatus = { ...userstatus, varification: 'validation' };
+            console.log(userstatus.varification)
+            cache.set(user, userstatus);
+            let headerText = 'please ensure using Registerd number'
+            let menuList = [{
+                id: 'yes',
+                title: 'yes i have',
+                description:'use the mobile phone you registerd'
+
+        
+
+            },{
+                id: 'No',
+                title: 'I dont have',
+                description:'use the mobile phone you registerd'
+
+        
+
+            }]
+            const bodyText = '';
+            const footerText = '';
+            const buttonTitle = 'Select Options';
+            
+             const message = generateRequest(user, headerText, bodyText , footerText , buttonTitle ,menuList) 
+              console.log(message)
+             sendMessage(message);
+
+             return res.status(403).send({
+                "messaging_product": "whatsapp",
+                "recipient_type": "individual",
+                "to": user,
+                "type": "text",
+                "text": {
+                    "body": "You need to complete verification before submitting your application."
+                }
+            });
+        
+           }
+           else {
+              
+            switch(userstatus.varification ){
+                case 'validation':
+                    console.log('entrance')
+                    userstatus = { ...userstatus, varification: 'pending' };
+                    cache.set(user, userstatus);
+                    let Textmessage = 'please enter your OTP'
+                    whatsapptextmessages =  createTextMessage(user,Textmessage)
+                    sendMessage(whatsapptextmessages);
+                    // let phoneRegex = /^\+?[1-9]\d{1,14}$/;  
+                    // let otpSent = false; // E.164 format
+                    // if (phoneRegex.test(userstatus.id)) {
+                    //     if (!otpSent) { // Check if `Sendotp` has already been called
+                    //         otpSent = true; // Set the flag to true to prevent further calls
+                    //        // Sendotp(user,messageContent).catch((error) => console.error('Error in Sendotp:', error));
+                    //     }
+                       
+                       
+                    // } else {
+                    //     // Optional: handle invalid phone number format
+                    //     res.status(400).send({
+                    //         "error": "Invalid phone number format. Please enter a valid phone number in the correct format."
+                    //     });
+                
+                
+                    // }
+                    
+                   
+                    
+
+                    case 'pending':
+                        console.log('we are in pending side');
+                        
+                        // Call the OTP verification function
+                        //otpVerification(user, messageContent, res);
+                        userstatus.varification = 'varified'
+    
+                        console.log(userstatus)
+                        cache.set(user, userstatus);
+                      
+                        // Retrieve the verification status from the cache
+                        let isVerified = cache.get(user);
+                        
+                        // Check if the retrieved data is valid and contains varification
+                        if (isVerified && isVerified.varification === 'varified') {
+                            console.log("we are in verified condition");
+                           //Here is the value to be pasted   
+                           if(!('stuentid' in userstatus && userstatus.path)){
+                            getStudentByParentPhone(user,messageContent,res)
+                        }
+               
+
+
+
+
+
+
+                            // Send a response indicating the next step
+                           
+                        } else {
+                            console.log("User is not verified yet or verification status is invalid.");
+                            
+                            // Optionally send a response or handle the non-verified case here
+                            return res.status(403).send({
+                                "messaging_product": "whatsapp",
+                                "recipient_type": "individual",
+                                "to": user,
+                                "type": "text",
+                                "text": {
+                                    "body": "You need to complete verification before submitting your application."
+                                }
+                            });
+                        }
+                        break;
+                    
+            case'varified':
+            console.log()
+
+          switch(userstatus.studentid ){
+            case 0 :   let Textmessage = `
+Pending Fees Summary for ${messageContent}
+
+Total Fees: ₹12700
+Next Installment: ₹3500 due on 12-11-2024
+Management Signature:Sumesh KV
+
+
+
+
+
+
+`
+            whatsapptextmessages =  createTextMessage(user,Textmessage)
+            sendMessage(whatsapptextmessages);
+             
+
+          }
+
+            
+
+
+
+            }
+          
+
+
+           }            
+}
 
 
                
