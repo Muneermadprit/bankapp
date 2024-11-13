@@ -9,14 +9,17 @@ const AttendanceRegister = require('./models/AttendanceRegister');
 const Query = require('./models/querys');
 const axios = require('axios');
 const fs = require('fs');
+const {fetchuser} = require('./IsUser_Registerd');
 const {generateRequest} = require('./sendresponse');
 const {sendMessage} = require('./sendingtowhatsapp');
+const {fetchAndSendMenu} = require('./fetch_data_and _send_message');
 const {getStudentByParentPhone} = require('./parentscontrollers');
 const {Sendotp,otpVerification} = require('./sendotp');
 const { getAttendanceByStudentId} = require('./AttendanceCheck')
 
 const {  createTextMessage} = require('./Textmessage');
 const { acadamics} = require('./Acdamicflow')
+const { activities} = require('./Activitiesflow')
 const cache = require('./cache'); // Global cache with TTL of 180 seconds
 const user = new Map();
 // Read the contents of the text file
@@ -89,7 +92,7 @@ const admission = (req, res, user, messageContent,userstatus) => {
             cache.set(user, userstatus);
             break;
 
-        case 'ApplicationSubmission':
+        case 'SubmitApplication':
             userstatus = { ...userstatus, path: 2 };
             cache.set(user, userstatus);
             break;
@@ -98,38 +101,15 @@ const admission = (req, res, user, messageContent,userstatus) => {
     // Response based on userstatus.admission value
     switch (userstatus.path) {
         case 0:
-            const headerText = 'Hi! You are in the admission ' 
-            let menuList = [{
-                id: 'ApplicationStatus',
-                title: 'Application Status',
-                description:'Check your admission application status'
-
-        
-
-            },{
-                id: 'ApplicationSubmission',
-                title: 'Submit Application',
-                description:'Submit your application'
-
-        
-
-            },
-            {
-                id: 'backtomainmenu',
-                title: 'Back to Mainmenu',
-                description:'Back To Mainmenu'
-
-        
-
-            }]
-           
-            const bodyText = '';
+            const headerText = 'Admission portal: Please select an option below';
+            const bodyText = '';  
             const footerText = '';
             const buttonTitle = 'Select Options';
+                 
+                  
+                    fetchAndSendMenu(2,user,headerText,footerText,buttonTitle,bodyText);
+           
             
-             const message = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
-              console.log(message)
-             sendMessage(message);
 
 
 
@@ -355,10 +335,39 @@ const admission = (req, res, user, messageContent,userstatus) => {
 //
         case 2:
             
-           if (!('varification' in userstatus)){
+        if (!('varification' in userstatus)){
             userstatus = { ...userstatus, varification: 'validation' };
             console.log(userstatus.varification)
             cache.set(user, userstatus);
+
+            const headerText = 'please ensure using Registerd number'
+            let menuList = [{
+                id: 'yes',
+                title: 'yes i have',
+                description:'use the mobile phone you registerd'
+
+        
+
+            },{
+                id: 'No',
+                title: 'I dont have',
+                description:'use the mobile phone you registerd'
+
+        
+
+            }]
+            const bodyText = '';
+            const footerText = '';
+            const buttonTitle = 'Select Options';
+            
+             const message = generateRequest(user, headerText, bodyText , footerText, buttonTitle,menuList) 
+              console.log(message)
+             sendMessage(message);
+
+
+
+
+
             return res.status(200).send({
                 "messaging_product": "whatsapp",
                 "recipient_type": "individual",
@@ -383,8 +392,6 @@ const admission = (req, res, user, messageContent,userstatus) => {
             });
             
         
-            
-        
            }
            else {
 
@@ -395,11 +402,21 @@ const admission = (req, res, user, messageContent,userstatus) => {
                     cache.set(user, userstatus);
                     const phoneRegex = /^\+?[1-9]\d{1,14}$/;  
                     let otpSent = false; // E.164 format
+                    if (!userstatus.id.startsWith("+")) {
+                        userstatus.id = "+" + userstatus.id;
+                        cache.set(user, userstatus);
+                        console.log(user.id)
+                      }
                     if (phoneRegex.test(userstatus.id)) {
                         if (!otpSent) { // Check if `Sendotp` has already been called
                             otpSent = true; // Set the flag to true to prevent further calls
                             Sendotp(user,messageContent).catch((error) => console.error('Error in Sendotp:', error));
                         }
+
+                        let Textmessage = 'please enter your OTP'
+                     let  whatsapptextmessages =  createTextMessage(user,Textmessage)
+                      sendMessage(whatsapptextmessages);
+
                         return res.status(200).send({
                             "messaging_product": "whatsapp",
                             "recipient_type": "individual",
@@ -419,7 +436,6 @@ const admission = (req, res, user, messageContent,userstatus) => {
                 
                     }
 
-                       
                     case 'pending':
                         console.log('we are in pending side');
                         
@@ -432,7 +448,22 @@ const admission = (req, res, user, messageContent,userstatus) => {
                         // Check if the retrieved data is valid and contains varification
                         if (isVerified && isVerified.varification === 'varified') {
                             console.log("we are in verified condition");
+                             const headerText = 'See Your Admission Status'
+
+                            const bodyText ='your application status is pending . After the varification of submitted data we will contact you'
+                            const footerText = '';
+                            const buttonTitle = 'Select Options';
+                           
+                            const menuList = [{
+                             id: 'Back to mainmenu',
+                             title: 'Back to mainmenu',
+                             description: 'Admission-related queries'
+                
+                            }]
                             
+                            const message = generateRequest(user, headerText, bodyText , footerText, buttonTitle,menuList) 
+                            console.log(message)
+                           sendMessage(message);
                             // Send a response indicating the next step
                             return res.status(200).send({
                                 "messaging_product": "whatsapp",
@@ -440,7 +471,7 @@ const admission = (req, res, user, messageContent,userstatus) => {
                                 "to": user,
                                 "type": "text",
                                 "text": {
-                                    "body": "Submit your application without the website portal. https://admission.gps.ac.in/"
+                                    "body": "your application status is pending . After the varification of submitted data we will contact you"
                                 }
                             });
                         } else {
@@ -457,18 +488,32 @@ const admission = (req, res, user, messageContent,userstatus) => {
                                 }
                             });
                         }
-                        break;
+                        
                     
             case'varified':
-
+            const bodyText ='For Su . After the varification of submitted data we will contact you'
+            const footerText = '';
+            const buttonTitle = 'Select Options';
            
+            const menuList = [{
+             id: 'Back to mainmenu',
+             title: 'Back to mainmenu',
+             description: 'Admission-related queries'
+
+            }]
+            
+            const message = generateRequest(user, headerText, bodyText , footerText, buttonTitle,menuList) 
+            console.log(message)
+    console.log(   sendMessage(message))      
+
+              
             return res.status(200).send({
                 "messaging_product": "whatsapp",
                 "recipient_type": "individual",
                 "to": user,
                 "type": "text",
                 "text": {
-                    "body": "submit your application with out website portal . https://admission.gps.ac.in/"
+                    "body": "Your Application are in pending . After valuation we will inform you"
                 }
             }); 
 
@@ -540,18 +585,30 @@ const decidewheretogo = async (req, res) => {
         let counter = userCache.counter;
         
         
+     
+      //getting the consent from the user are done in this part 
+
+       
+
+
+
+
+
+
+
+
 
 
         console.log(`User: ${user}, Counter: ${userCache.counter}`);
 
-          
+   
               
 
-                if ( messageType === 'BUTTON_REPLY' && messageContent=='Back to mainmenu')  {
+                if ( messageType === 'BUTTON_REPLY' )  {
                     messageContent =  req.body.data.message.message_content.id;
-                    if(messageContent=='Back to mainmenu')
+                    if(messageContent=='Back to mainmenu'){
                    userCache.counter = 0;
-                   cache.set(user, userCache);
+                   cache.set(user, userCache);}
                }
 
        
@@ -561,6 +618,7 @@ const decidewheretogo = async (req, res) => {
                    const userCache = cache.get(user);
                    if (userCache && Date.now() - userCache.lastInteraction > 3 * 60 * 1000) {
                        cache.set(user, { counter: 0 });
+                       cache.set('varification',true)
                        console.log(`User ${user} counter reset due to inactivity.`);
                    }
                }, 3 * 60 * 1000);
@@ -642,48 +700,34 @@ const decidewheretogo = async (req, res) => {
               
 
      
-        // Reset counter if "Back to mainmenu" is selected
         
 
       
-        // Main menu or submenu based on counter value
+
         if (userCache.counter === 0 ) {
-            cache.set(user, { counter: 1 });
-            const headerText = 'Academic portal: Please select an option below';
-            let menuList = [
-                {
-                    id: 'ADMISSION',
-                    title: 'ADMISSION',
-                    description: 'Admission-related queries'
-                },
-                {
-                    id: 'ACADAMICS',
-                    title: 'ACADAMICS',
-                    description: 'Academic-related queries for your children'
-                },
-                {
-                    id: 'ACTIVITIES',
-                    title: 'ACTIVITIES',
-                    description: 'Your children’s extracurricular activities'
-                },
-                {
-                    id: 'EVENTS',
-                    title: 'EVENTS',
-                    description: 'School events'
-                },
-                {
-                    id: 'NOTICE BOARD',
-                    title: 'NOTICE BOARD',
-                    description: 'Notices related to school activities for teachers and students'
-                }
-            ];
-            const bodyText = '';
-            const footerText = '';
-            const buttonTitle = 'Select Options';
+
+          // check the user is in the 
+      
+          
+          (async () => {
+            try {
+              let result = await fetchuser(user,messageContent,userCache,res);
+              console.log(result,'The result is on the way');
+            } catch (error) {
+              console.error("Error fetching user:", error);
+            }
+          })();
+        
+
+
+         
+
+
+
+
+
             
-             const message = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
-              console.log(message)
-             sendMessage(message);
+         
         } else if (userCache.counter === 2) {
             console.log("welcome to the world of history");
             let currentstatus = cache.get(user) || {}; // Ensure currentstatus is an object
@@ -734,6 +778,19 @@ const decidewheretogo = async (req, res) => {
 
 
                 case 'ACTIVITIES':
+                    if (!('path' in userstatus)) {
+                        // Initialize admission if not present
+                        userstatus = { ...userstatus, path: 0 };
+                        console.log(userstatus)
+
+                        cache.set(user, userstatus);
+                        activities(user, userstatus, res, req,messageContent); 
+                        console.log("In the admission portal");
+                    }
+                    else{
+                        activities(user, userstatus, res, req,messageContent);  
+                    }
+                    break; // Handle admission logic
                 case 'School Notices':
                 case 'Upcoming Events':
                     console.log(`The message is ${messageContent}.`);
@@ -768,12 +825,12 @@ const handleQueryWithGPT = async (message, companyName) => {
         const knowledgeEntry = knowledgeBase.find(entry => entry.name.toLowerCase() === companyName.toLowerCase());
        
         // Create prompt
-       const prompt = knowledgeEntry 
-    ? ` About ${knowledgeEntry.name} in the ${knowledgeEntry.industry} industry: ${knowledgeEntry.info}. User asks: ${message}`
-    : `User asks: ${message}. Provide a full and complete response that addresses the question thoroughly. Begin with a brief summary, then provide a step-by-step or detailed explanation. If relevant, include bullet points or numbered lists for clarity. Ensure all sentences are fully formed, and conclude with a closing statement that wraps up the answer.`;
-
-        const apiKey = process.env.OPENAI_API_KEY
-;
+        const prompt = knowledgeEntry 
+            ? `About ${knowledgeEntry.name} in the ${knowledgeEntry.industry} industry: ${knowledgeEntry.info}. User asks: ${message}.` 
+            : `User asks: ${message}. Provide a detailed response.`;
+    
+        // Load API key (use environment variables in production)
+        const apiKey = process.env.OPENAI_API_KEY;
         if (!apiKey) {
             throw new Error('OpenAI API key is missing');
         }
@@ -797,7 +854,6 @@ const handleQueryWithGPT = async (message, companyName) => {
         // Check for response structure
         if (response.data.choices && response.data.choices.length > 0) {
             const gptResponse = response.data.choices[0].message.content.trim();
-           console.log(gptResponse)
             return {
                 message: gptResponse,
                
