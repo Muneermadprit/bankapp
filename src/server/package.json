@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "mocha"
+    "test": "mocha",
+    "postinstall": "sudo apt-get update && sudo apt-get install -y unixodbc"
   },
   "keywords": [],
   "author": "",
@@ -36,3 +37,4 @@
     "nodemon": "^3.1.2"
   }
 }
+
