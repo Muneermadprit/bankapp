@@ -27,6 +27,7 @@
     "mysql2": "^3.11.3",
     "node-cache": "^5.1.2",
     "nodemailer": "^6.9.14",
+    "odbc": "^2.4.9",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "sequelize": "^6.37.5"
