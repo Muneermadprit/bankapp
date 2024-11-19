@@ -3,9 +3,19 @@ const AttendanceRegister = require('./models/AttendanceRegister');
 const cache = require('./cache');
 const { sendMessage } = require('./sendingtowhatsapp');
 const { createTextMessage } = require('./Textmessage');
+const {generateRequest} = require('./sendresponse');
 
 // Function to get attendance records by student ID
 const getAttendanceByStudentId = async (req, res, id, user) => {
+
+
+
+    let headerText
+    let bodyText    
+    let footerText 
+    let buttonTitle 
+
+
     // Destructure studentId from the request body
     const userdata = cache.get(user);
     const userid = userdata.id;
@@ -23,30 +33,80 @@ const getAttendanceByStudentId = async (req, res, id, user) => {
 
         // Construct the WhatsApp message
         const whatsappResponse = `
-            Hello, ${attendanceRecord.Name}! Here is your attendance record for this week:\n\n
-            Student Name: ${attendanceRecord.Name}\n
-            Student ID: ${attendanceRecord.StudentID}\n
-            Grade: ${attendanceRecord.Grade}\n
-            Section: ${attendanceRecord.Section}\n\n
-            Weekly Attendance:\n\n
-            - Monday: ${attendanceRecord.Mon === 'P' ? 'Present' : 'Absent'}\n
-            - Tuesday: ${attendanceRecord.Tue === 'P' ? 'Present' : 'Absent'}\n
-            - Wednesday: ${attendanceRecord.Wed === 'P' ? 'Present' : 'Absent'}\n
-            - Thursday: ${attendanceRecord.Thu === 'P' ? 'Present' : 'Absent'}\n
-            - Friday: ${attendanceRecord.Fri === 'P' ? 'Present' : 'Absent'}\n\n
-            Summary:\n\n
-            - Total Present Days: ${attendanceRecord.TotalPresent}\n
-            - Total Absent Days: ${attendanceRecord.TotalAbsent}\n
-            - Total Late Days: ${attendanceRecord.TotalLate}\n
-            - Remarks: ${attendanceRecord.Remarks}
-        `;
+------------------------------------------------------------------------------------------
+
+📩 *Dear ${attendanceRecord.Name},*
+
+We hope this message finds you well. Please find your detailed attendance record for the week below:
+
+---
+
+**Student Information:**
+
+- *Name*: ${attendanceRecord.Name}
+- *Student ID*: ${attendanceRecord.StudentID}
+- *Grade*: ${attendanceRecord.Grade}
+- *Section*: ${attendanceRecord.Section}
+
+---
+
+**Weekly Attendance Overview:**
+
+- *Monday*: ${attendanceRecord.Mon === 'P' ? 'Present' : 'Absent'}
+- *Tuesday*: ${attendanceRecord.Tue === 'P' ? 'Present' : 'Absent'}
+- *Wednesday*: ${attendanceRecord.Wed === 'P' ? 'Present' : 'Absent'}
+- *Thursday*: ${attendanceRecord.Thu === 'P' ? 'Present' : 'Absent'}
+- *Friday*: ${attendanceRecord.Fri === 'P' ? 'Present' : 'Absent'}
+
+---
+
+**Attendance Summary:**
+
+- *Total Present Days*: ${attendanceRecord.TotalPresent}
+- *Total Absent Days*: ${attendanceRecord.TotalAbsent}
+- *Total Late Days*: ${attendanceRecord.TotalLate}
+- *Remarks*: ${attendanceRecord.Remarks}
+
+---
+
+Should you have any further questions or require additional information, please do not hesitate to contact us.
+
+Thank you for your attention.
+
+Best regards,  
+*Greets Public School*  
+------------------------------------------------------------------------------------------
+`;
+
 
         // Create WhatsApp message and send it
         const whatsappTextMessage = createTextMessage(userid, whatsappResponse);
         await sendMessage(whatsappTextMessage); // Ensure sendMessage is awaited for proper handling
 
         // Optionally, you might want to send a response back to the client
-        return res.status(200).json({ message: 'Attendance record sent via WhatsApp.' });
+        
+       // here adding back to mainmenu to the last option
+         
+
+       headerText = 'Return Back To Mainmenu';
+       bodyText = "Discover What's Next – Click Here to Go for More";
+       footerText = "";
+       buttonTitle = "";
+
+          
+
+       const menuList =[{
+        id:'Back to mainmenu',
+        title: 'Back to Mainmenu',
+        description:'Return Back',
+        
+    }] 
+      const backtomenu = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+      sendMessage(backtomenu)
+
+
+
+
         
     } catch (error) {
         console.error('Error fetching attendance data:', error);
