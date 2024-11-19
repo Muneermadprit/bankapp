@@ -1,34 +1,33 @@
-require('dotenv').config();  // Load environment variables from .env file
-const odbc = require('odbc');
+const { getDb } = require('./db'); // Load database connection
 
-function getServiceMenu() {
+async function getServiceMenu() {
     let db;
-    return odbc.connect(process.env.DB_CONNECTION_STRING)
-        .then(connection => {
-            db = connection;
-            return db.query(`CALL "CC"."sp_whatsapp_get_service_menu"`);
-        })
-        .then(result => {
-          
-            return result;
-        })
-        .catch(error => {
-            console.error('Error calling stored procedure:', error.stack || error);
-            throw error;  // Propagate the error for further handling if needed
-        })
-        .finally(() => {
-            if (db) {
-                db.close((closeErr) => {
-                    if (closeErr) {
-                        console.error("Error closing connection:", closeErr);
-                    } else {
-                        console.log("Connection closed.");
-                    }
-                });
-            }
-        });
+    try {
+        db = await getDb(); // Establish database connection
+        console.log('Database connection established.');
+
+        // Call the stored procedure
+        const [rows] = await db.query('CALL sp_whatsapp_get_service_menu');
+        console.log('Stored procedure executed, raw result:', rows);
+
+        // Check the structure of the result
+        if (rows && Array.isArray(rows) && rows.length > 0) {
+            return rows[0]; // Assuming the first item contains the relevant data
+        } else {
+            console.warn('Stored procedure returned an unexpected structure or empty result.');
+            return []; // Return an empty array if no data
+        }
+    } catch (error) {
+        console.error('Error executing query:', error);
+        throw error; // Propagate error to the caller
+    } finally {
+        if (db) {
+            await db.end(); // Ensure the connection is closed
+            console.log('Database connection closed.');
+        }
+    }
 }
 
 module.exports = {
-    getServiceMenu
-}
+    getServiceMenu,
+};
