@@ -1,28 +1,33 @@
-const mysql = require('mysql2');
-const config = require('./config'); // Ensure this file has your MySQL config
+const mysql = require('mysql2/promise');
+const config = require('./config');
 
-// Create a MySQL connection
-const connection = mysql.createConnection({
-  host: config.mysqlConfig.host,
-  user: config.mysqlConfig.user,
-  password: config.mysqlConfig.password,
-  database: config.mysqlConfig.database,
-});
+let db; // Global variable to hold the database connection
 
-// Connect to MySQL
-connection.connect((err) => {
-  if (err) {
-    console.error('Error connecting to MySQL:', err);
-    return;
+// Initialize the database connection asynchronously
+async function initializeDatabase() {
+  if (!db) {
+    try {
+      db = await mysql.createConnection({
+        host: config.mysqlConfig.host,
+        user: config.mysqlConfig.user,
+        password: config.mysqlConfig.password,
+        database: config.mysqlConfig.database,
+      });
+      console.log('Connected to MySQL as id', db.threadId);
+    } catch (err) {
+      console.error('Error connecting to MySQL:', err);
+      throw err;
+    }
   }
-  console.log('Connected to MySQL as id', connection.threadId);
-});
+  return db;
+}
 
-// Export the connection for use in other modules
-module.exports = connection;
+// Function to get the DB connection (ensures it's initialized)
+async function getDb() {
+  if (!db) {
+    await initializeDatabase(); // Ensure initialization if not done
+  }
+  return db;
+}
 
-
-
-
-
-
+module.exports = { getDb };  // Export `getDb` to retrieve the database connection when needed
