@@ -17,10 +17,17 @@ const {  createTextMessage} = require('./Textmessage');
 
 
 const {Sendotp,otpVerification} = require('./sendotp');
-const acadamics = (user, userstatus, res, req,messageContent) => {
-    let isuservarified =cache.get('varification') || false
-    console.log(isuservarified,"uservarificationstatus")
-
+const { use } = require('passport');
+const acadamics = (user, userstatus, res, req,messageContent,messageTitle,messageType) => {
+    let headerText
+    let bodyText    
+    let footerText 
+    let buttonTitle 
+          
+    
+ 
+    let Textmessage
+    let position
 
     // Retrieve messageContent from req.body if defined
   console.log("welcome acadamic function")
@@ -42,38 +49,84 @@ const acadamics = (user, userstatus, res, req,messageContent) => {
         case 'PendingFees':
             userstatus = { ...userstatus, path: 5 };
             break;
+        
+            
+            default: 
+            if( userstatus.path<0){
+
+
+                bodyText  =` The selected option is not identified please select a valid option `
+                                  
+                  
+                  
+                                   
+                                  
+                      
+                                
+                    headerText = 'Report Summary: Key Details and Insights';
+                    
+                    footerText = "";
+                    buttonTitle = "";
+             
+                       
+             
+                    const menuList =[{
+                     id:'Back to mainmenu',
+                     title: 'Back to Mainmenu',
+                     description:'Return Back',
+                     
+                 }] 
+                   const backtomenu = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+                   sendMessage(backtomenu)
+                      
+
+            }
+            
+            
        
     }
 
     cache.set(user, userstatus);
 
-    console.log(cache.get(user))
     // Handle the main menu or specific options based on path
     switch (userstatus.path) {
+        
         case 0:
            
-        const headerText = 'Academic portal: Please select an option below';
-        const bodyText = '';  
-        const footerText = '';
-        const buttonTitle = 'Select Options';
-             
+        userstatus = { ...userstatus, path: -1 };
+        cache.set(user, userstatus);
+
+             headerText = 'Academic portal: Please select an option below';
+             bodyText = `Enter the child's academic information, including grade, subjects, and performance history.`;  
+             footerText = '';
+             buttonTitle = 'Select Options';
               
-                fetchAndSendMenu(1,user,headerText,footerText,buttonTitle,bodyText);
+          position = cache.get('Position')
+              
+                fetchAndSendMenu(1,user,headerText,footerText,buttonTitle,bodyText,position );
            
             
              
         case 1:
             if(userstatus.path == 1){
 
-              if( isuservarified == true){
-                        userstatus = { ...userstatus, varification: 'varified' };
+                     
                          
-                                   //Here is the value to be pasted   
-                                   if(!('stuentid' in userstatus && userstatus.path)){
-                                    getStudentByParentPhone(user,messageContent,res)
-                                }
+                (async () => {
+                    try {
+                        // Wait for the function to complete before proceeding
+                        await getStudentByParentPhone(user, messageContent, res);
+            
+                        // After the function completes, update the userstatus and cache
+                        userstatus = { ...userstatus, path: 11 };
+                        cache.set(user, userstatus);
+            
+                        // Send a response indicating the next step
+                        console.log('Function completed and cache updated.');
+                    } catch (error) {
+                        console.error('Error in getStudentByParentPhone:', error);
                     }
-               
+                })();
                               
                                
                        
@@ -86,7 +139,7 @@ const acadamics = (user, userstatus, res, req,messageContent) => {
                                     // Send a response indicating the next step
                                    
                                 } else {
-                                    console.log("User is not verified yet or verification status is invalid.");
+                                    console.log("User is selected a invalid path check and get more data about this.");
                                     
                                     // Optionally send a response or handle the non-verified case here
                                     return res.status(403).send({
@@ -100,34 +153,52 @@ const acadamics = (user, userstatus, res, req,messageContent) => {
                                     });
                                 }
                             
-                if(userstatus.varification == 'varified'){
+              
+    case 11:
+           if(userstatus.path == 11 ){
+            
+           
+            if(messageType == 'BUTTON_REPLY' &&  /\d/.test(messageContent)){
+                console.log('you are in a wrong area')
+                getAttendanceByStudentId (req, res,messageContent,user)
+  
 
-                     
-                console.log()
-                if (isuservarified) {
+            }
+            else{
+                bodyText  =` The selected option is not identified please select a valid option `
+                                  
                   
-                    if (!user.hasRunOnce && !('studentid' in userstatus && userstatus.path)) {
-                        console.log("Welcome to isuservarified");
-                        
-                     
-                        getStudentByParentPhone(user, messageContent, res);
-                        
-                       
-                        user.hasRunOnce = true;
-                    }
-                }
-                cache.set('varification',true)
-    
-              switch(userstatus.studentid ){
-                case 0 :  getAttendanceByStudentId (req, res,messageContent,user)
-    
+                  
+                                   
+                                  
+                      
+                                
+                headerText = 'Report Summary: Key Details and Insights';
+                
+                footerText = "";
+                buttonTitle = "";
+         
+                   
+         
+                const menuList =[{
+                 id:'Back to mainmenu',
+                 title: 'Back to Mainmenu',
+                 description:'Return Back',
+                 
+             }] 
+               const backtomenu = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+               sendMessage(backtomenu)
+                  
+            }
+            
+           
               }
     
                 
     
     
     
-                }
+                
               
     
     
@@ -139,47 +210,174 @@ const acadamics = (user, userstatus, res, req,messageContent) => {
     
             
         case 2:
-            //Pending Assaignment Section
+          
      
             if(userstatus.path == 2){
-                // what can i set is here
+
+              
+
+                     
+                (async () => {
+                    try {
+                        // Wait for the function to complete before proceeding
+                        await getStudentByParentPhone(user, messageContent, res);
+            
+                        // After the function completes, update the userstatus and cache
+                        userstatus = { ...userstatus, path: 12 };
+                        cache.set(user, userstatus);
+            
+                        // Send a response indicating the next step
+                        console.log('Function completed and cache updated.');
+                    } catch (error) {
+                        console.error('Error in getStudentByParentPhone:', error);
+                    }
+                })();
+
+                            return res.status(403).send({
+                                "messaging_product": "whatsapp",
+                                "recipient_type": "individual",
+                                "to": user,
+                                "type": "text",
+                                "text": {
+                                    "body": "You need to complete verification before submitting your application."
+                                }
+                            });
+               
+       
+
+
+
+
+
+
+                    // Send a response indicating the next step
+                   
+                } else {
+                    console.log("User is selected a invalid path check and get more data about this.");
+                    
+                    // Optionally send a response or handle the non-verified case here
+                    return res.status(403).send({
+                        "messaging_product": "whatsapp",
+                        "recipient_type": "individual",
+                        "to": user,
+                        "type": "text",
+                        "text": {
+                            "body": "You need to complete verification before submitting your application."
+                        }
+                    });
+                }
+            
+
+
+
+                
                         
-                if(userstatus.varification == 'varified'){
-                    console.log()
-    
-                    switch(userstatus.studentid ){
-                      case 0 :let newmessage =` Here’s a quick update on ${messageContent}  progress with pending assignments:
+              
+                    
+     case 12 : 
+
+
+     if(userstatus.path == 12 ){
+           
+        if(messageType == 'BUTTON_REPLY' &&  /\d/.test(messageContent)){
+             
+     bodyText  =`${messageContent} - Progress Update and Pending Tasks
+     Hello ${messageTitle},
+     
+     I hope you're doing well. Here’s an update on [Message Title]’s progress and the current status of pending assignments:
+     
+     Academic Overview:
+     
+     Strengths: Science
+     Areas for Improvement: Language Arts
+     Pending Assignments:
+     
+     Math: Chapter review exercises for Unit 3 (In Progress)
+     Science: Lab report on Organic Chemistry (Not Started)
+     Language Arts: Book report on  (In Progress)
+     Social Studies: Worksheet on The Catcher in the Rye (Completed, pending review)
+     Next Steps:
+     
+     Focus on completing pending assignments and continue practicing reading to enhance confidence.
+     Thank you for your attention to this update.
+     
+     Best regards,
+     Class Teacher
+     Greeks Public School
+     
+     `
+                           
+           
+           
+                            
+                           
+               
+                         
+             headerText = 'Report Summary: Key Details and Insights';
+             
+             footerText = "";
+             buttonTitle = "";
       
-                      Academics: Strong in [Math/Science], but could benefit from extra attention in [Language Arts/other subjects].
-                      
-                      Pending Assignments and Status:
-                      
-                      Math: Chapter review exercises for Unit 3 — In Progress
-                      Science: Lab report on [Experiment Name] — Not Started
-                      Language Arts: Book report on [Book Title] — In Progress
-                      Social Studies: Worksheet on [Topic] — Completed, pending review
-                      Behavior: Respectful, helpful, and actively participates in class.
-                      
-                      Goal: Complete remaining assignments and continue practicing [writing/reading] to build confidence.
-                      
-                      Thank you!
-                      [Sumitha TV]`
-                      
+                
       
-      
-                      whatsapptextmessages =  createTextMessage(user,newmessage)
-                      sendMessage(whatsapptextmessages);
-                       
-                      
+             const menuList =[{
+              id:'Back to mainmenu',
+              title: 'Back to Mainmenu',
+              description:'Return Back',
+              
+          }] 
+            const backtomenu = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+            sendMessage(backtomenu)
+               
+                           
+               
+
+
+        }
+        else{
+            bodyText  =` The selected option is not identified please select a valid option `
+                              
+              
+              
+                               
+                              
+                  
+                            
+            headerText = 'Report Summary: Key Details and Insights';
+            
+            footerText = "";
+            buttonTitle = "";
+     
+               
+     
+            const menuList =[{
+             id:'Back to mainmenu',
+             title: 'Back to Mainmenu',
+             description:'Return Back',
+             
+         }] 
+           const backtomenu = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+           sendMessage(backtomenu)
+              
+        }
+        
+       
+          }
+
+            
+
+
+
+
+
+     //
+     
+     
+     
+   
           
-                    }
           
-                      
-          
-          
-          
-                      }
-                    }
+                     
 
                 
                
@@ -193,23 +391,99 @@ const acadamics = (user, userstatus, res, req,messageContent) => {
             
             case 3:
 
-
+             
 
 
                 //Progress Section code will work here --------------------------------------------------
-                if(userstatus.path == 3){
-               
-                                  
-                                   
-                    if(userstatus.varified == 'varified'){
-
-                        switch(userstatus.studentid ){
-                            case 0 :  Acadamics (req, res,messageContent,user)
+                if (userstatus.path == 3) {
+                    console.log('We are in the correct path inside');
+                    
+                    (async () => {
+                        try {
+                            // Wait for the function to complete before proceeding
+                            await getStudentByParentPhone(user, messageContent, res);
                 
-                          }
-                        
-                    }
-                    console.log()
+                            // After the function completes, update the userstatus and cache
+                            userstatus = { ...userstatus, path: 13 };
+                            cache.set(user, userstatus);
+                
+                            // Send a response indicating the next step
+                            console.log('Function completed and cache updated.');
+
+                            return res.status(403).send({
+                                "messaging_product": "whatsapp",
+                                "recipient_type": "individual",
+                                "to": user,
+                                "type": "text",
+                                "text": {
+                                    "body": "You need to complete verification before submitting your application."
+                                }
+                            });
+                        } catch {
+
+                        }
+                    })();
+                }
+                 
+                   
+               
+                             
+                                   
+               
+        case 13 :
+
+        if(userstatus.path == 13 ){
+           
+            if(messageType == 'BUTTON_REPLY' &&  /\d/.test(messageContent)){
+                Acadamics (req, res,messageContent,user)
+  
+
+            }
+            else{
+                bodyText  =` The selected option is not identified please select a valid option `
+                                  
+                  
+                  
+                                   
+                                  
+                      
+                                
+                headerText = 'Report Summary: Key Details and Insights';
+                
+                footerText = "";
+                buttonTitle = "";
+         
+                   
+         
+                const menuList =[{
+                 id:'Back to mainmenu',
+                 title: 'Back to Mainmenu',
+                 description:'Return Back',
+                 
+             }] 
+               const backtomenu = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+               sendMessage(backtomenu)
+                  
+            }
+            
+           
+              }
+
+
+
+
+
+
+
+
+
+
+
+        //
+          
+        
+     
+                
         
              
         
@@ -217,7 +491,7 @@ const acadamics = (user, userstatus, res, req,messageContent) => {
         
         
         
-                    }
+                    
                   
         
         
@@ -230,46 +504,138 @@ const acadamics = (user, userstatus, res, req,messageContent) => {
         case 4:
             //Class TEacher Report  Section code will work here --------------------------------------------------
             if(userstatus.path == 4){
-           
-                if(userstatus.varification == 'varified'){
-                    console.log()
-    
-                    switch(userstatus.studentid ){
-                      case 0 :   let Textmessage = `
-      Akhil’s Progress Update
-      
-      Hi ,
-      A quick update on ${messageContent}:
-      
-      Academics: Strong in [Math/Science], needs a bit more focus on [Language Arts/other subjects].
-      Behavior: Respectful, helpful, and participates well.
-      Goal: Practice [writing/reading] to build confidence.
-      Thank you!
-      [Sumitha TV]
-      
-      
-      
-      
-      
-      
-      `
-                      whatsapptextmessages =  createTextMessage(user,Textmessage)
-                      sendMessage(whatsapptextmessages);
-                       
-          
-                    }
-          
-                      
-          
-          
-          
-                      }
-                    
 
-                }
+                (async () => {
+                    try {
+                        // Wait for the function to complete before proceeding
+                        await getStudentByParentPhone(user, messageContent, res);
+            
+                        // After the function completes, update the userstatus and cache
+                        userstatus = { ...userstatus, path: 14 };
+                        cache.set(user, userstatus);
+            
+                        // Send a response indicating the next step
+                        console.log('Function completed and cache updated.');
+                    } catch (error) {
+                        console.error('Error in getStudentByParentPhone:', error);
+                    }
+                })();
+
+          
+           
+   
+
+
+
+
+
+
+                // Send a response indicating the next step
                
+            }
+
+           
+ case 14 : 
+
+
+
+ if(userstatus.path == 14 ){
+
+    console.log("you are in my way ")
+           
+    if(messageType == 'BUTTON_REPLY' &&  /\d/.test(messageContent)){
+        bodyText = `
+        ${messageContent} Progress Update
+      Hello ${messageTitle},
+      
+      I hope you're doing well. Here's a quick update on Akhil's progress:
+      
+      Academics:
+      
+      Strong performance in Science.
+      Needs a bit more focus on Language Arts.
+      Goal:
+      
+      Concentrate on [writing/reading] to build confidence.
+      Thank you for your support!
+      
+      Best regards,
+      Sumitha TV
+            
+            
+            
+            
+            
+            `
+                            whatsapptextmessages =  createTextMessage(user,Textmessage)
+                            sendMessage(whatsapptextmessages);
+                             
+                
+              headerText = 'Instructor’s Feedback Response';
+            
+              footerText = "";
+              buttonTitle = "";
+       
+                 
+       
+              const menuList =[{
+               id:'Back to mainmenu',
+               title: 'Back to Mainmenu',
+               description:'Return Back',
+               
+           }] 
+             const backtomenu = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+             sendMessage(backtomenu)
+                        
+                     
+          
+
+
+    }
+    else{
+        bodyText  =` The selected option is not identified please select a valid option `
+                          
+          
+          
+                           
+                          
+              
+                        
+        headerText = 'Report Summary: Key Details and Insights';
+        
+        footerText = "";
+        buttonTitle = "";
+ 
+           
+ 
+        const menuList =[{
+         id:'Back to mainmenu',
+         title: 'Back to Mainmenu',
+         description:'Return Back',
+         
+     }] 
+       const backtomenu = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+       sendMessage(backtomenu)
+          
+    }
     
-    
+   
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
                           
     
 
@@ -280,38 +646,137 @@ const acadamics = (user, userstatus, res, req,messageContent) => {
         //Class TEacher Report  Section code will work here --------------------------------------------------
         if(userstatus.path == 5){
        
+
+            (async () => {
+                try {
+                    // Wait for the function to complete before proceeding
+                    await getStudentByParentPhone(user, messageContent, res);
+        
+                    // After the function completes, update the userstatus and cache
+                    userstatus = { ...userstatus, path: 15 };
+                    cache.set(user, userstatus);
+        
+                    // Send a response indicating the next step
+                    console.log('Function completed and cache updated.');
+                } catch (error) {
+                    console.error('Error in getStudentByParentPhone:', error);
+                }
+            })();
+
+      
+       
+
+
+
+
+
+
+
+            // Send a response indicating the next step
+           
+        } else {
+            console.log("User is selected a invalid path check and get more data about this.");
+            
+            // Optionally send a response or handle the non-verified case here
+            return res.status(403).send({
+                "messaging_product": "whatsapp",
+                "recipient_type": "individual",
+                "to": user,
+                "type": "text",
+                "text": {
+                    "body": "You need to complete verification before submitting your application."
+                }
+            });
+       
+        }
+    
+
+                
+
+         
+            case 15 :  
+
+            if(userstatus.path == 15 ){
+           
+                if(messageType == 'BUTTON_REPLY' &&  /\d/.test(messageContent)){
+                    bodyText = `
+                    Pending Fees Summary for ${messageTitle} 
+                    Studentid : ${messageContent}
                     
-            if(userstatus.varification == 'varified'){
-                console.log()
-
-          switch(userstatus.studentid ){
-            case 0 :   let Textmessage = `
-Pending Fees Summary for ${messageContent}
-
-Total Fees: ₹12700
-Next Installment: ₹3500 due on 12-11-2024
-Management Signature:Sumesh KV
-
-
-
-
-
-
-`
-            whatsapptextmessages =  createTextMessage(user,Textmessage)
-            sendMessage(whatsapptextmessages);
+                    Total Fees: ₹12700
+                    Paid:₹6200
+                    Balance:₹6500
+                    Next Installment: ₹3500 due on 12-11-2024
+                    Management Signature:Sumesh KV
+                    
+                    
+                    
+                    
+                    
+                    
+                    `
+                                 
+    
+    
+                                
+            headerText = 'Fees Details';
+           
+            footerText = "";
+            buttonTitle = "";
+     
+               
+     
+            const menuList =[{
+             id:'Back to mainmenu',
+             title: 'Back to Mainmenu',
+             description:'Return Back',
              
-
-          }
-
+         }] 
+           const backtomenu = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+           sendMessage(backtomenu)
+                    
+            
+            
+                }
+                else{
+                    bodyText  =` The selected option is not identified please select a valid option `
+                                      
+                      
+                      
+                                       
+                                      
+                          
+                                    
+                    headerText = 'Report Summary: Key Details and Insights';
+                    
+                    footerText = "";
+                    buttonTitle = "";
+             
+                       
+             
+                    const menuList =[{
+                     id:'Back to mainmenu',
+                     title: 'Back to Mainmenu',
+                     description:'Return Back',
+                     
+                 }] 
+                   const backtomenu = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+                   sendMessage(backtomenu)
+                      
+                }
+                
+               
+                  }
             
 
 
-            }
+
+
+
+            //
+           
             
-
-
-            }
+         
           
 
 
