@@ -577,7 +577,13 @@ const admission = (req, res, user, messageContent,userstatus) => {
 // get messages from Ai sysny and process wher to go
 // Controller function to handle queries with GPT integration
 const decidewheretogo = async (req, res) => {
-    try {
+  const request = req.body;
+
+    if (request.topic === "message.sender.user") {
+        // Offload the processing to a background task
+        setImmediate(async () => {
+            try {
+               
         const user = req.body.data.message.phone_number;
         const messageType = req.body.data.message.message_type;
         let messageContent 
@@ -654,7 +660,7 @@ const decidewheretogo = async (req, res) => {
                           sendMessage(message);
                        } catch (error) {
                            console.error(`Error handling query: ${error.message}`);
-                           return res.status(500).send(`Error handling query: ${error.message}`);
+                           return res.status(200).send("Success")
                        }
                    }
                } else if (messageType === 'LIST_REPLY' && counter === 1) {
@@ -796,15 +802,20 @@ const decidewheretogo = async (req, res) => {
                     console.log(`The message is ${messageContent}.`);
                     break;
         
-                default:
-                    console.log("Unrecognized option.");
-            }
+               default:
+              console.log("Unrecognized option.");
+          }
         }
-        
-    } catch (error) {
-        console.error(`Error handling request: ${error.message}`);
-        res.status(500).send(`Error handling request: ${error.message}`);
-    }
+      } catch (error) {
+        // Handle errors silently or in your preferred way
+      }
+    });
+
+    // Return an immediate response
+    res.status(200).send("Success");
+  } else {
+    res.status(200).send("Success");
+  }
 };
 
 
