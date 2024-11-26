@@ -551,6 +551,7 @@ const decidewheretogo = async (req, res) => {
                    const userCache = cache.get(user);
                    if (userCache && Date.now() - userCache.lastInteraction > 3 * 60 * 1000) {
                        cache.set(user, { counter: 0 });
+                       cache.set('varification',false) 
                      
                    }
                }, 3 * 60 * 1000);
@@ -941,4 +942,3 @@ module.exports = {
 
 
 };
-
