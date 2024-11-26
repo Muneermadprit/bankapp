@@ -11,6 +11,7 @@ const axios = require('axios');
 const fs = require('fs');
 const {fetchuser} = require('./IsUser_Registerd');
 const {generateRequest} = require('./sendresponse');
+const {Events} = require('./Eventsflow')
 const {sendMessage} = require('./sendingtowhatsapp');
 const {fetchAndSendMenu} = require('./fetch_data_and _send_message');
 const {getStudentByParentPhone} = require('./parentscontrollers');
@@ -75,16 +76,21 @@ const cipher = crypto.createCipheriv(algorithm, key, iv);
 // function for admission process you can change and modify this code when you want to change the admission flow
 
 
-const admission = (req, res, user, messageContent,userstatus) => {
-   
+const admission = (req, res, user, messageContent,userstatus,messageType) => {
+
     console.log(messageContent,'message content in funsction')
 
+    let headerText = 'Admission portal: Please select an option below';
+    let bodyText = '';  
+    let footerText = '';
+    let buttonTitle = 'Select Options';
+
     // Initialize userstatus if `admission` is not in currentstatus
-   
+
 
     // Update userstatus based on message content
 
-   
+
 
     switch (messageContent) {
         case 'ApplicationStatus':
@@ -96,20 +102,51 @@ const admission = (req, res, user, messageContent,userstatus) => {
             userstatus = { ...userstatus, path: 2 };
             cache.set(user, userstatus);
             break;
+            default:
+                if( userstatus.path<0){
+
+
+                    bodyText  =` The selected option is not identified please select a valid option `
+
+
+
+
+
+
+
+                        headerText = 'Report Summary: Key Details and Insights';
+
+                        footerText = "";
+                        buttonTitle = "";
+
+
+
+                        const menuList =[{
+                         id:'Back to mainmenu',
+                         title: 'Back to Mainmenu',
+                         description:'Return Back',
+
+                     }] 
+                       const backtomenu = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+                       sendMessage(backtomenu)
+
+
+                }
     }
 
     // Response based on userstatus.admission value
     switch (userstatus.path) {
         case 0:
-            const headerText = 'Admission portal: Please select an option below';
-            const bodyText = '';  
-            const footerText = '';
-            const buttonTitle = 'Select Options';
-                 
-                  
-                    fetchAndSendMenu(2,user,headerText,footerText,buttonTitle,bodyText);
-           
-            
+            userstatus = { ...userstatus, path: -1 };
+             headerText = 'Admission portal: Please select an option below';
+             bodyText = 'For updates on your admission status, log in to the portal and review the latest information.';  
+             footerText = '';
+             buttonTitle = 'Select Options';
+                 let position = cache.get('Position')
+
+                    fetchAndSendMenu(2,user,headerText,footerText,buttonTitle,bodyText,position);
+
+
 
 
 
@@ -139,179 +176,119 @@ const admission = (req, res, user, messageContent,userstatus) => {
             });
 
         case 1:
-
-           if (!('varification' in userstatus)){
-            userstatus = { ...userstatus, varification: 'validation' };
-            console.log(userstatus.varification)
-            cache.set(user, userstatus);
-
-            const headerText = 'please ensure using Registerd number'
-            let menuList = [{
-                id: 'yes',
-                title: 'yes i have',
-                description:'use the mobile phone you registerd'
-
-        
-
-            },{
-                id: 'No',
-                title: 'I dont have',
-                description:'use the mobile phone you registerd'
-
-        
-
-            }]
-            const bodyText = '';
-            const footerText = '';
-            const buttonTitle = 'Select Options';
-            
-             const message = generateRequest(user, headerText, bodyText , footerText, buttonTitle,menuList) 
-              console.log(message)
-             sendMessage(message);
+            if(userstatus.path == 1){
 
 
 
+                (async () => {
+                    try {
+                        // Wait for the function to complete before proceeding
+                        await getStudentByParentPhone(user, messageContent, res);
 
-
-            return res.status(200).send({
-                "messaging_product": "whatsapp",
-                "recipient_type": "individual",
-                "to": user,
-                "type": "interactive",
-                "interactive": {
-                    "type": "list",
-                    "header": { "type": "text", "text": "You have to use your Registerd phonenumber. For continew" },
-                    "body": { "text": "Choose one of the following options to proceed:" },
-                    "footer": { "text": "Academics Portal Menu" },
-                    "action": {
-                        "sections": [{
-                            "title": "Admission Options",
-                            "rows": [
-                                { "id": "yes", "title": "Yes i have", "description": "Check your child's last week attendance." },
-                                { "id": "No", "title": "No I dont have", "description": "Check pending assignments." },
-                                
-                            ]
-                        }]
-                    }
-                }
-            });
-            
-        
-           }
-           else {
-
-            switch(userstatus.varification){
-                case 'validation':
-                    console.log('entrance')
-                    userstatus = { ...userstatus, varification: 'pending' };
-                    cache.set(user, userstatus);
-                    const phoneRegex = /^\+?[1-9]\d{1,14}$/;  
-                    let otpSent = false; // E.164 format
-                    if (!userstatus.id.startsWith("+")) {
-                        userstatus.id = "+" + userstatus.id;
+                        // After the function completes, update the userstatus and cache
+                        userstatus = { ...userstatus, path: 11 };
                         cache.set(user, userstatus);
-                        console.log(user.id)
-                      }
-                    if (phoneRegex.test(userstatus.id)) {
-                        if (!otpSent) { // Check if `Sendotp` has already been called
-                            otpSent = true; // Set the flag to true to prevent further calls
-                            Sendotp(user,messageContent).catch((error) => console.error('Error in Sendotp:', error));
-                        }
 
-                        let Textmessage = 'please enter your OTP'
-                     let  whatsapptextmessages =  createTextMessage(user,Textmessage)
-                      sendMessage(whatsapptextmessages);
-
-                        return res.status(200).send({
-                            "messaging_product": "whatsapp",
-                            "recipient_type": "individual",
-                            "to": user,
-                            "type": "text",
-                            "text": {
-                                "body": "please enter your OTP"
-                            }
-                        }); 
-                       
-                    } else {
-                        // Optional: handle invalid phone number format
-                        res.status(400).send({
-                            "error": "Invalid phone number format. Please enter a valid phone number in the correct format."
-                        });
-                
-                
+                        // Send a response indicating the next step
+                        console.log('Function completed and cache updated.');
+                    } catch (error) {
+                        console.error('Error in getStudentByParentPhone:', error);
                     }
+                })();
 
-                    case 'pending':
-                        console.log('we are in pending side');
-                        
-                        // Call the OTP verification function
-                        otpVerification(user, messageContent, res);
-                        
-                        // Retrieve the verification status from the cache
-                        let isVerified = cache.get(user);
-                        
-                        // Check if the retrieved data is valid and contains varification
-                        if (isVerified && isVerified.varification === 'varified') {
-                            console.log("we are in verified condition");
-                             const headerText = 'See Your Admission Status'
 
-                            const bodyText ='your application status is pending . After the varification of submitted data we will contact you'
-                            const footerText = '';
-                            const buttonTitle = 'Select Options';
-                           
-                            const menuList = [{
-                             id: 'Back to mainmenu',
-                             title: 'Back to mainmenu',
-                             description: 'Admission-related queries'
-                
-                            }]
-                            
-                            const message = generateRequest(user, headerText, bodyText , footerText, buttonTitle,menuList) 
-                            console.log(message)
-                           sendMessage(message);
-                            // Send a response indicating the next step
-                            return res.status(200).send({
-                                "messaging_product": "whatsapp",
-                                "recipient_type": "individual",
-                                "to": user,
-                                "type": "text",
-                                "text": {
-                                    "body": "your application status is pending . After the varification of submitted data we will contact you"
+
+
+
+
+
+
+
+                                    // Send a response indicating the next step
+
+                                } else {
+                                    console.log("User is selected a invalid path check and get more data about this.");
+
+                                    // Optionally send a response or handle the non-verified case here
+                                    return res.status(403).send({
+                                        "messaging_product": "whatsapp",
+                                        "recipient_type": "individual",
+                                        "to": user,
+                                        "type": "text",
+                                        "text": {
+                                            "body": "You need to complete verification before submitting your application."
+                                        }
+                                    });
                                 }
-                            });
-                        } else {
-                            console.log("User is not verified yet or verification status is invalid.");
-                            
-                            // Optionally send a response or handle the non-verified case here
-                            return res.status(403).send({
-                                "messaging_product": "whatsapp",
-                                "recipient_type": "individual",
-                                "to": user,
-                                "type": "text",
-                                "text": {
-                                    "body": "You need to complete verification before submitting your application."
-                                }
-                            });
-                        }
-                        break;
-                    
-            case'varified':
-            const bodyText ='your application status is pending . After the varification of submitted data we will contact you'
-            const footerText = '';
-            const buttonTitle = 'Select Options';
-           
+
+            case 11:
+
+
+            if(userstatus.path == 11 ){
+
+                if(messageType == 'BUTTON_REPLY'){
+                    bodyText ='your application status is pending . After the varification of submitted data we will contact you'
+             footerText = '';
+             buttonTitle = 'Select Options';
+
             const menuList = [{
              id: 'Back to mainmenu',
              title: 'Back to mainmenu',
              description: 'Admission-related queries'
 
             }]
-            
+
             const message = generateRequest(user, headerText, bodyText , footerText, buttonTitle,menuList) 
             console.log(message)
     console.log(   sendMessage(message))      
 
-              
+
+
+                }
+                else{
+                    bodyText  =` The selected option is not identified please select a valid option `
+
+
+
+
+
+
+
+                    headerText = 'Report Summary: Key Details and Insights';
+
+                    footerText = "";
+                    buttonTitle = "";
+
+
+
+                    const menuList =[{
+                     id:'Back to mainmenu',
+                     title: 'Back to Mainmenu',
+                     description:'Return Back',
+
+                 }] 
+                   const backtomenu = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+                   sendMessage(backtomenu)
+
+                }
+
+
+                  }
+
+
+
+
+
+
+
+
+
+
+
+            //
+
+
+
             return res.status(200).send({
                 "messaging_product": "whatsapp",
                 "recipient_type": "individual",
@@ -322,210 +299,153 @@ const admission = (req, res, user, messageContent,userstatus) => {
                 }
             }); 
 
-            
 
 
 
-            }
-          
 
 
-           }
-           
+
+
+
+
+
 //
         case 2:
-            
-        if (!('varification' in userstatus)){
-            userstatus = { ...userstatus, varification: 'validation' };
-            console.log(userstatus.varification)
-            cache.set(user, userstatus);
 
-            const headerText = 'please ensure using Registerd number'
-            let menuList = [{
-                id: 'yes',
-                title: 'yes i have',
-                description:'use the mobile phone you registerd'
-
-        
-
-            },{
-                id: 'No',
-                title: 'I dont have',
-                description:'use the mobile phone you registerd'
-
-        
-
-            }]
-            const bodyText = '';
-            const footerText = '';
-            const buttonTitle = 'Select Options';
-            
-             const message = generateRequest(user, headerText, bodyText , footerText, buttonTitle,menuList) 
-              console.log(message)
-             sendMessage(message);
+        if(userstatus.path == 2){
 
 
 
+            (async () => {
+                try {
+                    // Wait for the function to complete before proceeding
+                    await getStudentByParentPhone(user, messageContent, res);
 
-
-            return res.status(200).send({
-                "messaging_product": "whatsapp",
-                "recipient_type": "individual",
-                "to": user,
-                "type": "interactive",
-                "interactive": {
-                    "type": "list",
-                    "header": { "type": "text", "text": "You have to use your Registerd phonenumber. For continew" },
-                    "body": { "text": "Choose one of the following options to proceed:" },
-                    "footer": { "text": "Academics Portal Menu" },
-                    "action": {
-                        "sections": [{
-                            "title": "Admission Options",
-                            "rows": [
-                                { "id": "yes", "title": "Yes i have", "description": "Check your child's last week attendance." },
-                                { "id": "No", "title": "No I dont have", "description": "Check pending assignments." },
-                                
-                            ]
-                        }]
-                    }
-                }
-            });
-            
-        
-           }
-           else {
-
-            switch(userstatus.varification){
-                case 'validation':
-                    console.log('entrance')
-                    userstatus = { ...userstatus, varification: 'pending' };
+                    // After the function completes, update the userstatus and cache
+                    userstatus = { ...userstatus, path: 12 };
                     cache.set(user, userstatus);
-                    const phoneRegex = /^\+?[1-9]\d{1,14}$/;  
-                    let otpSent = false; // E.164 format
-                    if (!userstatus.id.startsWith("+")) {
-                        userstatus.id = "+" + userstatus.id;
-                        cache.set(user, userstatus);
-                        console.log(user.id)
-                      }
-                    if (phoneRegex.test(userstatus.id)) {
-                        if (!otpSent) { // Check if `Sendotp` has already been called
-                            otpSent = true; // Set the flag to true to prevent further calls
-                            Sendotp(user,messageContent).catch((error) => console.error('Error in Sendotp:', error));
-                        }
 
-                        let Textmessage = 'please enter your OTP'
-                     let  whatsapptextmessages =  createTextMessage(user,Textmessage)
-                      sendMessage(whatsapptextmessages);
-
-                        return res.status(200).send({
-                            "messaging_product": "whatsapp",
-                            "recipient_type": "individual",
-                            "to": user,
-                            "type": "text",
-                            "text": {
-                                "body": "please enter your OTP"
-                            }
-                        }); 
-                       
-                    } else {
-                        // Optional: handle invalid phone number format
-                        res.status(400).send({
-                            "error": "Invalid phone number format. Please enter a valid phone number in the correct format."
-                        });
-                
-                
-                    }
-
-                    case 'pending':
-                        console.log('we are in pending side');
-                        
-                        // Call the OTP verification function
-                        otpVerification(user, messageContent, res);
-                        
-                        // Retrieve the verification status from the cache
-                        let isVerified = cache.get(user);
-                        
-                        // Check if the retrieved data is valid and contains varification
-                        if (isVerified && isVerified.varification === 'varified') {
-                            console.log("we are in verified condition");
-                             const headerText = 'See Your Admission Status'
-
-                            const bodyText ='your application status is pending . After the varification of submitted data we will contact you'
-                            const footerText = '';
-                            const buttonTitle = 'Select Options';
-                           
-                            const menuList = [{
-                             id: 'Back to mainmenu',
-                             title: 'Back to mainmenu',
-                             description: 'Admission-related queries'
-                
-                            }]
-                            
-                            const message = generateRequest(user, headerText, bodyText , footerText, buttonTitle,menuList) 
-                            console.log(message)
-                           sendMessage(message);
-                            // Send a response indicating the next step
-                            return res.status(200).send({
-                                "messaging_product": "whatsapp",
-                                "recipient_type": "individual",
-                                "to": user,
-                                "type": "text",
-                                "text": {
-                                    "body": "your application status is pending . After the varification of submitted data we will contact you"
-                                }
-                            });
-                        } else {
-                            console.log("User is not verified yet or verification status is invalid.");
-                            
-                            // Optionally send a response or handle the non-verified case here
-                            return res.status(403).send({
-                                "messaging_product": "whatsapp",
-                                "recipient_type": "individual",
-                                "to": user,
-                                "type": "text",
-                                "text": {
-                                    "body": "You need to complete verification before submitting your application."
-                                }
-                            });
-                        }
-                        
-                    
-            case'varified':
-            const bodyText ='For Su . After the varification of submitted data we will contact you'
-            const footerText = '';
-            const buttonTitle = 'Select Options';
-           
-            const menuList = [{
-             id: 'Back to mainmenu',
-             title: 'Back to mainmenu',
-             description: 'Admission-related queries'
-
-            }]
-            
-            const message = generateRequest(user, headerText, bodyText , footerText, buttonTitle,menuList) 
-            console.log(message)
-    console.log(   sendMessage(message))      
-
-              
-            return res.status(200).send({
-                "messaging_product": "whatsapp",
-                "recipient_type": "individual",
-                "to": user,
-                "type": "text",
-                "text": {
-                    "body": "Your Application are in pending . After valuation we will inform you"
+                    // Send a response indicating the next step
+                    console.log('Function completed and cache updated.');
+                } catch (error) {
+                    console.error('Error in getStudentByParentPhone:', error);
                 }
-            }); 
-
-            
+            })();
 
 
 
+
+
+
+
+
+
+                                // Send a response indicating the next step
+
+                            } else {
+                                console.log("User is selected a invalid path check and get more data about this.");
+
+                                // Optionally send a response or handle the non-verified case here
+                                return res.status(403).send({
+                                    "messaging_product": "whatsapp",
+                                    "recipient_type": "individual",
+                                    "to": user,
+                                    "type": "text",
+                                    "text": {
+                                        "body": "You need to complete verification before submitting your application."
+                                    }
+                                });
+                            }
+
+
+            case 12:
+
+
+            if(userstatus.path == 11 ){
+
+                if(messageType == 'BUTTON_REPLY'){
+                    bodyText ='For Submit your application Visit  '
+                    footerText = '';
+                    buttonTitle = 'Select Options';
+
+                    menuList = [{
+                    id: 'Back to mainmenu',
+                    title: 'Back to mainmenu',
+                    description: 'Admission-related queries'
+
+                   }]
+
+                    message = generateRequest(user, headerText, bodyText , footerText, buttonTitle,menuList) 
+                   console.log(message)
+           console.log(   sendMessage(message)) 
+
+
+
+           return res.status(200).send({
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": user,
+            "type": "text",
+            "text": {
+                "body": "Your Application are in pending . After valuation we will inform you"
             }
-          
+        }); 
 
 
-           }
+                }
+                else{
+                    bodyText  =` The selected option is not identified please select a valid option `
+
+
+
+
+
+
+
+                    headerText = 'Report Summary: Key Details and Insights';
+
+                    footerText = "";
+                    buttonTitle = "";
+
+
+
+                    const menuList =[{
+                     id:'Back to mainmenu',
+                     title: 'Back to Mainmenu',
+                     description:'Return Back',
+
+                 }] 
+                   const backtomenu = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+                   sendMessage(backtomenu)
+
+                }
+
+
+                  }
+
+
+
+
+
+
+
+
+
+
+            //
+
+
+
+
+
+
+
+
+
+
+
+
+
         default:
             console.log("Unrecognized option.");
             console.log(userstatus.varification)
@@ -577,24 +497,24 @@ const admission = (req, res, user, messageContent,userstatus) => {
 // get messages from Ai sysny and process wher to go
 // Controller function to handle queries with GPT integration
 const decidewheretogo = async (req, res) => {
-  const request = req.body;
-
-    if (request.topic === "message.sender.user") {
-        // Offload the processing to a background task
-        setImmediate(async () => {
-            try {
-               
+    try {
         const user = req.body.data.message.phone_number;
         const messageType = req.body.data.message.message_type;
+        const messageTitle = req.body.data.message.message_content.title
         let messageContent 
         let userCache =cache.get(user) || { id: user,counter:0 }
         let counter = userCache.counter;
-        
-        
-     
+
+        let bodyText 
+        let headerText
+        let footerText 
+        let buttonTitle 
+
+
+
       //getting the consent from the user are done in this part 
 
-       
+
 
 
 
@@ -607,8 +527,8 @@ const decidewheretogo = async (req, res) => {
 
         console.log(`User: ${user}, Counter: ${userCache.counter}`);
 
-   
-              
+
+
 
                 if ( messageType === 'BUTTON_REPLY' )  {
                     messageContent =  req.body.data.message.message_content.id;
@@ -617,8 +537,8 @@ const decidewheretogo = async (req, res) => {
                    cache.set(user, userCache);}
                }
 
-       
-       
+
+
                  // Inactivity timeout: reset counter if no activity for 3 minutes
                  setTimeout(() => {
                    const userCache = cache.get(user);
@@ -626,41 +546,51 @@ const decidewheretogo = async (req, res) => {
                        cache.set(user, { counter: 0 });
                        cache.set('varification',true)
                        console.log(`User ${user} counter reset due to inactivity.`);
+                       cache.set('Position','')
                    }
                }, 3 * 60 * 1000);
-       
-       
-       
+
+
+
                // Handle initial text interaction
                if (messageType === 'TEXT') {
                    if (counter === 0) {
                        messageContent = req.body.data.message.message_content.text;
-                       
+
                        console.log("Initial interaction, counter set to 1.");
                    } else if (counter === 1) {
                        messageContent = req.body.data.message.message_content.text;
                        const headerText = 'Hai Iam The Ai Agent feel free to ask '
                        console.log(`Processing user query: ${messageContent}`);
                        try {
-                           const result = await handleQueryWithGPT(messageContent, 'Greeks public school');
+                           const result = await handleQueryWithGPT(messageContent, 'Greets public school');
                            console.log(result)
-                           const bodyText = result.message;
-                           const footerText = '';
-                           const buttonTitle = 'Select Options';
+                           if(cache.get(user).gpt==1){
+                           
+                            whatsapptextmessages =  createTextMessage(user,result.message)
+                             sendMessage(whatsapptextmessages);
+
+                           }
+                           else{
+                            const bodyText = result.message;
+                            const footerText = '';
+                            const buttonTitle = 'Select Options';
+ 
+                            const menuList = [{
+                             id: 'Back to mainmenu',
+                             title: 'Back to mainmenu',
+                             description: 'Admission-related queries'
+ 
+                            }]
+ 
+                            const message = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+                            console.log(message)
+                           sendMessage(message);
+                           }
                           
-                           const menuList = [{
-                            id: 'Back to mainmenu',
-                            title: 'Back to mainmenu',
-                            description: 'Admission-related queries'
-
-                           }]
-
-                           const message = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
-                           console.log(message)
-                          sendMessage(message);
                        } catch (error) {
                            console.error(`Error handling query: ${error.message}`);
-                           return res.status(200).send("Success")
+                           return res.status(500).send(`Error handling query: ${error.message}`);
                        }
                    }
                } else if (messageType === 'LIST_REPLY' && counter === 1) {
@@ -696,25 +626,25 @@ const decidewheretogo = async (req, res) => {
                    console.log("List reply received, counter set to 3.");
                    console.log(messageContent)
                }
-       
+
 
                if(messageContent == 'backtomainmenu'){
                 userCache.counter = 0;
                 cache.set(user, userCache);
                }
 
-              
 
-     
-        
 
-      
+
+
+
+
 
         if (userCache.counter === 0 ) {
 
           // check the user is in the 
-      
-          
+
+
           (async () => {
             try {
               let result = await fetchuser(user,messageContent,userCache,res);
@@ -723,33 +653,59 @@ const decidewheretogo = async (req, res) => {
               console.error("Error fetching user:", error);
             }
           })();
-        
-
-
-         
 
 
 
 
 
-            
-         
+
+
+
+
+
+
         } else if (userCache.counter === 2) {
             console.log("welcome to the world of history");
             let currentstatus = cache.get(user) || {}; // Ensure currentstatus is an object
            console.log(currentstatus)
             let userstatus;
-        
+
             if (!('position' in currentstatus)) {
                 console.log("welcome to secrets");
                 userstatus = { id: user, counter: 2, position: messageContent };
                 cache.set(user, userstatus);
             } else {
                 // Use currentstatus if it exists
-                userstatus = currentstatus;
-                console.log(userstatus)
+                if (messageContent == "ADMISSION" && messageContent == "ACADAMICS" && messageContent == "ACTIVITIES" && messageContent == "EVENTS") {
+                    userstatus = currentstatus;
+                    bodyText  =` The selected option is not identified please select a valid option `
+
+
+
+
+
+
+
+                    headerText = 'Report Summary: Key Details and Insights';
+
+                    footerText = "";
+                    buttonTitle = "";
+
+
+
+                    const menuList =[{
+                     id:'Back to mainmenu',
+                     title: 'Back to Mainmenu',
+                     description:'Return Back',
+
+                 }] 
+                   const backtomenu = generateRequest(user, headerText, bodyText, footerText, buttonTitle,menuList) 
+                   sendMessage(backtomenu)
+                }
+                userstatus = currentstatus
+
             }
-        
+
             // Make sure userstatus is defined before accessing position
             switch (userstatus.position) {
                 case 'ADMISSION':
@@ -759,14 +715,14 @@ const decidewheretogo = async (req, res) => {
                         console.log(userstatus)
 
                         cache.set(user, userstatus);
-                        admission(req, res, user, messageContent, userstatus); 
+                        admission(req, res, user, messageContent, userstatus,messageType); 
                         console.log("In the admission portal");
                     }
                     else{
-                        admission(req, res, user, messageContent, userstatus);  
+                        admission(req, res, user, messageContent, userstatus,messageType);  
                     }
                     break; // Handle admission logic
-        
+
                 case 'ACADAMICS':
                     if (!('path' in userstatus)) {
                         // Initialize admission if not present
@@ -774,11 +730,12 @@ const decidewheretogo = async (req, res) => {
                         console.log(userstatus)
 
                         cache.set(user, userstatus);
-                        acadamics(user, userstatus, res, req,messageContent); 
+                        acadamics(user, userstatus, res, req,messageContent, messageTitle,messageType ); 
                         console.log("In the admission portal");
                     }
                     else{
-                        acadamics(user, userstatus, res, req,messageContent);  
+                        acadamics(user, userstatus, res, req,messageContent, messageTitle,messageType );  
+
                     }
                     break; // Handle admission logic
 
@@ -790,69 +747,96 @@ const decidewheretogo = async (req, res) => {
                         console.log(userstatus)
 
                         cache.set(user, userstatus);
-                        activities(user, userstatus, res, req,messageContent); 
+                        activities(user, userstatus, res, req,messageContent,messageTitle,messageType); 
                         console.log("In the admission portal");
                     }
                     else{
-                        activities(user, userstatus, res, req,messageContent);  
+                        activities(user, userstatus, res, req,messageContent,messageTitle,messageType);  
                     }
                     break; // Handle admission logic
-                case 'School Notices':
+                case 'EVENTS':
+                    if (!('path' in userstatus)) {
+                        // Initialize admission if not present
+                        userstatus = { ...userstatus, path: 0 };
+                        console.log(userstatus)
+
+                        cache.set(user, userstatus);
+                        Events(user, userstatus, res, req,messageContent,messageTitle,messageType); 
+                        console.log("In the admission portal");
+                    }
+                    else{
+                        Events(user, userstatus, res, req,messageContent,messageTitle,messageType);  
+                    }
+
                 case 'Upcoming Events':
                     console.log(`The message is ${messageContent}.`);
                     break;
-        
-               default:
-              console.log("Unrecognized option.");
-          }
-        }
-      } catch (error) {
-        // Handle errors silently or in your preferred way
-      }
-    });
 
-    // Return an immediate response
-    res.status(200).send("Success");
-  } else {
-    res.status(200).send("Success");
-  }
+                default:
+                    console.log("Unrecognized option.");
+            }
+        }
+
+    } catch (error) {
+        console.error(`Error handling request: ${error.message}`);
+        res.status(500).send(`Error handling request: ${error.message}`);
+    }
 };
 
 
 // Controller function to handle queries with GPT integration
 const handleQueryWithGPT = async (message, companyName) => {
     try {
-        // Knowledge base definition
         const knowledgeBase = [
             {
-                name: "Greeks public school",
+                name: "Greets Public School",
                 industry: "Education",
-                info: infoText
+                info: infoText,
+                brochureLink: "https://example.com/brochure/greeks-public-school.pdf",
             },
-            // Add more entries as needed
         ];
 
-        // Search for knowledge entry
-        const knowledgeEntry = knowledgeBase.find(entry => entry.name.toLowerCase() === companyName.toLowerCase());
-       
-        // Create prompt
-        const prompt = knowledgeEntry 
-            ? `About ${knowledgeEntry.name} in the ${knowledgeEntry.industry} industry: ${knowledgeEntry.info}. User asks: ${message}.` 
-            : `User asks: ${message}. Provide a detailed response.`;
-    
-        // Load API key (use environment variables in production)
-        const apiKey = process.env.OPENAI_API_KEY;
-        if (!apiKey) {
-            throw new Error('OpenAI API key is missing');
+        const greetings = ["hai", "helo", "hello", "hi", "hoi", "hey"];
+        const isGreeting = greetings.some(greet => message.toLowerCase().trim() === greet);
+
+        const brochureSynonyms = ["brochure", "catalog", "leaflet", "pamphlet", "details", "booklet", "document"];
+        const brochureRequestDetected = brochureSynonyms.some(word =>
+            message.toLowerCase().includes(word.toLowerCase())
+        ) || inferBrochureIntent(message);
+
+        const knowledgeEntry = knowledgeBase.find(entry =>
+            entry.name.toLowerCase() === companyName.toLowerCase()
+        );
+
+        if (isGreeting) {
+            return { message: "Hello! How can I help you?" };
         }
 
-        // Generate response from GPT
+        if (brochureRequestDetected) {
+            if (knowledgeEntry?.brochureLink) {
+                return {
+                    message: `Here is the brochure for ${knowledgeEntry.name}. You can download it using this link: [Download Brochure](${knowledgeEntry.brochureLink})`,
+                };
+            } else {
+                return { message: `Sorry, we couldn't find a brochure for ${companyName}. Please contact us for more details.` };
+            }
+        }
+
+        const prompt = knowledgeEntry
+            ? `About ${knowledgeEntry.name} in the ${knowledgeEntry.industry} industry. User asks: ${message}. Provide a clear and concise response in 3-4 points, ensuring the final point is a comprehensive conclusion, and the entire response stays within 200 tokens.`
+            : `User asks: ${message}. Provide a clear and concise response in 3-4 points. Ensure the final point is a comprehensive conclusion, and the entire response is structured so it stays within 160 tokens.`;
+
+        const apiKey = process.env.OpenApikey;
+        if (!apiKey) throw new Error('OpenAI API key is missing');
+
         const response = await axios.post(
             'https://api.openai.com/v1/chat/completions',
             {
                 model: 'gpt-4',
                 messages: [{ role: 'user', content: prompt }],
-                max_tokens: 100, // Reduced token count
+                
+                max_tokens: 180,
+                temperature: 0.7,
             },
             {
                 headers: {
@@ -862,22 +846,24 @@ const handleQueryWithGPT = async (message, companyName) => {
             }
         );
 
-        // Check for response structure
-        if (response.data.choices && response.data.choices.length > 0) {
-            const gptResponse = response.data.choices[0].message.content.trim();
-            return {
-                message: gptResponse,
-               
-            };
+        if (response.data.choices?.[0]?.message?.content) {
+            return { message: response.data.choices[0].message.content.trim() };
         } else {
-            throw new Error('Unexpected response structure from GPT API');
+            throw new Error('Unexpected GPT response structure');
         }
     } catch (error) {
         console.error(`Error handling GPT query: ${error.message}`);
-        throw new Error(`Error handling GPT query: ${error.message}`);
+        return { message: "An error occurred while processing your query. Please try again later." };
     }
 };
 
+const inferBrochureIntent = (message) => {
+    const indicativePhrases = [
+        "send me the details", "information packet", "full details", 
+        "material about", "documents for", "guide about", "information on"
+    ];
+    return indicativePhrases.some(phrase => message.toLowerCase().includes(phrase.toLowerCase()));
+};
 
 
 
@@ -935,8 +921,8 @@ const getAllAcademicRecords = async (req, res) => {
 
 
 module.exports = {
-  
-  
+
+
     decidewheretogo, 
     getAllParentsCredentials,
     getAllStudentsCredential,
@@ -944,6 +930,7 @@ module.exports = {
     getAllAcademicRecords,
     getStudentByParentPhone,
     getAttendanceByStudentId,
-  
-    
+
+
 };
+
