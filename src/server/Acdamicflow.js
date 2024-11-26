@@ -49,6 +49,8 @@ const acadamics = (user, userstatus, res, req,messageContent,messageTitle,messag
         case 'PendingFees':
             userstatus = { ...userstatus, path: 5 };
             break;
+            
+
         
             
             default: 
