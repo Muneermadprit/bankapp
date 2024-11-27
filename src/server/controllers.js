@@ -17,7 +17,7 @@ const {fetchAndSendMenu} = require('./fetch_data_and _send_message');
 const {getStudentByParentPhone} = require('./parentscontrollers');
 const {Sendotp,otpVerification} = require('./sendotp');
 const { getAttendanceByStudentId} = require('./AttendanceCheck')
-const {createImageMessage} = require('./Imagemodel')
+
 
 const {  createTextMessage} = require('./Textmessage');
 const { acadamics} = require('./Acdamicflow')
