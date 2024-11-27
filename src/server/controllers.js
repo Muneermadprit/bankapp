@@ -650,18 +650,7 @@ const decidewheretogo = async (req, res) => {
 
         if (userCache.counter === 0 ) {
 
-          // check the user is in the 
-          if(messageContent != 'Back to mainmenu'){
-            console.log('what are you doing')
-            bodyText = 'Welcome to Greets Public School! We are delighted to have you here and look forward to a wonderful journey of learning and growth together'
-            headerText = 'Welcome message'
-            const buttons = ["Hai Thier"];
-            
-            const imagemessages =  createImageMessage( user,bodyText,footerText,buttons
-
-             )
-             sendMessage(imagemessages)
-          }
+          
 
           (async () => {
             try {
