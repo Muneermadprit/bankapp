@@ -17,6 +17,7 @@ const {fetchAndSendMenu} = require('./fetch_data_and _send_message');
 const {getStudentByParentPhone} = require('./parentscontrollers');
 const {Sendotp,otpVerification} = require('./sendotp');
 const { getAttendanceByStudentId} = require('./AttendanceCheck')
+const {createImageMessage} = require('./Imagemodel')
 
 const {  createTextMessage} = require('./Textmessage');
 const { acadamics} = require('./Acdamicflow')
@@ -540,8 +541,9 @@ const decidewheretogo = async (req, res) => {
                 if ( messageType === 'BUTTON_REPLY' )  {
                     messageContent =  req.body.data.message.message_content.id;
                     if(messageContent=='Back to mainmenu'){
-                   userCache.counter = 0;
+                   userCache = {counter:0}
                    cache.set(user, userCache);}
+                  
                }
 
 
@@ -649,7 +651,17 @@ const decidewheretogo = async (req, res) => {
         if (userCache.counter === 0 ) {
 
           // check the user is in the 
+          if(messageContent != 'Back to mainmenu'){
+            console.log('what are you doing')
+            bodyText = 'Welcome to Greets Public School! We are delighted to have you here and look forward to a wonderful journey of learning and growth together'
+            headerText = 'Welcome message'
+            const buttons = ["Hai Thier"];
+            
+            const imagemessages =  createImageMessage( user,bodyText,footerText,buttons
 
+             )
+             sendMessage(imagemessages)
+          }
 
           (async () => {
             try {
